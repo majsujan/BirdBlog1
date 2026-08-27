@@ -1394,10 +1394,10 @@ if (filteredBirds.length === 0) {
   const panel = document.getElementById('hamburgerPanel');
 
   // Find the thumbnail panel (the parent element that wraps #thumbnailGallery)
-  function getThumbContainer() {
-    const grid = document.getElementById('thumbnailGallery');
-    return grid ? grid.parentElement : null;
-  }
+function getThumbContainer() {
+  const controls = document.getElementById('thumbnailControls');
+  return controls ? controls.parentElement : null;
+}
 
   // Position the panel so it overlays the thumbnail column
   function positionPanelToThumb() {
