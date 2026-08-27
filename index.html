@@ -619,11 +619,63 @@ width: 95%;
     </div>
   </div>
 
-  <!-- RIGHT: Thumbnails -->
-  <div style="flex:1 1 300px; max-height:570px; overflow-y:auto;">
+<!-- RIGHT: Thumbnails -->
+<div style="flex:1 1 300px; max-height:570px; display:flex; flex-direction:column;">
+
+  <!-- Search / Sort Bar -->
+  <div id="thumbnailControls"
+       style="
+       background:white;
+       padding:8px;
+       border-bottom:1px solid #ddd;
+       display:flex;
+       gap:8px;
+       align-items:center;
+       flex-wrap:wrap;">
+
+    <input
+      type="text"
+      id="birdSearch"
+      placeholder="Search species..."
+      style="
+      flex:1;
+      min-width:140px;
+      padding:6px 10px;
+      border:1px solid #ccc;
+      border-radius:4px;">
+
+    <select id="birdSort"
+            style="
+            padding:6px 10px;
+            border:1px solid #ccc;
+            border-radius:4px;">
+      <option value="random">Random</option>
+      <option value="alpha">A-Z</option>
+      <option value="country">Country</option>
+    </select>
+
+    <select id="countryFilter"
+            style="
+            display:none;
+            padding:6px 10px;
+            border:1px solid #ccc;
+            border-radius:4px;">
+    </select>
+
+  </div>
+
+  <div style="flex:1; overflow-y:auto;">
+
     <div id="thumbnailGallery"
-         style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;padding: 12px 24px 12px 	24px; box-sizing: border-box;">
+         style="
+         display:grid;
+         grid-template-columns:repeat(3, 1fr);
+         gap:16px;
+         padding:12px 24px;
+         box-sizing:border-box;">
+
       <!-- Thumbnails will be injected here -->
+
     </div>
   </div>
 </div>
@@ -721,8 +773,34 @@ fetch('birds.json')
   });
 
 function initApp() {
+
   showRandomBird();
+
   loadThumbnails();
+
+  const countryFilter =
+    document.getElementById("countryFilter");
+
+  const countries = [
+    ...new Set(
+      Object.values(birds)
+        .flatMap(b => b.countries || [])
+    )
+  ].sort();
+
+  countryFilter.innerHTML =
+    '<option value="">Select country</option>';
+
+  countries.forEach(country => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = country;
+    option.textContent = country;
+
+    countryFilter.appendChild(option);
+  });
 }
 
 // ✅ Bird of the day
@@ -753,10 +831,17 @@ function navigateBird(direction) {
 
 
 // === Inject Thumbnails ===
-function loadThumbnails() {
+function shuffleArray(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function loadThumbnails(list = Object.entries(birds)) {
+
   const gallery = document.getElementById("thumbnailGallery");
 
-Object.entries(birds).forEach(([name, data]) => {
+  gallery.innerHTML = "";
+
+list.forEach(([name, data]) => {
 
   const wrapper = document.createElement("div");
   wrapper.style = `
@@ -829,7 +914,76 @@ gallery.appendChild(wrapper);
   });
 }
 window.onload = loadThumbnails;
+document.addEventListener("DOMContentLoaded", () => {
 
+  const searchBox =
+    document.getElementById("birdSearch");
+
+  const sortBox =
+    document.getElementById("birdSort");
+
+  const countryBox =
+    document.getElementById("countryFilter");
+
+  function updateGallery() {
+
+    let list = Object.entries(birds);
+
+    const search =
+      searchBox.value.toLowerCase();
+
+    if (search) {
+
+      list = list.filter(([name]) =>
+        name.toLowerCase().includes(search)
+      );
+    }
+
+    if (sortBox.value === "alpha") {
+
+      list.sort((a, b) =>
+        a[0].localeCompare(b[0])
+      );
+
+    } else if (sortBox.value === "random") {
+
+      list = shuffleArray(list);
+
+    } else if (
+      sortBox.value === "country" &&
+      countryBox.value
+    ) {
+
+      list = list.filter(([name, data]) =>
+        data.countries &&
+        data.countries.includes(countryBox.value)
+      );
+    }
+
+    loadThumbnails(list);
+  }
+
+  sortBox.addEventListener("change", () => {
+
+    countryBox.style.display =
+      sortBox.value === "country"
+        ? "block"
+        : "none";
+
+    updateGallery();
+  });
+
+  countryBox.addEventListener(
+    "change",
+    updateGallery
+  );
+
+  searchBox.addEventListener(
+    "input",
+    updateGallery
+  );
+
+});
    
    
     // ======== PHOTO VIEWER LOGIC ========
