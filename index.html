@@ -1248,26 +1248,45 @@ if (filteredBirds.length === 0) {
       }
     }).addTo(map);
 
-    const customMarkers = {
-      "Aruba":   { lat: 12.5211, lng: -69.9683 },
-      "Curaçao": { lat: 12.1696, lng: -68.99 }
-      // Add more markers here as needed...
-    };
+ const customMarkers = {
+  "Aruba": { lat: 13.0,  lng: -71.0, realLat: 12.5211, realLng: -69.9683, radius: 10 },
+
+  "Curaçao": { lat: 11.4, lng: -67.8, realLat: 12.1696, realLng: -68.99, radius: 10 }
+  // Add more markers here as needed...
+};
 
     // ✅ Markers (normalize names for consistency)
     Object.entries(customMarkers).forEach(([rawName, coords]) => {
       const name  = normalizeName(rawName);
       const count = birdData[name] || 0;
 
-      const marker = L.circleMarker([coords.lat, coords.lng], {
-        radius: ["Aruba", "Curaçao"].includes(name) ? 10 : 6,
-        fillColor: getColor(count),
-        color: '#333',
-        weight: 1,
-        fillOpacity: 0.9
-      }).addTo(map);
+const marker = L.circleMarker([coords.lat, coords.lng], {
+  radius: coords.radius || 6,
+  fillColor: getColor(count),
+  color: '#333',
+  weight: 1.5,
+  fillOpacity: 0.95
+}).addTo(map);
+		if (coords.realLat && coords.realLng) {
+  L.polyline(
+    [
+      [coords.realLat, coords.realLng],
+      [coords.lat, coords.lng]
+    ],
+    {
+      color: '#555',
+      weight: 1,
+      opacity: 0.8,
+      dashArray: '3,3'
+    }
+  ).addTo(map);
+}
 
-      marker.bindTooltip(`${name}: ${count} species`, { permanent: false, direction: 'top' });
+marker.bindTooltip(name, {
+  permanent: true,
+  direction: 'right',
+  offset: [6, 0]
+});
 
       // ✅ HOVER: same temporary reset behavior as countries
       marker.on('mouseover', () => {
