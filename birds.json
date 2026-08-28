@@ -141,7 +141,7 @@
 
   "Barn Swallow": {
     "photo": "https://i.imgur.com/K5TqgSB.jpeg",
-    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","","Netherlands","Norway","United Kingdom"]
+    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","Netherlands","Norway","United Kingdom"]
   },
 
   "Barnacle Goose": {
@@ -191,12 +191,12 @@
 
   "Black Kite": {
     "photo": "https://i.imgur.com/dczSzME.jpeg",
-    "countries": ["Bangladesh", ""]
+    "countries": ["Bangladesh"]
   },
 
   "Black Redstart": {
     "photo": "https://i.imgur.com/EGk0bhA.jpeg",
-    "countries": ["", "Netherlands"]
+    "countries": [ "Netherlands"]
   },
 
   "Black Woodpecker": {
@@ -376,7 +376,7 @@
 
   "Brahminy Kite": {
     "photo": "https://i.imgur.com/WSZij6G.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Brambling": {
@@ -396,7 +396,7 @@
 
   "Bronzed Drongo": {
     "photo": "https://i.imgur.com/0ofpSZq.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Brown Boobook": {
@@ -471,7 +471,7 @@
 
   "Cetti's Warbler": {
     "photo": "https://i.imgur.com/placeholder.jpeg",
-    "countries": ["","Netherlands"]
+    "countries": ["Netherlands"]
   },
 
   "Changeable Hawk-Eagle": {
@@ -536,17 +536,17 @@
 
   "Common Buzzard": {
     "photo": "https://i.imgur.com/Q9VhFT7.jpeg",
-    "countries": ["Denmark","Estonia","Germany","","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Estonia","Germany","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Common Chaffinch": {
     "photo": "https://i.imgur.com/LuShc8S.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Germany","Latvia","","Netherlands","Norway"]
+    "countries": ["Belgium","Denmark","Estonia","Finland","Germany","Latvia","Netherlands","Norway"]
   },
 
   "Common Chiffchaff": {
     "photo": "https://i.imgur.com/8MttBRs.jpeg",
-    "countries": ["Belgium","Denmark","Germany","","Netherlands","Norway", "Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Germany","Netherlands","Norway", "Sweden","United Kingdom"]
   },
 
   "Common Crane": {
@@ -1316,7 +1316,7 @@
 
   "Greater Yellownape": {
     "photo": "https://i.imgur.com/5HfdoTd.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Green Heron": {
@@ -1516,7 +1516,7 @@
 
   "Large-billed Crow": {
     "photo": "https://i.imgur.com/IBKOPJO.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Laughing Gull": {
@@ -1536,12 +1536,12 @@
 
   "Lesser Necklaced Laughingthrush": {
     "photo": "https://i.imgur.com/placeholder.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Lesser Racket-tailed Drongo": {
     "photo": "https://i.imgur.com/XbfeFnH.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Lesser Scaup": {
@@ -1606,7 +1606,7 @@
 
   "Little Spiderhunter": {
     "photo": "https://i.imgur.com/p2tEVlr.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Little Stint": {
@@ -1786,7 +1786,7 @@
 
   "Olive-backed Pipit": {
     "photo": "https://i.imgur.com/ULp545C.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Oriental Darter": {
@@ -2026,7 +2026,7 @@
 
   "Red-whiskered Bulbul": {
     "photo": "https://i.imgur.com/uVqBNTf.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Redpoll": {
@@ -2081,7 +2081,7 @@
 
   "Rose-ringed Parakeet": {
     "photo": "https://i.imgur.com/dMTZBJr.jpeg",
-    "countries": ["Greece","Italy","Netherlands","United Kingdom"]
+    "countries": ["Bangladesh","Greece","Italy","Netherlands","United Kingdom"]
   },
 
   "Roseate Spoonbill": {
@@ -2351,7 +2351,7 @@
 
   "Stork-billed Kingfisher": {
     "photo": "https://i.imgur.com/xobgeRH.jpeg",
-    "countries": ["Thailand"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Streak-eared Bulbul": {
@@ -2369,7 +2369,7 @@
     "countries": ["Bangladesh"]
   },
 
-  "Striated Heron": {
+  "Little Heron": {
     "photo": "https://i.imgur.com/TdRzOB7.jpeg",
     "countries": ["Bangladesh","Thailand"]
   },
