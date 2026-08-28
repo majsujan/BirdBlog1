@@ -1816,7 +1816,7 @@
 
   "Osprey": {
     "photo": "https://i.imgur.com/1vYsTnl.jpeg",
-    "countries": ["Aruba","Curaçao""Bangladesh","Denmark"]
+    "countries": ["Aruba","Curaçao","Bangladesh","Denmark"]
   },
 
   "Pacific Reef-Heron": {
@@ -1866,7 +1866,7 @@
 
   "Peregrine Falcon": {
     "photo": "https://i.imgur.com/gROYhhY.jpeg",
-    "countries": ["Aruba","Curaçao""Bangladesh","Netherlands","Norway"]
+    "countries": ["Aruba","Curaçao","Bangladesh","Netherlands","Norway"]
   },
 
   "Pied Avocet": {
@@ -2066,7 +2066,7 @@
 
   "Rock Pigeon": {
     "photo": "https://i.imgur.com/Yvbsxzv.jpeg",
-    "countries": ["Aruba","Curaçao""Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","Thailand","United Kingdom"]
+    "countries": ["Aruba","Curaçao","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","Thailand","United Kingdom"]
   },
 
   "Rock Pipit": {
