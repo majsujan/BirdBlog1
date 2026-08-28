@@ -1260,7 +1260,7 @@ if (filteredBirds.length === 0) {
       const count = birdData[name] || 0;
 
       const marker = L.circleMarker([coords.lat, coords.lng], {
-        radius: 6,
+        radius: ["Aruba", "Curaçao"].includes(name) ? 10 : 6,
         fillColor: getColor(count),
         color: '#333',
         weight: 1,
