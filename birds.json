@@ -619,6 +619,11 @@
     "countries": ["Bangladesh","Thailand"]
   },
 
+  "Common Hoopoe": {
+    "photo": "https://i.imgur.com/TspRD3I.jpeg",
+    "countries": ["Bangladesh","Greece","Italy","Thailand"]
+  },
+
   "Common Iora": {
     "photo": "https://i.imgur.com/zveXYvL.jpeg",
     "countries": ["Bangladesh"]
@@ -902,11 +907,6 @@
   "Eurasian Hobby": {
     "photo": "https://i.imgur.com/lg662Kg.jpeg",
     "countries": ["Netherlands"]
-  },
-
-  "Eurasian Hoopoe": {
-    "photo": "https://i.imgur.com/TspRD3I.jpeg",
-    "countries": ["Bangladesh","Greece","Italy","Thailand"]
   },
 
   "Eurasian Jackdaw": {
@@ -1216,7 +1216,7 @@
 
   "Great Cormorant": {
     "photo": "https://i.imgur.com/Gn8zMBd.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","Poland","United Kingdom"]
+    "countries": [Bangladesh","Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","Poland","United Kingdom"]
   },
 
   "Great Crested Grebe": {
@@ -1381,7 +1381,7 @@
 
   "Hodgson's Hawk-Cuckoo": {
     "photo": "https://i.imgur.com/GL3J8VP.jpeg",
-    "countries": ["Bangladesh"]
+    "countries": ["Thailand"]
   },
 
   "Hooded Crow": {
