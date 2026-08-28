@@ -1249,8 +1249,8 @@ if (filteredBirds.length === 0) {
     }).addTo(map);
 
  const customMarkers = {
-  "Aruba": { lat: 13.4,  lng: -71.6, realLat: 12.5211, realLng: -69.9683, radius: 10 },
-  "Curaçao": { lat: 11.0, lng: -67.2, realLat: 12.1696, realLng: -68.99, radius: 10 }
+  "Aruba": { lat: 14.2,  lng: -73.0, realLat: 12.5211, realLng: -69.9683, radius: 10 },
+  "Curaçao": { lat: 9.8, lng: -66.5, realLat: 12.1696, realLng: -68.99, radius: 10 }
 };
 
     // ✅ Markers (normalize names for consistency)
@@ -1323,9 +1323,6 @@ marker.bindTooltip(`${name}: ${count} species`, {
         renderSelectedSpeciesList();
       });
 
-      // 🚫 IMPORTANT: Remove the old immediate species list creation block
-      // (It was rebuilding the list regardless of hover/click, causing conflicts)
-      // The centralized renderSelectedSpeciesList() now exclusively controls list rendering.
     });
   })
   .catch(err => {
