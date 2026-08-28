@@ -141,7 +141,7 @@
 
   "Barn Swallow": {
     "photo": "https://i.imgur.com/K5TqgSB.jpeg",
-    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","","Netherlands","Norway","United Kingdom"]
   },
 
   "Barnacle Goose": {
@@ -191,12 +191,12 @@
 
   "Black Kite": {
     "photo": "https://i.imgur.com/dczSzME.jpeg",
-    "countries": ["Bangladesh", "Italy"]
+    "countries": ["Bangladesh", ""]
   },
 
   "Black Redstart": {
     "photo": "https://i.imgur.com/EGk0bhA.jpeg",
-    "countries": ["Italy", "Netherlands"]
+    "countries": ["", "Netherlands"]
   },
 
   "Black Woodpecker": {
@@ -246,7 +246,7 @@
 
   "Black-headed Gull": {
     "photo": "https://i.imgur.com/mQH8kVR.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Estonia","Latvia","Norway","Netherlands","Sweden","Finland","United Kingdom"]
   },
 
   "Black-headed Ibis": {
@@ -346,7 +346,7 @@
 
   "Bluethroat": {
     "photo": "https://i.imgur.com/ScarzHR.jpeg",
-    "countries": ["Denmark","Estonia","Norway","Sweden"]
+    "countries": ["Denmark","Estonia","Norway"]
   },
 
   "Blyth's Paradise-Flycatcher": {
@@ -441,7 +441,7 @@
 
   "Canada Goose": {
     "photo": "https://i.imgur.com/MrK4ILT.jpeg",
-    "countries": ["Belgium","Denmark","Finland","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Finland","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Carib Grackle": {
@@ -471,7 +471,7 @@
 
   "Cetti's Warbler": {
     "photo": "https://i.imgur.com/placeholder.jpeg",
-    "countries": ["Italy","Netherlands"]
+    "countries": ["","Netherlands"]
   },
 
   "Changeable Hawk-Eagle": {
@@ -536,17 +536,17 @@
 
   "Common Buzzard": {
     "photo": "https://i.imgur.com/Q9VhFT7.jpeg",
-    "countries": ["Belgium","Denmark","Germany","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Estonia","Germany","","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Common Chaffinch": {
     "photo": "https://i.imgur.com/LuShc8S.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Germany","Italy","Netherlands","Norway","Sweden"]
+    "countries": ["Belgium","Denmark","Estonia","Finland","Germany","Latvia","","Netherlands","Norway"]
   },
 
   "Common Chiffchaff": {
     "photo": "https://i.imgur.com/8MttBRs.jpeg",
-    "countries": ["Belgium","Denmark","Germany","Italy","Netherlands","Norway","United Kingdom"]
+    "countries": ["Belgium","Denmark","Germany","","Netherlands","Norway", "Sweden","United Kingdom"]
   },
 
   "Common Crane": {
@@ -561,7 +561,7 @@
 
   "Common Eider": {
     "photo": "https://i.imgur.com/LTaUxDH.jpeg",
-    "countries": ["Denmark","Italy","Norway"]
+    "countries": ["Denmark","Estonia","Norway"]
   },
 
   "Common Firecrest": {
@@ -581,7 +581,7 @@
 
   "Common Goldeneye": {
     "photo": "https://i.imgur.com/0FsAfwJ.jpeg",
-    "countries": ["Denmark","Finland","Norway"]
+    "countries": ["Denmark","Finland","Norway","Sweden"]
   },
 
   "Common Grasshopper Warbler": {
@@ -596,7 +596,7 @@
 
   "Common Greenshank": {
     "photo": "https://i.imgur.com/0CntOgQ.jpeg",
-    "countries": ["Belgium","Netherlands","Norway"]
+    "countries": ["Belgium","Norway"]
   },
 
   "Common Ground Dove": {
@@ -606,7 +606,7 @@
 
   "Common Gull": {
     "photo": "https://i.imgur.com/frAwvD9.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden"]
+    "countries": ["Denmark","Estonia","Finland","Latvia","Netherlands","Norway","Sweden"]
   },
 
   "Common Hawk-Cuckoo": {
@@ -626,7 +626,7 @@
 
   "Common Kingfisher": {
     "photo": "https://i.imgur.com/2TuV6BB.jpeg",
-    "countries": ["Bangladesh","Belgium","Netherlands"]
+    "countries": ["Bangladesh","Netherlands"]
   },
 
   "Common Loon": {
@@ -711,7 +711,7 @@
 
   "Common Swift": {
     "photo": "https://i.imgur.com/PyKx8gB.jpeg",
-    "countries": ["Czech Republic","Denmark","Germany","Italy","Norway"]
+    "countries": ["Czech Republic","Denmark","Estonia","Germany","Greece","Italy","Norway","Netherlands"]
   },
 
   "Common Tailorbird": {
@@ -801,7 +801,7 @@
 
   "Dunlin": {
     "photo": "https://i.imgur.com/sFbaM7M.jpeg",
-    "countries": ["Netherlands","Sweden"]
+    "countries": ["Netherlands","Norway","Sweden"]
   },
 
   "Dunnock": {
@@ -851,7 +851,7 @@
 
   "Eurasian Blackbird": {
     "photo": "https://i.imgur.com/31XuJQD.jpeg",
-    "countries": ["Belgium","Denmark","Germany","Italy","Netherlands","Norway","Sweden","Estonia","Finland"]
+    "countries": ["Belgium","Denmark","Germany","Greece","Italy","Latvia","Netherlands","Norway","Sweden","Estonia","Finland"]
   },
 
   "Eurasian Blackcap": {
@@ -861,7 +861,7 @@
 
   "Eurasian Blue Tit": {
     "photo": "https://i.imgur.com/Mn7nw7l.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Eurasian Bullfinch": {
@@ -871,7 +871,7 @@
 
   "Eurasian Collared-Dove": {
     "photo": "https://i.imgur.com/eijaApd.jpeg",
-    "countries": ["Bangladesh","Denmark","Germany","Italy","Netherlands","United Kingdom"]
+    "countries": ["Bangladesh","Denmark","Germany","Greece","Italy","Netherlands","United Kingdom"]
   },
 
   "Eurasian Coot": {
@@ -906,7 +906,7 @@
 
   "Eurasian Hoopoe": {
     "photo": "https://i.imgur.com/TspRD3I.jpeg",
-    "countries": ["Bangladesh","Thailand"]
+    "countries": ["Bangladesh","Greece","Italy","Thailand"]
   },
 
   "Eurasian Jackdaw": {
@@ -916,12 +916,12 @@
 
   "Eurasian Jay": {
     "photo": "https://i.imgur.com/27p8RMg.jpeg",
-    "countries": ["Belgium","Denmark","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Greece","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Eurasian Kestrel": {
     "photo": "https://i.imgur.com/Sbqd4Vt.jpeg",
-    "countries": ["Bangladesh","Denmark","Germany","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Bangladesh","Denmark","Germany","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Eurasian Linnet": {
@@ -931,7 +931,7 @@
 
   "Eurasian Magpie": {
     "photo": "https://i.imgur.com/E7DVmR9.jpeg",
-    "countries": ["Belgium","Denmark","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Eurasian Moorhen": {
@@ -941,7 +941,7 @@
 
   "Eurasian Nuthatch": {
     "photo": "https://i.imgur.com/XQy5P1V.jpeg",
-    "countries": ["Denmark","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Eurasian Oystercatcher": {
@@ -1021,17 +1021,17 @@
 
   "European Goldfinch": {
     "photo": "https://i.imgur.com/9MPGmdQ.jpeg",
-    "countries": ["Belgium","Denmark","Italy","Netherlands","Norway"]
+    "countries": ["Belgium","Denmark","Estonia","Italy","Netherlands","Norway"]
   },
 
   "European Greenfinch": {
     "photo": "https://i.imgur.com/Zmz4I7f.jpeg",
-    "countries": ["Denmark","Finland","Netherlands","Norway","Sweden"]
+    "countries": ["Denmark","Finland","Estonia","Netherlands","Norway","Sweden"]
   },
 
   "European Herring Gull": {
     "photo": "https://i.imgur.com/c5U09LZ.jpeg",
-    "countries": ["Belgium","Denmark","Finland","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Estonia","Finland","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "European Honey-buzzard": {
@@ -1061,7 +1061,7 @@
 
   "European Starling": {
     "photo": "https://i.imgur.com/HfB3Ppc.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Estonia","Latvia","Netherlands","Norway","United Kingdom"]
   },
 
   "European Stonechat": {
@@ -1071,7 +1071,7 @@
 
   "European Turtle-Dove": {
     "photo": "https://i.imgur.com/FMsWzB1.jpeg",
-    "countries": ["Netherlands"]
+    "countries": ["Netherlands","Norway"]
   },
 
   "Ferruginous Duck": {
@@ -1081,7 +1081,7 @@
 
   "Fieldfare": {
     "photo": "https://i.imgur.com/y7Y9eCx.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden"]
+    "countries": ["Denmark","Estonia","Finland","Latvia","Netherlands","Norway","Sweden"]
   },
 
   "Forest Wagtail": {
@@ -1096,7 +1096,7 @@
 
   "Gadwall": {
     "photo": "https://i.imgur.com/sGscrL8.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Garden Warbler": {
@@ -1106,7 +1106,7 @@
 
   "Garganey": {
     "photo": "https://i.imgur.com/ZXVy47u.jpeg",
-    "countries": ["Bangladesh","Denmark","Italy","Netherlands","Norway"]
+    "countries": ["Bangladesh","Denmark","Italy","Norway"]
   },
 
   "Glaucous Gull": {
@@ -1201,7 +1201,7 @@
 
   "Graylag Goose": {
     "photo": "https://i.imgur.com/UesYIXB.jpeg",
-    "countries": ["Belgium","Denmark","Finland","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Great Black-backed Gull": {
@@ -1216,7 +1216,7 @@
 
   "Great Cormorant": {
     "photo": "https://i.imgur.com/Gn8zMBd.jpeg",
-    "countries": ["Denmark","Netherlands","Norway","Sweden","Poland","United Kingdom"]
+    "countries": ["Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","Poland","United Kingdom"]
   },
 
   "Great Crested Grebe": {
@@ -1261,7 +1261,7 @@
 
   "Great Tit": {
     "photo": "https://i.imgur.com/fG3197p.jpeg",
-    "countries": ["Belgium","Denmark","Finland","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Estonia","Finland","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Great-tailed Grackle": {
@@ -1291,7 +1291,7 @@
 
   "Greater Scaup": {
     "photo": "https://i.imgur.com/hvU13st.jpeg",
-    "countries": ["Netherlands","Norway"]
+    "countries": ["Netherlands","Norway","Sweden"]
   },
 
   "Greater Spotted Eagle": {
@@ -1306,7 +1306,7 @@
 
   "Greater Whitethroat": {
     "photo": "https://i.imgur.com/ejkJXLY.jpeg",
-    "countries": ["Denmark","Netherlands","Norway"]
+    "countries": ["Denmark","Estonia","Netherlands","Norway"]
   },
 
   "Greater Yellowlegs": {
@@ -1321,7 +1321,7 @@
 
   "Green Heron": {
     "photo": "https://i.imgur.com/oHoa1KT.jpeg",
-    "countries": ["Aruba","Netherlands"]
+    "countries": ["Aruba"]
   },
 
   "Green Sandpiper": {
@@ -1386,7 +1386,7 @@
 
   "Hooded Crow": {
     "photo": "https://i.imgur.com/kXLcrXo.jpeg",
-    "countries": ["Denmark","Finland","Italy","Netherlands","Norway","Sweden"]
+    "countries": ["Denmark","Estonia","Finland","Greece","Italy","Latvia","Norway","Sweden"]
   },
 
   "Horned Grebe": {
@@ -1406,7 +1406,7 @@
 
   "House Sparrow": {
     "photo": "https://i.imgur.com/0MFxrVW.jpeg",
-    "countries": ["Aruba","Bangladesh","Belgium","Denmark","Estonia","Finland","Germany","Greece","Italy","Netherlands","Norway","Sweden","Thailand"]
+    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Germany","Greece","Latvia","Netherlands","Norway","Thailand"]
   },
 
   "House Swift": {
@@ -1561,7 +1561,7 @@
 
   "Lesser Whitethroat": {
     "photo": "https://i.imgur.com/MUSkXAP.jpeg",
-    "countries": ["Denmark","Italy","Netherlands","Norway"]
+    "countries": ["Denmark","Italy","Norway"]
   },
 
   "Lesser Yellowlegs": {
@@ -1586,7 +1586,7 @@
 
   "Little Egret": {
     "photo": "https://i.imgur.com/f4cFhDP.jpeg",
-    "countries": ["Bangladesh","Belgium","Denmark","Italy","Netherlands","Thailand"]
+    "countries": ["Bangladesh","Belgium","Italy","Netherlands","Thailand"]
   },
 
   "Little Grebe": {
@@ -1656,7 +1656,7 @@
 
   "Mallard": {
     "photo": "https://i.imgur.com/t8yVlmD.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Estonia","Finland","Italy","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "Mangrove Yellow Warbler": {
@@ -1666,12 +1666,12 @@
 
   "Marsh Tit": {
     "photo": "https://i.imgur.com/vNBzi66.jpeg",
-    "countries": ["Denmark","Netherlands","Norway"]
+    "countries": ["Netherlands","Norway"]
   },
 
   "Marsh Warbler": {
     "photo": "https://i.imgur.com/B2OtsNH.jpeg",
-    "countries": ["Denmark","Netherlands"]
+    "countries": ["Denmark"]
   },
 
   "Meadow Pipit": {
@@ -1736,7 +1736,7 @@
 
   "Northern Lapwing": {
     "photo": "https://i.imgur.com/e4WIpj5.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","United Kingdom"]
   },
 
   "Northern Nutcracker": {
@@ -1751,7 +1751,7 @@
 
   "Northern Pintail": {
     "photo": "https://i.imgur.com/DyNdlPz.jpeg",
-    "countries": ["Denmark","Italy","Norway","Sweden"]
+    "countries": ["Denmark","Norway","Sweden"]
   },
 
   "Northern Scrub-Flycatcher": {
@@ -1816,7 +1816,7 @@
 
   "Osprey": {
     "photo": "https://i.imgur.com/1vYsTnl.jpeg",
-    "countries": ["Aruba","Bangladesh","Denmark","Netherlands","Norway"]
+    "countries": ["Aruba","Bangladesh","Denmark"]
   },
 
   "Pacific Reef-Heron": {
@@ -1871,7 +1871,7 @@
 
   "Pied Avocet": {
     "photo": "https://i.imgur.com/qA21cnc.jpeg",
-    "countries": ["Netherlands"]
+    "countries": ["Denmark","Netherlands"]
   },
 
   "Pied Kingfisher": {
@@ -2036,12 +2036,12 @@
 
   "Redwing": {
     "photo": "https://i.imgur.com/MI1Jq4I.jpeg",
-    "countries": ["Denmark","Estonia","Norway","Sweden"]
+    "countries": ["Denmark","Norway","Netherlands","Sweden"]
   },
 
   "Reed Bunting": {
     "photo": "https://i.imgur.com/fEW0ZzM.jpeg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway","Sweden"]
+    "countries": ["Denmark","Estonia","Netherlands","Norway"]
   },
 
   "Richard's Pipit": {
@@ -2066,7 +2066,7 @@
 
   "Rock Pigeon": {
     "photo": "https://i.imgur.com/Yvbsxzv.jpeg",
-    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","United Kingdom"]
   },
 
   "Rock Pipit": {
@@ -2076,7 +2076,7 @@
 
   "Rook": {
     "photo": "https://i.imgur.com/RevHlUn.jpeg",
-    "countries": ["Denmark","Netherlands","Norway"]
+    "countries": ["Denmark","Norway"]
   },
 
   "Rose-ringed Parakeet": {
@@ -2501,7 +2501,7 @@
 
   "Western Yellow Wagtail": {
     "photo": "https://i.imgur.com/3UxgiLE.jpeg",
-    "countries": ["Denmark","Estonia","Italy","Netherlands","Norway"]
+    "countries": ["Estonia","Italy","Netherlands","Norway"]
   },
 
   "Whinchat": {
@@ -2521,7 +2521,7 @@
 
   "White Wagtail": {
     "photo": "https://i.imgur.com/ODNEduu.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Belgium","Denmark","Estonia","Finland","Italy","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
   },
 
   "White-bellied Sea-Eagle": {
@@ -2626,12 +2626,12 @@
 
   "Willow Tit": {
     "photo": "https://i.imgur.com/K4iTHSK.jpeg",
-    "countries": ["Denmark","Norway","Sweden"]
+    "countries": ["Norway","Sweden"]
   },
 
   "Willow Warbler": {
     "photo": "https://i.imgur.com/u3TBZHM.jpeg",
-    "countries": ["Denmark","Italy","Netherlands","Norway","Sweden"]
+    "countries": ["Denmark","Estonia","Italy","Netherlands","Norway","Sweden"]
   },
 
   "Wood Lark": {
@@ -2706,7 +2706,7 @@
 
   "Yellowhammer": {
     "photo": "https://i.imgur.com/5Ehw5B0.jpeg",
-    "countries": ["Denmark","Finland","Germany","Norway","Sweden"]
+    "countries": ["Denmark","Finland","Germany","Norway"]
   },
 
   "Zebra Dove": {
@@ -2728,7 +2728,12 @@
     "photo": "https://i.imgur.com/hByJPlZ.jpeg",
     "countries": ["Netherlands"]
   },
-
+  
+"Graylag x Canada Goose (hybrid)": {
+  "photo": "https://i.imgur.com/placeholder.jpeg",
+   "countries": ["Netherlands"]
+    },
+  
   "European Herring x Glaucous Gull (hybrid)": {
     "photo": "https://i.imgur.com/rP9W1JZ.jpeg",
     "countries": ["Norway"]
