@@ -141,7 +141,7 @@
 
   "Barn Swallow": {
     "photo": "https://i.imgur.com/K5TqgSB.jpeg",
-    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","Netherlands","Norway","United Kingdom"]
+    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","Netherlands","Norway","Thailand","United Kingdom"]
   },
 
   "Barnacle Goose": {
@@ -1146,7 +1146,7 @@
 
   "Gray Heron": {
     "photo": "https://i.imgur.com/xSalhOs.jpeg",
-    "countries": ["Bangladesh","Denmark","Estonia","Italy","Netherlands","Norway","Sweden","United Kingdom"]
+    "countries": ["Bangladesh","Denmark","Estonia","Italy","Netherlands","Norway","Sweden","Thailand","United Kingdom"]
   },
 
   "Gray Kingbird": {
@@ -1541,7 +1541,7 @@
 
   "Lesser Racket-tailed Drongo": {
     "photo": "https://i.imgur.com/XbfeFnH.jpeg",
-    "countries": ["Bangladesh","Thailand"]
+    "countries": ["Bangladesh"]
   },
 
   "Lesser Scaup": {
@@ -1786,7 +1786,7 @@
 
   "Olive-backed Pipit": {
     "photo": "https://i.imgur.com/ULp545C.jpeg",
-    "countries": ["Bangladesh","Thailand"]
+    "countries": ["Bangladesh"]
   },
 
   "Oriental Darter": {
@@ -1956,7 +1956,7 @@
 
   "Red Collared-Dove": {
     "photo": "https://i.imgur.com/LNcdxq6.jpeg",
-    "countries": ["Bangladesh"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Red Crossbill": {
@@ -2066,7 +2066,7 @@
 
   "Rock Pigeon": {
     "photo": "https://i.imgur.com/Yvbsxzv.jpeg",
-    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","United Kingdom"]
+    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","Thailand","United Kingdom"]
   },
 
   "Rock Pipit": {
@@ -2196,7 +2196,7 @@
 
   "Scaly-breasted Munia": {
     "photo": "https://i.imgur.com/JGIQHNF.jpeg",
-    "countries": ["Bangladesh"]
+    "countries": ["Bangladesh","Thailand"]
   },
 
   "Scaly-naped Pigeon": {
