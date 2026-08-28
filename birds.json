@@ -121,7 +121,7 @@
 
   "Bank Swallow": {
     "photo": "https://i.imgur.com/KJNy9Jm.jpeg",
-    "countries": ["Aruba", "Bangladesh", "Curaçao", "Estonia", "Netherlands", "Norway"]
+    "countries": ["Bangladesh", "Curaçao", "Estonia", "Netherlands", "Norway"]
   },
 
   "Bar-headed Goose": {
@@ -206,7 +206,7 @@
 
   "Black-bellied Plover": {
     "photo": "https://i.imgur.com/rAXBOar.jpeg",
-    "countries": ["Aruba", "Norway", "Sweden"]
+    "countries": ["Aruba","Curaçao","Norway", "Sweden"]
   },
 
   "Black-bellied Whistling-Duck": {
@@ -576,7 +576,7 @@
 
   "Common Gallinule": {
     "photo": "https://i.imgur.com/XdEALLH.jpeg",
-    "countries": ["Aruba"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Common Goldeneye": {
@@ -601,7 +601,7 @@
 
   "Common Ground Dove": {
     "photo": "https://i.imgur.com/5jKZ2uR.jpeg",
-    "countries": ["Aruba"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Common Gull": {
@@ -981,7 +981,7 @@
 
   "Eurasian Tree Sparrow": {
     "photo": "https://i.imgur.com/noUpQQd.jpeg",
-    "countries": ["Denmark","Estonia","Italy","Netherlands","Norway"]
+    "countries": ["Denmark","Estonia","Italy","Netherlands","Norway","Thailand"]
   },
 
   "Eurasian Treecreeper": {
@@ -1151,7 +1151,7 @@
 
   "Gray Kingbird": {
     "photo": "https://i.imgur.com/OiR877S.jpeg",
-    "countries": ["Aruba"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Gray Partridge": {
@@ -1311,7 +1311,7 @@
 
   "Greater Yellowlegs": {
     "photo": "https://i.imgur.com/4Cb8o3H.jpeg",
-    "countries": ["Curaçao"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Greater Yellownape": {
@@ -1321,7 +1321,7 @@
 
   "Green Heron": {
     "photo": "https://i.imgur.com/oHoa1KT.jpeg",
-    "countries": ["Aruba"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Green Sandpiper": {
@@ -1406,7 +1406,7 @@
 
   "House Sparrow": {
     "photo": "https://i.imgur.com/0MFxrVW.jpeg",
-    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Germany","Greece","Latvia","Netherlands","Norway","Thailand"]
+    "countries": ["Aruba","Curaçao""Bangladesh","Denmark","Estonia","Finland","Germany","Greece","Latvia","Netherlands","Norway","Thailand"]
   },
 
   "House Swift": {
@@ -1526,12 +1526,12 @@
 
   "Least Sandpiper": {
     "photo": "https://i.imgur.com/L3VgKVo.jpeg",
-    "countries": ["Aruba"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Lesser Black-backed Gull": {
     "photo": "https://i.imgur.com/ZS5FuOX.jpeg",
-    "countries": ["Belgium","Denmark","Netherlands","Norway"]
+    "countries": ["Aruba","Belgium","Denmark","Netherlands","Norway"]
   },
 
   "Lesser Necklaced Laughingthrush": {
@@ -1661,7 +1661,7 @@
 
   "Mangrove Yellow Warbler": {
     "photo": "https://i.imgur.com/8cxMcWU.jpeg",
-    "countries": ["Curaçao"]
+    "countries": ["Aruba","Curaçao"]
   },
 
   "Marsh Tit": {
@@ -1816,7 +1816,7 @@
 
   "Osprey": {
     "photo": "https://i.imgur.com/1vYsTnl.jpeg",
-    "countries": ["Aruba","Bangladesh","Denmark"]
+    "countries": ["Aruba","Curaçao""Bangladesh","Denmark"]
   },
 
   "Pacific Reef-Heron": {
@@ -1866,7 +1866,7 @@
 
   "Peregrine Falcon": {
     "photo": "https://i.imgur.com/gROYhhY.jpeg",
-    "countries": ["Aruba","Bangladesh","Netherlands","Norway"]
+    "countries": ["Aruba","Curaçao""Bangladesh","Netherlands","Norway"]
   },
 
   "Pied Avocet": {
@@ -2066,7 +2066,7 @@
 
   "Rock Pigeon": {
     "photo": "https://i.imgur.com/Yvbsxzv.jpeg",
-    "countries": ["Aruba","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","Thailand","United Kingdom"]
+    "countries": ["Aruba","Curaçao""Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","Thailand","United Kingdom"]
   },
 
   "Rock Pipit": {
@@ -2126,7 +2126,7 @@
 
   "Ruddy Turnstone": {
     "photo": "https://i.imgur.com/0jDqBCb.jpeg",
-    "countries": ["Aruba","Norway"]
+    "countries": ["Aruba","Curaçao","Norway"]
   },
 
   "Ruddy-breasted Crake": {
