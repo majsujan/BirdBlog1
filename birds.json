@@ -99,7 +99,7 @@
     "countries": ["Bangladesh", "Thailand"]
   },
 
-"Asian Tit": {
+  "Asian Tit": {
     "photo": "https://i.imgur.com/QF0vFsy.jpeg",
     "countries": ["Bangladesh"]
   },
@@ -1406,7 +1406,7 @@
 
   "House Sparrow": {
     "photo": "https://i.imgur.com/0MFxrVW.jpeg",
-    "countries": ["Aruba","Curaçao""Bangladesh","Denmark","Estonia","Finland","Germany","Greece","Latvia","Netherlands","Norway","Thailand"]
+    "countries": ["Aruba","Curaçao","Bangladesh","Denmark","Estonia","Finland","Germany","Greece","Latvia","Netherlands","Norway","Thailand"]
   },
 
   "House Swift": {
