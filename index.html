@@ -584,6 +584,10 @@ width: 95%;
    Mobile World Panel
    ===================================== */
 
+/* =====================================
+   Mobile World Panel
+   ===================================== */
+
 @media (max-width: 900px) {
 
   .world-panel {
@@ -591,18 +595,18 @@ width: 95%;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
     gap: 8px;
+
+    padding: 10px 12px;
+    min-height: auto;
   }
 
   .world-panel h2,
   .world-panel p {
     margin: 0 !important;
-    padding: 0;
-  }
-
-  .world-panel h2::after {
-    content: " •";
-    margin-left: 4px;
+    line-height: 1.2;
+    font-size: 1rem;
   }
 
 }
