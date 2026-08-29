@@ -73,21 +73,6 @@
       border-bottom: 1px solid #e6e6e6;
     }
 
-    
-/* ========== Map ========== */
-#map {
-  height: 60vh;          /* Use viewport height for responsiveness; adjust if you prefer fixed px */
-  min-height: 500px;     /* Ensures a minimum size on large screens */
-  width: 100%;
-  /* IMPORTANT: remove max-width to avoid squeezing */
-  /* max-width: none; */  /* (Ensure you do NOT have max-width:1050px elsewhere) */
-  margin: 0;
-border: 0;
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-
     /* ========== Species Filter Panel ========== */
     #species-filter {
       max-width: 95%;
@@ -221,6 +206,10 @@ font-size:14px;
 .panel-box.fixed-height {
   flex: 0 0 auto;
   margin-bottom: 12px;
+  padding-top: 12px;
+  padding-right: 14px;       
+  padding-left: 14px;
+  padding-bottom: 12px;
 }
 
 @media (max-width: 900px) {
@@ -233,16 +222,6 @@ font-size:14px;
     flex: 1 1 auto;
     height: auto;
   }
-
-}
-	  
-/* Remove differing padding set previously */
-.panel-box.fixed-height {
-  /* override earlier paddings to match merged panel */
-  padding-top: 12px;
-  padding-right: 14px;       
-  padding-left: 14px;
-  padding-bottom: 12px;
 }
 
 /* Ensure the merged panel keeps flex behavior */
@@ -405,12 +384,6 @@ font-size:14px;
   box-sizing: border-box;
 }
 
-
-  width: 80px;
-    max-height: 80px;
-    border-radius: 4px;
-  }
-
 .panel-box.hamburger-photo img {
     width: 80px;
     height: 80px;
@@ -556,12 +529,6 @@ width: 95%;
   margin-top: 8px;
 }
 
-	  .gallery-toggle {
-  display: none;
-}
-
-@media (max-width: 900px) {
-
 .gallery-toggle {
   display: none;
 }
@@ -642,12 +609,13 @@ width: 95%;
   }
 
   /* Search controls */
-  #birdSearch,
-  #birdSort,
-  #countryFilter {
-    font-size: 16px;
-    min-height: 42px;
-  }
+#birdSearch,
+#birdSort,
+#countryFilter,
+.gallery-toggle {
+  height: 42px;
+  box-sizing: border-box;
+}
 
   /* Thumbnail labels */
   #thumbnailGallery {
@@ -673,12 +641,16 @@ width: 95%;
     min-height: auto;
   }
 
-  .world-panel h2,
-  .world-panel p {
-    margin: 0 !important;
-    line-height: 1.2;
-    font-size: 1rem;
-  }
+.world-panel h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.world-panel p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
 
 }
 	  
@@ -815,7 +787,7 @@ flex-direction:column;">
        display:flex;
        gap:8px;
        align-items:center;
-       flex-wrap:wrap;">
+       flex-wrap:nowrap;">
 
     <input
       type="text"
