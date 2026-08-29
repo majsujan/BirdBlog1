@@ -183,7 +183,7 @@ font-size:14px;
   flex: 0 0 320px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
   padding-left: 12px;
   box-sizing: border-box;
 
@@ -223,6 +223,7 @@ font-size:14px;
 }
 .panel-box.fixed-height {
   flex: 0 0 auto;
+  margin-bottom: 12px;
 }
 	  
 /* Remove differing padding set previously */
@@ -312,6 +313,7 @@ font-size:14px;
   display: inline-block;
   line-height: 1.4;
   white-space: normal;
+  word-break: break-word;
 }
 	  
     /* ========== Thumbnail Gallery ========== */
@@ -339,26 +341,31 @@ font-size:14px;
     }
 
     /* ========== Responsive Layout ========== */
-  @media (max-width: 900px) {
-  #mainPanel {
-  flex-direction: column;
-  }
-  
+@media (max-width: 900px) {
 
-  #infoPanel,
-  #mapContainer {
-    width: 100%;
-    min-width: 0;
+  #mainPanel {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  #infoPanel {
+    flex: 0 0 30%;
+    width: 30%;
     padding-left: 0;
   }
 
-  
-  #map {
-    height: 50vh;
-    min-height: 380px;
+  #mapContainer {
+    flex: 0 0 70%;
+    width: 70%;
   }
-}
-    
+
+  #map {
+    height: 65vh;
+    min-height: 450px;
+  }
+
+}    
 
 
 @media (max-width: 768px) {
@@ -582,21 +589,12 @@ width: 95%;
   .world-panel {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-
-    padding: 10px 14px;
-    min-height: auto;
+    gap: 6px;
   }
 
-  .world-panel h2 {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-
+  .world-panel h2,
   .world-panel p {
     margin: 0;
-    font-size: 1rem;
   }
 
 }
