@@ -295,7 +295,7 @@ font-size:14px;
 
 .species-ul { list-style: none; padding-left: 0; margin: 0; margin-top: 0;}
 
-.species-li { position: relative; padding-left: 16px; margin-bottom: 4px; text-align: left;}
+.species-li { position: relative; padding-left: 16px; margin-bottom: 2px; text-align: left;}
 
 .species-li::before { content: "•"; position: absolute; left: 0; top: 0.4em; font-size: 0.75rem; color: black;}
 
@@ -553,7 +553,7 @@ width: 95%;
   /* Species list */
   .species-btn {
     font-size: 17px;
-    line-height: 1.6;
+    line-height: 1.2;
   }
 
   .species-li {
@@ -573,6 +573,34 @@ width: 95%;
     font-size: 15px;
   }
 }
+/* =====================================
+   Mobile World Panel
+   ===================================== */
+
+@media (max-width: 900px) {
+
+  .world-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+    min-height: auto;
+  }
+
+  .world-panel h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .world-panel p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+}
+	  
   </style>
 	<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -771,7 +799,7 @@ flex-direction:column;">
 
 
 <!-- Sidebar panels -->
-<div class="panel-box fixed-height">
+<div class="panel-box fixed-height world-panel">
   <h2>World</h2>
   <p>545 species observed</p>
 </div>
