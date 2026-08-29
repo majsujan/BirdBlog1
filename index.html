@@ -395,7 +395,15 @@ font-size:14px;
     padding: 8px;
     margin-top: 6px;
   }
+	
+#birdSearch,
+#birdSort,
+#countryFilter,
+.gallery-toggle {
 
+  height: 42px;
+  box-sizing: border-box;
+}
 
 
   width: 80px;
@@ -554,6 +562,12 @@ width: 95%;
 
 @media (max-width: 900px) {
 
+.gallery-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+
   .gallery-toggle {
     display: flex;
     align-items: center;
@@ -564,22 +578,22 @@ width: 95%;
 
     margin-left: auto;
 
-    border: none;
-    border-radius: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 
-    background: #5F8F5E;
-    color: white;
+    background: white;
+    color: #555;
 
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
     cursor: pointer;
 
-    transition: all 0.25s ease;
+    transition: background 0.2s ease;
   }
 
   .gallery-toggle:hover {
-    background: #4c794b;
+    background: #f3f3f3;
   }
+}
 
   #thumbnailPanel {
     overflow: hidden;
@@ -832,7 +846,7 @@ flex-direction:column;">
             border-radius:4px;">
     </select>
 <button id="toggleGalleryBtn" class="gallery-toggle">
-=
+-
 </button>
   </div>
 
@@ -1651,8 +1665,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.textContent =
       panel.classList.contains("collapsed")
-        ? "-"
-        : "=";
+        ? "+"
+        : "-";
 
   });
 
