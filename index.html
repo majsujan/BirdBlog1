@@ -256,13 +256,14 @@ font-size:14px;
 .panel-box.merged-panel h2 {
   margin: 0 0 4px 0;            
   line-height: 1.25;
+  font-size: 1.5rem;
 }
 
 /* Tighten helper text spacing under the heading equally */
 #countryCount {
   margin-top: 0;
   margin-bottom: 2px;
-  font-size: 0.95rem;          
+  font-size: 1.1rem;          
   color: #333;
 }
 
@@ -302,15 +303,15 @@ font-size:14px;
   background: none;
   border: none;
   color: black;
+  font-weight: regular;
   cursor: pointer;
   text-align: left;
   padding: 0;
+  font-size: 1.05rem;
   width: 100%;
   display: inline-block;
+  line-height: 1.4;
   white-space: normal;
-
-  font-size: 18px;
-  line-height: 1.7;
 }
 	  
     /* ========== Thumbnail Gallery ========== */
@@ -526,7 +527,52 @@ width: 95%;
   margin-top: 8px;
 }
 
+/* =====================================
+   Mobile readability improvements
+   ===================================== */
 
+@media (max-width: 768px) {
+
+  /* World panel */
+  .panel-box p {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  /* Country title */
+  #countryName {
+    font-size: 24px;
+  }
+
+  /* Country count */
+  #countryCount {
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  /* Species list */
+  .species-btn {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .species-li {
+    margin-bottom: 10px;
+  }
+
+  /* Search controls */
+  #birdSearch,
+  #birdSort,
+  #countryFilter {
+    font-size: 16px;
+    min-height: 42px;
+  }
+
+  /* Thumbnail labels */
+  #thumbnailGallery {
+    font-size: 15px;
+  }
+}
   </style>
 	<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
