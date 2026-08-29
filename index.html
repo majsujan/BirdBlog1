@@ -222,6 +222,19 @@ font-size:14px;
   flex: 0 0 auto;
   margin-bottom: 12px;
 }
+
+@media (max-width: 900px) {
+
+  .panel-box.fixed-height {
+    margin-bottom: 10px;
+  }
+
+  .panel-box.merged-panel {
+    flex: 1 1 auto;
+    height: auto;
+  }
+
+}
 	  
 /* Remove differing padding set previously */
 .panel-box.fixed-height {
@@ -345,12 +358,15 @@ font-size:14px;
     display: flex;
     flex-direction: row;
     gap: 10px;
+	align-items: stretch;
   }
 
   #infoPanel {
     flex: 0 0 45%;
     width: 45%;
     padding-left: 0;
+	height: 65vh;
+    min-height: 450px;
   }
 
   #mapContainer {
@@ -578,9 +594,6 @@ width: 95%;
     font-size: 15px;
   }
 }
-/* =====================================
-   Mobile World Panel
-   ===================================== */
 
 /* =====================================
    Mobile World Panel
@@ -808,7 +821,7 @@ flex-direction:column;">
   <div id="infoPanel">
 
     <div class="panel-box fixed-height world-panel">
-      <h2>🌍 World</h2>
+      <h2>World</h2>
       <p>545 species observed</p>
     </div>
 
