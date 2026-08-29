@@ -548,6 +548,52 @@ width: 95%;
   margin-top: 8px;
 }
 
+	  .gallery-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+
+  .gallery-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-left: auto;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #5F8F5E;
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+  }
+
+  .gallery-toggle:hover {
+    background: #4c794b;
+  }
+
+  #thumbnailPanel {
+    overflow: hidden;
+    transition:
+      max-height 0.35s ease,
+      opacity 0.25s ease;
+  }
+
+  #thumbnailPanel.collapsed {
+    max-height: 0 !important;
+    opacity: 0;
+  }
+}
+	  
 /* =====================================
    Mobile readability improvements
    ===================================== */
@@ -785,18 +831,20 @@ flex-direction:column;">
             border:1px solid #ccc;
             border-radius:4px;">
     </select>
-
+<button id="toggleGalleryBtn" class="gallery-toggle">
+=
+</button>
   </div>
 
-  <div style="flex:1; overflow-y:auto;">
+<div id="thumbnailPanel" style="flex:1; overflow-y:auto;">
 
-    <div id="thumbnailGallery"
-         style="
-         display:grid;
-         grid-template-columns:repeat(3, 1fr);
-         gap:16px;
-         padding:12px 24px;
-         box-sizing:border-box;">
+  <div id="thumbnailGallery"
+       style="
+       display:grid;
+       grid-template-columns:repeat(3, 1fr);
+       gap:16px;
+       padding:12px 24px;
+       box-sizing:border-box;">
 
       <!-- Thumbnails will be injected here -->
 
@@ -1588,7 +1636,29 @@ function getThumbContainer() {
   });
 })();
 </script>
+<script>
 
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn = document.getElementById("toggleGalleryBtn");
+  const panel = document.getElementById("thumbnailPanel");
+
+  if (!btn || !panel) return;
+
+  btn.addEventListener("click", () => {
+
+    panel.classList.toggle("collapsed");
+
+    btn.textContent =
+      panel.classList.contains("collapsed")
+        ? "-"
+        : "=";
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
