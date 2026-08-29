@@ -562,6 +562,7 @@ width: 95%;
   }
 }
 
+@media (max-w*dth: 900px) {
   #thumbnailPanel {
     overflow: hidden;
     transition:
@@ -573,8 +574,7 @@ width: 95%;
     max-height: 0 !important;
     opacity: 0;
   }
-}
-	  
+  }  
 /* =====================================
    Mobile readability improvements
    ===================================== */
@@ -817,8 +817,10 @@ flex-direction:column;">
             border:1px solid #ccc;
             border-radius:4px;">
     </select>
-<button id="toggleGalleryBtn" class="gallery-toggle">
--
+<button id="toggleGalleryBtn"
+        class="gallery-toggle"
+        aria-label="Collapse gallery">
+−
 </button>
   </div>
 
@@ -1638,7 +1640,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.textContent =
       panel.classList.contains("collapsed")
         ? "+"
-        : "-";
+        : "−";
 
   });
 
