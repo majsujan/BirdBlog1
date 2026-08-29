@@ -592,21 +592,23 @@ width: 95%;
     align-items: center;
     justify-content: center;
     gap: 8px;
-
-    min-height: auto;
-    padding: 10px 14px;
   }
 
   .world-panel h2,
   .world-panel p {
     margin: 0 !important;
-    font-size: 1rem;
-    line-height: 1.2;
+    padding: 0;
+  }
+
+  .world-panel h2::after {
+    content: " •";
+    margin-left: 4px;
   }
 
 }
 	  
-  </style>
+</style>
+	  
 	<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -799,15 +801,13 @@ flex-direction:column;">
 
 <!-- MAIN PANEL -->
 
-<div id="mainPanel">
-  <div id="infoPanel">
-
-
-<!-- Sidebar panels -->
 <div class="panel-box fixed-height world-panel">
   <h2>🌍 World</h2>
-  <p>• 545 species</p>
+  <p>545 species observed</p>
 </div>
+
+<div id="mainPanel">
+  <div id="infoPanel">
 
 <!-- Merged Country & Species panel -->
 <div class="panel-box merged-panel">
