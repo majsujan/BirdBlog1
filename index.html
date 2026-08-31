@@ -17,90 +17,33 @@
   <!-- Custom Styles -->
   <style>
     /* ========== Global Styles ========== */
-    body {
-      margin: 0;
-      font-family: 'Lato', sans-serif;
-      background-color: #aad3df;
-      color: #333;
-    }
+    body {margin: 0; font-family: 'Lato', sans-serif; background-color: #aad3df; color: #333;}
 
     /* ========== Header ========== */
-    header {
-      background: #5F8F5E;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 36px;
-      margin: 8px 0;
-    }
-
-    header h2 {
-      font-size: 20px;
-      margin: 8px 0;
-    }
-
-    /* ========== Navigation ========== */
-    nav {
-      background: #2c6e49;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav li {
-      color: white;
-      font-weight: 600;
-    }
-
-    /* ========== Info Banner ========== */
-    #info {
-      text-align: center;
-      padding: 10px;
-      font-size: 16px;
-      background: #f6f6f6;
-      border-top: 1px solid #e6e6e6;
-      border-bottom: 1px solid #e6e6e6;
-    }
-
-    /* ========== Species Filter Panel ========== */
-    #species-filter {
-      max-width: 95%;
-      margin: 20px auto 30px;
-      padding: 16px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    }
-
-    #speciesList h4 {
-      margin: 10px 0;
-font-size:16px;
-    }
-
-    #speciesList ul {
-      margin: 8px 0 0;
-font-size:14px;
-    }
+    header {background: #5F8F5E; color: white; padding: 10px 20px; text-align: center;}
+	
+	header h1 {font-size: 36px; margin: 8px 0;}
+	  
+    header h2 {font-size: 20px; margin: 8px 0;}
+	  
+    nav {background: #2c6e49; display: flex; justify-content: center; padding: 10px 0;}
+	  
+    nav ul {display: flex; gap: 28px; list-style: none; margin: 0; padding: 0;}
+	  
+    nav li {color: white; font-weight: 600;}
 
     /* ========== Footer ========== */
-    footer {
-      background: #1d3557;
-      color: white;
-      text-align: center;
-      padding: 16px;
-      margin-top: 20px;
-    }
+    footer {background: #1d3557; color: white; text-align: center; padding: 16px; margin-top: 20px;}
+	  
+    /* ========== Info Banner ========== */
+    #info {text-align: center; padding: 10px; font-size: 16px; background: #f6f6f6; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6;}
+
+    /* ========== Species Filter Panel ========== */
+    #species-filter {max-width: 95%; margin: 20px auto 30px; padding: 16px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08);}
+
+    #speciesList h4 {margin: 10px 0; font-size:16px;}
+
+    #speciesList ul {margin: 8px 0 0; font-size:14px;}
 
     /* ========== Legend ========== */
     .legend {
@@ -153,85 +96,30 @@ font-size:14px;
       color: #333;
     }
 
-    /* ========== Layout Panels ========== */
+	  
+    /* ========== World Explorer Layout ========== */
+
+#mainPanel {display: flex; flex-direction: row; gap: 16px;}
+
+#infoPanel {flex: 0 0 320px; display: flex; flex-direction: column; gap: 12px; padding-left: 12px; box-sizing: border-box; height: 60vh; min-height: 500px;}
+
+#mapContainer {display: flex; flex: 1; min-width: 0; width: 100%; box-sizing: border-box;}
+
+#map { width: 100%; height: 60vh; min-height: 500px; border-radius: 10px; box-sizing: border-box;}
 
 
+  /* ========== World Panel========== */
 
-#mainPanel {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-}
+.panel-box.fixed-height, .panel-box.merged-panel {padding: 12px 14px; background: white; border-radius: 10px;}
+.panel-box.fixed-height {flex: 0 0 auto; margin-bottom: 12px; padding-top: 12px; padding-right: 14px; padding-left: 14px; padding-bottom: 12px;}
 
-
-#infoPanel {
-  flex: 0 0 320px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-left: 12px;
-  box-sizing: border-box;
-}
-
-
-#mapContainer {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-
-
-#map {
-  width: 100%;
-  height: 60vh;           /* Responsive height */
-  min-height: 500px;      /* Ensures usability on large screens */
-  border-radius: 10px;
-  box-sizing: border-box;
-}
-
-/* World panel*/
-
-
-/* Make both panels use the same inner padding */
-.panel-box.fixed-height,
-.panel-box.merged-panel {
-  /* unified padding */
-  padding: 12px 14px;         
-  background: white;
-  border-radius: 10px;
-}
-.panel-box.fixed-height {
-  flex: 0 0 auto;
-  margin-bottom: 12px;
-  padding-top: 12px;
-  padding-right: 14px;       
-  padding-left: 14px;
-  padding-bottom: 12px;
-}
-
-@media (max-width: 900px) {
-
-  .panel-box.fixed-height {
-    margin-bottom: 10px;
-  }
-
-  .panel-box.merged-panel {
-    flex: 1 1 auto;
-    height: auto;
-  }
-}
-
-/* Ensure the merged panel keeps flex behavior */
+  /* ========== Country Panel and Species List========== */
 
 .panel-box.merged-panel {
   display: flex;
   flex-direction: column;
   gap: 6px;
   flex: 1 1 auto;
-  max-height: 375px;
   min-height: 0;
   overflow: hidden;
   padding: 12px;
@@ -240,9 +128,6 @@ font-size:14px;
   box-sizing: border-box;
 }
 
-
-
-/* Normalize heading margins so first text sits the same distance from top */
 .panel-box.fixed-height h2,
 .panel-box.merged-panel h2 {
   margin: 0 0 4px 0;            
@@ -250,7 +135,6 @@ font-size:14px;
   font-size: 1.5rem;
 }
 
-/* Tighten helper text spacing under the heading equally */
 #countryCount {
   margin-top: 0;
   margin-bottom: 2px;
@@ -258,13 +142,10 @@ font-size:14px;
   color: #333;
 }
 
-/* Species list fills remaining space in merged panel */
-
-
 #speciesList {
-  flex: 1 1 auto;           /* Take remaining space */
-  min-height: 0;            /* Critical for scroll in flex */
-  overflow-y: auto;         /* Scroll inside panel */
+  flex: 1 1 auto;           
+  min-height: 0;         
+  overflow-y: auto;  
   padding: 6px 8px;
   margin-top: 2px;
   box-sizing: border-box;
@@ -288,7 +169,7 @@ font-size:14px;
 
 .species-li { position: relative; padding-left: 16px; margin-bottom: 2px; text-align: left;}
 
-.species-li::before { content: "•"; position: absolute; left: 0; top: 0.4em; font-size: 0.75rem; color: black;}
+.species-li::before { content: "📷"; position: absolute; left: 0; top: 0.4em; font-size: 0.75rem; color: black;}
 
 .species-btn {
   background: none;
@@ -305,6 +186,20 @@ font-size:14px;
   white-space: normal;
   word-break: break-word;
 }
+	  
+@media (max-width: 900px) {
+
+  .panel-box.fixed-height {
+    margin-bottom: 10px;
+  }
+
+  .panel-box.merged-panel {
+    flex: 1 1 auto;
+    height: auto;
+  }
+}
+
+
 	  
     /* ========== Thumbnail Gallery ========== */
     #thumbnailGallery {
