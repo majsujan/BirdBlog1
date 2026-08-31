@@ -58,7 +58,16 @@
 
 #mapContainer { display: flex; flex: 1; min-width: 0; width: 100%; box-sizing: border-box; }
 
-	  
+
+/* ========== Explore Section ========== */
+
+.explore-banner { background: #5F8F5E; margin-bottom: 20px; }
+
+.explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
+
+.explore-title { color: white; text-align: center; margin: 0; }
+
+
   /* ========== Map ========== */
 #map { width: 100%; height: 60vh; min-height: 500px; border-radius: 10px; box-sizing: border-box; }
 
@@ -108,6 +117,11 @@
 
 .hamburger-text { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
 
+.profile-image { width: 90px; height: 90px; object-fit: cover; background: none; border: none; box-shadow: none; padding: 0; margin: 0; border-radius: 6px; }
+
+.about-title { font-size: 1.25rem; font-weight: bold; text-align: justify; margin-top: 12px; }
+
+.about-text { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
 
   /* ========== World Panel========== */
 .panel-box.fixed-height, 
@@ -152,7 +166,18 @@
 #countryFilter,
 .gallery-toggle { height: 42px; box-sizing: border-box; }
 
-	  
+.thumbnail-column { flex: 1 1 300px; width: 300px; max-height: 570px; display: flex; flex-direction: column; }
+
+.thumbnail-controls { background: white; padding: 8px; border-bottom: 1px solid #ddd; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
+
+.thumbnail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 12px 24px; box-sizing: border-box; }
+
+.thumbnail-search { flex: 1; min-width: 140px; padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; }
+
+.thumbnail-select { padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; }
+
+.country-select { display: none; padding: 6px 10px; border: 1px solid #ccc; border-radius: 4px; }
+
 /* ========== Leaflet Overrides ========== */
  .leaflet-control { background: none !important; border: none !important; box-shadow: none !important; }
 
@@ -187,6 +212,17 @@
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
+	  
+/* ========== Lightbox ========== */
+.lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; flex-direction: column; z-index: 9999; }
+
+.lightbox-close { position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
+
+.lightbox-image { max-width: 90%; max-height: 80%; border-radius: 8px; margin-bottom: 12px; }
+
+.lightbox-caption { margin-top: 10px; padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; font-size: 18px; border-radius: 6px; text-align: center; max-width: 90%; }
+
+	  
 /* ========== Responsive Layout ========== */
 
 .gallery-toggle { display: none; }
@@ -328,51 +364,29 @@
   </div>
 
 <!-- RIGHT: Thumbnails -->
-<div style="
-flex:1 1 300px;
-width:300px;
-max-height:570px;
-display:flex;
-flex-direction:column;">
+<div class="thumbnail-column">
 
   <!-- Search / Sort Bar -->
-  <div id="thumbnailControls"
-       style="
-       background:white;
-       padding:8px;
-       border-bottom:1px solid #ddd;
-       display:flex;
-       gap:8px;
-       align-items:center;
-       flex-wrap:nowrap;">
+<div id="thumbnailControls"
+     class="thumbnail-controls">
 
-    <input
-      type="text"
-      id="birdSearch"
-      placeholder="Search species..."
-      style="
-      flex:1;
-      min-width:140px;
-      padding:6px 10px;
-      border:1px solid #ccc;
-      border-radius:4px;">
+<input
+  type="text"
+  id="birdSearch"
+  class="thumbnail-search"
+  placeholder="Search species...">
 
-    <select id="birdSort"
-            style="
-            padding:6px 10px;
-            border:1px solid #ccc;
-            border-radius:4px;">
+<select id="birdSort"
+        class="thumbnail-select">
+
       <option value="random">Random</option>
       <option value="alpha">A-Z</option>
       <option value="country">Country</option>
     </select>
 
-    <select id="countryFilter"
-            style="
-            display:none;
-            padding:6px 10px;
-            border:1px solid #ccc;
-            border-radius:4px;">
+<select id="countryFilter"
+        class="country-select">
+
     </select>
 <button id="toggleGalleryBtn"
         class="gallery-toggle"
@@ -383,13 +397,8 @@ flex-direction:column;">
 
 <div id="thumbnailPanel" style="flex:1; overflow-y:auto;">
 
-  <div id="thumbnailGallery"
-       style="
-       display:grid;
-       grid-template-columns:repeat(3, 1fr);
-       gap:16px;
-       padding:12px 24px;
-       box-sizing:border-box;">
+<div id="thumbnailGallery"
+     class="thumbnail-grid">
 
       <!-- Thumbnails will be injected here -->
 
@@ -401,9 +410,10 @@ flex-direction:column;">
 </div>
 
 <!-- EXPLORE PANEL -->
-<div style="background:#5F8F5E; margin-bottom:20px;">
-  <div style="max-width:1600px; margin:0 auto; padding:10px;">
-    <h2 style="color:white; text-align:center; margin:0;">Explore</h2>
+<!-- EXPLORE PANEL -->
+<div class="explore-banner">
+  <div class="explore-inner">
+    <h2 class="explore-title">Explore</h2>
   </div>
 </div>
 
@@ -1042,21 +1052,24 @@ marker.bindTooltip(`${name}: ${count} species`, {
         }
       });
     });
+	  
   </script>
+	
 <!-- Lightbox popup -->
-<div id="lightbox" style="display:none; position:fixed; top:0; left:0; 
-    width:100%; height:100%; background:rgba(0,0,0,0.8); 
-    justify-content:center; align-items:center; z-index:9999; flex-direction: column;">
+<div id="lightbox" class="lightbox">
   
-  <span id="closeLightbox" 
-        style="position:absolute; top:20px; right:40px; 
-        font-size:40px; color:white; cursor:pointer;">&times;</span>
+<span id="closeLightbox"
+      class="lightbox-close">
+	  &times;
+      </span>
   
-  <img id="lightboxImage" src="" alt="" 
-       style="max-width:90%; max-height:80%; border-radius:8px; margin-bottom: 12px;"/>
-<div id="lightboxCaption" 
-       style="margin-top:10px; padding:8px 16px; background:rgba(0,0,0,0.5); 
-              color:white; font-size:18px; border-radius:6px; text-align:center;max-width: 90%;">
+<img id="lightboxImage"
+     class="lightbox-image"
+     src=""
+     alt="">
+	
+<div id="lightboxCaption"
+     class="lightbox-caption">
     Species name here
   </div>
 </div>
@@ -1068,7 +1081,10 @@ marker.bindTooltip(`${name}: ${count} species`, {
 <div class="hamburger-panel">
   <div class="hamburger-top">
     <div class="panel-box hamburger-photo">
-    <img src="https://i.imgur.com/rinr6Zc.jpeg">
+    <img
+  class="profile-image"
+  src="https://i.imgur.com/rinr6Zc.jpeg"
+  alt="Profile photo">
 </div>
 <div class="panel-box hamburger-social">
  <a href="https://www.instagram.com/birdblog.majsujan/" target="_blank" relw3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -1093,8 +1109,8 @@ marker.bindTooltip(`${name}: ${count} species`, {
     </a>
   </div>
  </div>
-  <div class="hamburger-title">BirdBlog by Sujan Abu Jafar</div>
-  <div class="hamburger-text">Bird enthusiast and photographer, medical doctor, and life science researcher from Bangladesh — currently based in Trondheim, Norway. This website is a personal showcase of my birdwatching journey, which began in 2020. It will be regularly updated with new sightings and photographs.</div>
+  <div class="about-title">BirdBlog by Sujan Abu Jafar</div>
+  <div class="about-text">Bird enthusiast and photographer, medical doctor, and life science researcher from Bangladesh — currently based in Trondheim, Norway. This website is a personal showcase of my birdwatching journey, which began in 2020. It will be regularly updated with new sightings and photographs.</div>
 </div>
 <script>
 
