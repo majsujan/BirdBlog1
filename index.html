@@ -472,9 +472,9 @@
 
 <select id="birdSort"
         class="thumbnail-select">
-
-      <option value="random">Random</option>
+	
       <option value="alpha">A-Z</option>
+      <option value="random">Random</option>     
       <option value="country">Country</option>
     </select>
 
@@ -615,7 +615,12 @@ function initApp() {
 
   showRandomBird();
 
-  loadThumbnails();
+loadThumbnails(
+  [...Object.entries(birds)]
+    .sort((a, b) =>
+      a[0].localeCompare(b[0])
+    )
+);
 
   const countryFilter =
     document.getElementById("countryFilter");
@@ -805,7 +810,9 @@ if (sortBox.value === "alpha") {
 
 } else if (sortBox.value === "random") {
 
-  list = shuffledBirds;
+  list = shuffleArray(
+    Object.entries(birds)
+  );
 
 } else if (
   sortBox.value === "country" &&
@@ -816,6 +823,7 @@ if (sortBox.value === "alpha") {
     data.countries &&
     data.countries.includes(countryBox.value)
   );
+
 }
 
 
