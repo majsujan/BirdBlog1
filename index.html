@@ -67,11 +67,11 @@
 
 .explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
 
-.explore-title { color: white; text-align: center; margin: 0; font-size: 1.05rem;}
+.explore-title { color: white; text-align: center; margin: 0; font-size: 1rem; font-weight: 600; }
 
-.explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 0.95rem; }
+.explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 1rem; }
 
-.explore-ticker-content { display: inline-block; padding-left: 100%; animation: exploreTicker 80s linear infinite; font-size: 1.15rem; font-weight: 600; }
+.explore-ticker-content { display: inline-block; padding-left: 100%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; }
 
 @keyframes exploreTicker {
   from { transform: translateX(0); }
@@ -142,7 +142,8 @@
   /* ========== Country Panel and Species List========== */
 .panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box }
 
-.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; hover { color: black; } }
+.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; }
+.panel-close:hover { color: black; }
 	  
 .panel-box.fixed-height h2, 
 .panel-box.merged-panel h2 { margin: 0 0 4px 0; line-height: 1.25; font-size: 1.5rem; }
@@ -164,8 +165,6 @@
 .species-li::before { content: "📷"; position: absolute; left: 0; top: 0.7em; transform: translateY(-50%); font-size: 0.7rem; line-height: 1; }
 
 .species-btn { background: none; border: none; color: black; font-weight: normal; cursor: pointer; text-align: left; padding: 0; font-size: 1.05rem; width: 100%; display: inline-block; line-height: 1.4; white-space: normal; word-break: break-word; }
-
-.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; cursor: pointer; }
 
 /* ========== Thumbnail Gallery ========== */
 	  
@@ -254,7 +253,7 @@
 
   #mainPanel { display: flex; flex-direction: row; gap: 10px; align-items: stretch; }
     
-  #infoPanel { width: 70vw; max-width: 280px; height: 65vh; position: absolute; top: 10px; left: 0; overflow: hidden; z-index: 2000; background: transparent; box-shadow: 4px 0 16px rgba(0,0,0,.18); }
+  #infoPanel { width: 65vw; max-width: 260px; height: 60vh; position: absolute; top: 10px; left: 0; overflow: hidden; z-index: 2000; background: transparent; box-shadow: 4px 0 16px rgba(0,0,0,.18); }
 
   #map { height: 65vh; min-height: 450px; }
 
@@ -290,7 +289,7 @@
   
 	.panel-box p { font-size: 17px; line-height: 1.5; }
 
-	.explore-title { font-size: 0.8rem; white-space: nowrap; }
+	.explore-title { font-size: 0.95rem; font-weight: 600; white-space: nowrap; }
 	
 	#countryName { font-size: 24px; }
 	
@@ -306,24 +305,23 @@
    .gallery-toggle { height: 42px; box-sizing: border-box; }
 
    #thumbnailGallery { font-size: 15px; }
-
+}
+	  
   @media (max-width: 600px) { 
 	.nav-arrow { font-size: 36px; }
     .left-arrow { left: 8px; }
     .right-arrow { right: 8px; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .nav-arrow { transition: none;
-    }
-  }
-
 @media (max-width: 480px) {
   header h1 { font-size: 22px; }
   header h2 { font-size: 14px; }
   header { padding: 6px 10px; }
-}
-}
+} 
+	  
+  @media (prefers-reduced-motion: reduce) {
+    .nav-arrow { transition: none; }
+  }
 
 </style>
 	  
@@ -433,7 +431,7 @@
 <div class="explore-banner">
   <div class="explore-inner">
 
-    <h2 class="explore-title">🌍 Click a country to view species and photos</h2>
+    <h2 class="explore-title">🌍 Select a country to explore species & photos</h2>
 
     <div class="explore-ticker">
       <div id="exploreTicker"
@@ -492,7 +490,7 @@
 
 
   <script>
-    const map = L.map('map', { center: [20, 0], zoom: 1.5, minZoom: 1.5, maxZoom: 4, zoomControl: false, scrollWheelZoom: false });
+    const map = L.map('map', { center: [20, 0], zoom: 1.35, minZoom: 1.35, maxZoom: 4, zoomControl: false, scrollWheelZoom: false });
 L.control.zoom({
   position: 'topright'
 }).addTo(map);
@@ -602,19 +600,20 @@ function navigateBird(direction) {
   document.getElementById("dailyBirdCaption").textContent = name;
 }
 
-const birdFrame =
-document.querySelector(".bird-day-frame");
-let birdTouchStartX = 0;
-birdFrame.addEventListener( "touchstart", e => { birdTouchStartX = e.changedTouches[0].screenX; }
-);
+window.addEventListener("DOMContentLoaded", () => {
+  const birdFrame = document.querySelector(".bird-day-frame");
+  if (!birdFrame) return;
+  let birdTouchStartX = 0;
+  birdFrame.addEventListener("touchstart", e => { birdTouchStartX = e.changedTouches[0].screenX;
+  });
 
-birdFrame.addEventListener( "touchend", e => {
-    const endX = e.changedTouches[0].screenX;
+  birdFrame.addEventListener("touchend", e => { 
+	const endX = e.changedTouches[0].screenX;
     const SWIPE_THRESHOLD = 120;
     if (endX < birdTouchStartX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-indicator")?.remove(); }
-    if (endX > birdTouchStartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-indicator")?.remove(); }
-  }
-);
+    else if (endX > birdTouchStartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-indicator")?.remove(); }
+  });
+});
 
 // === Inject Thumbnails ===
 function shuffleArray(arr) {
