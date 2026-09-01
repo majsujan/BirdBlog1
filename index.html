@@ -542,38 +542,6 @@ function initApp() {
   speciesList = Object.keys(birds);
 
   updateTicker();
-
-  showRandomBird();
-
-  loadThumbnails();
-
-  const countryFilter =
-    document.getElementById("countryFilter");
-
-  const countries = [
-    ...new Set(
-      Object.values(birds)
-        .flatMap(b => b.countries || [])
-    )
-  ].sort();
-
-  countryFilter.innerHTML =
-    '<option value="">Select country</option>';
-
-  countries.forEach(country => {
-
-    const option =
-      document.createElement("option");
-
-    option.value = country;
-    option.textContent = country;
-
-    countryFilter.appendChild(option);
-
-  });
-
-}
-
 function updateTicker() {
   const total =
     Object.values(birdData)
@@ -588,34 +556,6 @@ function updateTicker() {
 
   document.getElementById("exploreTicker")
     .textContent = parts.join(" 🦜 ");
-}
-	showRandomBird(); 
-	
-	loadThumbnails();
-
-  const countryFilter =
-    document.getElementById("countryFilter");
-
-  const countries = [
-    ...new Set(
-      Object.values(birds)
-        .flatMap(b => b.countries || [])
-    )
-  ].sort();
-
-  countryFilter.innerHTML =
-    '<option value="">Select country</option>';
-
-  countries.forEach(country => {
-
-    const option =
-      document.createElement("option");
-
-    option.value = country;
-    option.textContent = country;
-
-    countryFilter.appendChild(option);
-  });
 }
 
 // ✅ Bird of the day
