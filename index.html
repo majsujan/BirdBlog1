@@ -225,33 +225,64 @@
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
 .swipe-hand {
+
   display: none;
-letter-spacing: 8px;
+
   position: absolute;
+
   left: 50%;
-  bottom: 85px;
+  bottom: 90px;
 
   transform: translateX(-50%);
-
-  font-size: 60px;
-
-  color: rgba(255,255,255,0.95);
-
-  text-shadow:
-    0 0 8px rgba(40,40,40,.9),
-    0 0 18px rgba(40,40,40,.7),
-    2px 2px 8px rgba(0,0,0,.5);
 
   pointer-events: none;
 
   z-index: 5;
 
-  animation: swipeHand 2.5s ease-in-out infinite;
-}	  
-@keyframes swipeHand {
-  0% { transform: translateX(-75%); opacity: 0.3; }
-  50% { transform: translateX(-25%); opacity: 1; }
-  100% { transform: translateX(-75%); opacity: 0.3; }
+  animation: swipeHint 2s ease-in-out infinite;
+
+}
+
+.swipe-hand svg {
+  width: 80px;
+  height: 40px;
+
+  fill: none;
+  stroke: rgba(255,255,255,0.95);
+
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  filter:
+    drop-shadow(0 0 8px rgba(40,40,40,.9))
+    drop-shadow(0 0 18px rgba(40,40,40,.7))
+    drop-shadow(2px 2px 8px rgba(0,0,0,.5));
+}
+
+.finger-dot {
+  fill: rgba(255,255,255,0.95);
+  stroke: none;
+
+  animation: fingerSwipe 2s ease-in-out infinite;
+}
+@keyframes fingerSwipe {
+
+  0% {
+    transform: translateX(-18px);
+    opacity: .4;
+  }
+
+  50% {
+    transform: translateX(18px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-18px);
+    opacity: .4;
+  }
+
 }
 	  
 /* ========== Lightbox ========== */
@@ -329,7 +360,10 @@ letter-spacing: 8px;
 
    #thumbnailGallery { font-size: 15px; }
    
-	.about-text { line-height: 1.45; margin-top: 6px;} 
+  .about-text { line-height: 1.45; margin-top: 6px;} 
+
+  .swipe-hand svg { width: 70px; height: 35px; }
+
 }
 	  
   @media (max-width: 600px) { 
@@ -384,9 +418,23 @@ letter-spacing: 8px;
      alt="Featured Bird">
 	
 <div class="swipe-hand">
- ❮ 🖐 ❯
+  <svg viewBox="0 0 120 60" aria-hidden="true">
+
+    <!-- swipe trail -->
+    <path class="swipe-line"
+          d="M20 30 H100" />
+
+    <!-- left arrow -->
+    <path d="M28 22 L18 30 L28 38" />
+
+    <!-- right arrow -->
+    <path d="M92 22 L102 30 L92 38" />
+
+    <!-- finger -->
+    <circle cx="60" cy="30" r="7" class="finger-dot" />
+
+  </svg>
 </div>
-	
 <!-- Arrows -->
 <div onclick="navigateBird(-1)" class="nav-arrow left-arrow" aria-label="Previous">
   &#10094; <!-- Unicode left chevron -->
