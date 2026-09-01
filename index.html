@@ -199,19 +199,20 @@
   /* Theme variables (adjust to match your header mint) */
   :root { --mint-dark: 46, 111, 100; --mint-base: 168, 230, 207; }
 
- .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.60); color: rgba(90,90,90,0.85); text-shadow: 0 0 3px rgba(200,200,200,0.8); display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer;  z-index: 4; transition: all 0.2s ease; }
+.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 42px; color: rgba(255,255,255,0.85); text-shadow: 0 0 4px rgba(170,170,170,0.9), 0 0 10px rgba(170,170,170,0.5); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; }
+	  
 .left-arrow { left: 12px; }
 .right-arrow { right: 12px; }
 
 .nav-arrow { backdrop-filter: blur(3px); box-shadow: 0 0 4px rgba(200,200,200,.6); }
 	  
-.nav-arrow:hover { box-shadow: 0 0 10px rgba(200,200,200,.8); }
+.nav-arrow:hover { opacity: 1; transform: translateY(-50%) scale(1.08); }
 
 .bird-day-layout { display: flex; flex-wrap: wrap; background: white; font-family: sans-serif; justify-content: flex-start; padding: 8px; }
 
 .bird-day-main { flex: 0 1 auto; width: 100%; max-width: 1024px; background: #444; position: relative; }
 
-.bird-day-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 570px; overflow: hidden; box-sizing: border-box; }
+.bird-day-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 570px; overflow: hidden; box-sizing: border-box; touch-action: pan-y; }
 
 .bird-day-image { width: 100%; height: 100%; object-fit: contain; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 
@@ -219,6 +220,7 @@
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
+.swipe-hand { display: none; position: absolute; left: 50%; bottom: 72px; transform: translateX(-50%); pointer-events: none; z-index: 5; animation: swipeHand 2.5s ease-in-out infinite; }	  
 .swipe-hand svg { width: 90px; height: 45px; stroke: rgba(255,255,255,0.9); stroke-width: 3; fill: none; 
 filter:
     drop-shadow(0 0 2px rgba(180,180,180,.9))
@@ -226,7 +228,7 @@ filter:
 }
 	  
 @keyframes swipeHand {
-  0% { transform: translateX(-65%); opacity: 0..35; }
+  0% { transform: translateX(-65%); opacity: 0.35; }
   50% { transform: translateX(-35%); opacity: 0.9; }
   100% { transform: translateX(-65%); opacity: 0.35; }
 }
@@ -289,7 +291,7 @@ filter:
   
 	.panel-box p { font-size: 17px; line-height: 1.5; }
 
-	.explore-title { font-size: 1.2rem; font-weight: 600; white-space: nowrap; }
+	.explore-title { font-size: 1rem; font-weight: 600; white-space: nowrap; }
 	
 	#countryName { font-size: 24px; }
 	
@@ -305,6 +307,9 @@ filter:
    .gallery-toggle { height: 42px; box-sizing: border-box; }
 
    #thumbnailGallery { font-size: 15px; }
+   
+	.about-text, 
+	.about-title { text-align: left; }
 }
 	  
   @media (max-width: 600px) { 
@@ -622,11 +627,16 @@ window.addEventListener("DOMContentLoaded", () => {
   const birdFrame = document.querySelector(".bird-day-frame");
   if (!birdFrame) return;
   let birdTouchStartX = 0;
-  birdFrame.addEventListener("touchstart", e => { birdTouchStartX = e.changedTouches[0].screenX;
+  let startY = 0;
+  birdFrame.addEventListener("touchstart", e => { startX = e.changedTouches[0].screenX; startY = e.changedTouches[0].screenY;
   });
 
   birdFrame.addEventListener("touchend", e => { 
 	const endX = e.changedTouches[0].screenX;
+	const endY = e.changedTouches[0].screenY;
+	  const dx = Math.abs(endX - startX);
+	  const dy = Math.abs(endY - startY);
+	if (dx < dy) return;
     const SWIPE_THRESHOLD = 120;
     if (endX < birdTouchStartX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-hand")?.remove(); }
     else if (endX > birdTouchStartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-hand")?.remove(); }
@@ -723,7 +733,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     } else if (sortBox.value === "random") {
 
-      list = shuffleArray(list);
+const shuffledBirds =
+  shuffleArray(Object.entries(birds));
 
     } else if (
       sortBox.value === "country" &&
