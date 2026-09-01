@@ -141,7 +141,7 @@
 
 
   /* ========== Country Panel and Species List========== */
-.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; overflow: hidden; padding: 12px; background: white; border-radius: 10px; box-sizing: border-box }
+.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; background: white; border-radius: 10px; box-sizing: border-box }
 
 .panel-box.merged-panel { position: relative; }
 
@@ -254,10 +254,8 @@
 
   #mainPanel { display: flex; flex-direction: row; gap: 10px; align-items: stretch; }
     
-  #infoPanel { flex: 0 0 45%; width: 45%; padding-left: 0; height: 65vh; min-height: 450px; }
-    
-  #mapContainer { flex: 0 0 55%; width: 55%; }
-   
+  #infoPanel { width: 85vw; max-width: 340px; height: 75vh; position: absolute; top: 0; left: 0; z-index: 2000; background: transparent; }
+
   #map { height: 65vh; min-height: 450px; }
 
   .panel-box.fixed-height { margin-bottom: 10px; }
