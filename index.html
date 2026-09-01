@@ -67,7 +67,7 @@
 
 .explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
 
-.explore-title { color: white; text-align: center; margin: 0; }
+.explore-title { color: white; text-align: center; margin: 0; font-size: 1.05rem;}
 
 .explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 0.95rem; }
 
@@ -142,9 +142,7 @@
   /* ========== Country Panel and Species List========== */
 .panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box }
 
-.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; }
-
-.panel-close:hover { color: black; }
+.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; hover { color: black; } }
 	  
 .panel-box.fixed-height h2, 
 .panel-box.merged-panel h2 { margin: 0 0 4px 0; line-height: 1.25; font-size: 1.5rem; }
@@ -226,7 +224,13 @@
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
-.swipe-hint { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.45); color: white; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; z-index: 5; }
+.swipe-indicator { display: none; position: absolute; bottom: 60px; left: 50%; width: 80px; height: 4px; background: rgba(255,255,255,0.35); border-radius: 999px; transform: translateX(-50%); overflow: hidden; pointer-events: none;  z-index: 3; }
+.swipe-indicator::after { content: ""; position: absolute; width: 24px; height: 100%; background: rgba(255,255,255,0.9); border-radius: inherit; animation: swipeHint 2s ease-in-out infinite; }
+
+@keyframes swipeHint {
+  0% { left: -25px; }
+  100% { left: 80px;  }
+}
 	  
 /* ========== Lightbox ========== */
 .lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; flex-direction: column; z-index: 9999; }
@@ -264,6 +268,10 @@
 
   #thumbnailPanel.collapsed { max-height: 0 !important; opacity: 0; }
   }  	  
+
+@media (max-width: 1024px) {
+  .swipe-indicator { display: block; }
+}
 	  
 @media (max-width: 768px) {
 	header h1 { font-size: 28px; }
@@ -281,6 +289,8 @@
 	.panel-box.hamburger-social a { width: 32px; height: 32px; }
   
 	.panel-box p { font-size: 17px; line-height: 1.5; }
+
+	.explore-title { font-size: 0.8rem; white-space: nowrap; }
 	
 	#countryName { font-size: 24px; }
 	
@@ -313,11 +323,6 @@
   header h2 { font-size: 14px; }
   header { padding: 6px 10px; }
 }
-
-@media (min-width: 769px) {
-  .swipe-hint {
-    display: none;
-  }
 }
 
 </style>
@@ -349,16 +354,13 @@
 <div class="bird-day-main">
 
 <div class="bird-day-frame">
-
-<div class="swipe-hint">
-  ← Swipe or tap arrows →
-</div>
 	
 <img id="dailyBirdImage"
      class="bird-day-image"
      src=""
      alt="Featured Bird">
-
+	
+<div class="swipe-indicator"></div>
 <!-- Arrows -->
 <div onclick="navigateBird(-1)" class="nav-arrow left-arrow" aria-label="Previous">
   &#10094; <!-- Unicode left chevron -->
@@ -490,7 +492,7 @@
 
 
   <script>
-    const map = L.map('map', { center: [20, 0], zoom: 1, minZoom: 1, maxZoom: 4, zoomControl: false, scrollWheelZoom: false });
+    const map = L.map('map', { center: [20, 0], zoom: 1.5, minZoom: 1.5, maxZoom: 4, zoomControl: false, scrollWheelZoom: false });
 L.control.zoom({
   position: 'topright'
 }).addTo(map);
@@ -587,7 +589,7 @@ function showRandomBird() {
 
 // ✅ Navigation
 
-function navigateBird(direction) {
+function navigateBird(direction) {	
   currentBirdIndex += direction;
   if (currentBirdIndex < 0) currentBirdIndex = birdKeys.length - 1;
   if (currentBirdIndex >= birdKeys.length) currentBirdIndex = 0;
@@ -595,25 +597,24 @@ function navigateBird(direction) {
   const name = birdKeys[currentBirdIndex];
   const url = birds[name].photo;
 	
-  const birdImage =
-  document.getElementById("dailyBirdImage");
-  let birdTouchStartX = 0;
-  birdImage.addEventListener( "touchstart", e => { 
-   birdTouchStartX = e.changedTouches[0].screenX; }
-);
-
-birdImage.addEventListener( "touchend", e => {
-    const endX = e.changedTouches[0].screenX;
-    if (endX < birdTouchStartX - 50) { navigateBird(1); }
-    if (endX > birdTouchStartX + 50) { navigateBird(-1); }
-  }
-);
-	
   document.getElementById("dailyBirdImage").src = url;
   document.getElementById("dailyBirdImage").alt = name;
   document.getElementById("dailyBirdCaption").textContent = name;
 }
 
+const birdFrame =
+document.querySelector(".bird-day-frame");
+let birdTouchStartX = 0;
+birdFrame.addEventListener( "touchstart", e => { birdTouchStartX = e.changedTouches[0].screenX; }
+);
+
+birdFrame.addEventListener( "touchend", e => {
+    const endX = e.changedTouches[0].screenX;
+    const SWIPE_THRESHOLD = 120;
+    if (endX < birdTouchStartX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-indicator")?.remove(); }
+    if (endX > birdTouchStartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-indicator")?.remove(); }
+  }
+);
 
 // === Inject Thumbnails ===
 function shuffleArray(arr) {
