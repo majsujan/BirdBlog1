@@ -52,11 +52,13 @@
 
 	  
     /* ========== World Map Explorer ========== */
-#mainPanel { display: flex; flex-direction: row; gap: 16px; }
+#mainPanel { position: relative; }
 
-#infoPanel { flex: 0 0 320px; display: flex; flex-direction: column; gap: 12px; padding-left: 12px; box-sizing: border-box; height: 60vh; min-height: 500px; }
+#infoPanel { position: absolute; left: 0; top: 0; width: 320px; height: 60vh; min-height: 500px; z-index: 1000; transform: translateX(-110%); transition: transform 0.3s ease; padding-left: 12px; box-sizing: border-box; }
 
-#mapContainer { display: flex; flex: 1; min-width: 0; width: 100%; box-sizing: border-box; }
+#infoPanel.open { transform: translateX(0); }
+
+#mapContainer { width: 100%; }
 
 
 /* ========== Explore Section ========== */
@@ -67,6 +69,14 @@
 
 .explore-title { color: white; text-align: center; margin: 0; }
 
+.explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 0.95rem; }
+
+.explore-ticker-content { display: inline-block; padding-left: 100%; animation: exploreTicker 30s linear infinite; }
+
+@keyframes exploreTicker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
 
   /* ========== Map ========== */
 #map { width: 100%; height: 60vh; min-height: 500px; border-radius: 10px; box-sizing: border-box; }
@@ -133,6 +143,12 @@
   /* ========== Country Panel and Species List========== */
 .panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; overflow: hidden; padding: 12px; background: white; border-radius: 10px; box-sizing: border-box }
 
+.panel-box.merged-panel { position: relative; }
+
+.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 20px; font-weight: bold; cursor: pointer; color: #555; }
+
+.panel-close:hover { color: black; }
+	  
 .panel-box.fixed-height h2, 
 .panel-box.merged-panel h2 { margin: 0 0 4px 0; line-height: 1.25; font-size: 1.5rem; }
 
@@ -154,6 +170,9 @@
 
 .species-btn { background: none; border: none; color: black; font-weight: normal; cursor: pointer; text-align: left; padding: 0; font-size: 1.05rem; width: 100%; display: inline-block; line-height: 1.4; white-space: normal; word-break: break-word; }
 
+.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 20px; cursor: pointer; }
+
+.panel-box.merged-panel { position: relative; }
 
 /* ========== Thumbnail Gallery ========== */
 	  
@@ -410,10 +429,17 @@
 </div>
 
 <!-- EXPLORE PANEL -->
-<!-- EXPLORE PANEL -->
 <div class="explore-banner">
   <div class="explore-inner">
+
     <h2 class="explore-title">Explore</h2>
+
+    <div class="explore-ticker">
+      <div id="exploreTicker"
+           class="explore-ticker-content">
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -423,14 +449,15 @@
 
   <div id="infoPanel">
 
-    <div class="panel-box fixed-height world-panel">
-      <h2>World</h2>
-      <p>545 species observed</p>
-    </div>
-
 <!-- Merged Country & Species panel -->
 <div class="panel-box merged-panel">
+	<button id="closeCountryPanel"
+        class="panel-close">
+  ✕
+</button>
+	
   <h2 id="countryName">Country</h2>
+	
   <!-- tighter gap, smaller count text -->
   <p id="countryCount">Click a country to view species list</p>
 
@@ -501,10 +528,27 @@ fetch('birds.json')
   });
 
 function initApp() {
-  speciesList = Object.keys(birds);
-  showRandomBird();
+  speciesList = Object.keys(birds); 
+	
+	updateTicker(); 
+	function updateTicker() {
+  const total =
+    Object.values(birdData)
+      .reduce((a, b) => a + b, 0);
+  const parts = [ `${birdKeys.length} species photographed worldwide` ];
 
-  loadThumbnails();
+  Object.entries(birdData)
+    .sort((a,b) => b[1] - a[1])
+    .forEach(([country,count]) => {
+      parts.push( `${country}: ${count}` );
+    });
+
+  document.getElementById("exploreTicker")
+    .textContent = parts.join("  •  ");
+}
+	showRandomBird(); 
+	
+	loadThumbnails();
 
   const countryFilter =
     document.getElementById("countryFilter");
@@ -955,10 +999,10 @@ if (filteredBirds.length === 0) {
         layer.on('click', () => {
           selectedName  = name;
           selectedCount = count;
-
+          document.getElementById("infoPanel").classList.add("open");
           document.getElementById('countryName').textContent  = name;
           document.getElementById('countryCount').textContent = `${count} species observed`;
-
+          
           renderSelectedSpeciesList(); // centralized list rendering
         });
 
@@ -1020,7 +1064,7 @@ marker.bindTooltip(`${name}: ${count} species`, {
       marker.on('click', () => {
         selectedName  = name;
         selectedCount = count;
-
+        document.getElementById("infoPanel").classList.add("open");
         document.getElementById('countryName').textContent  = name;
         document.getElementById('countryCount').textContent = `${count} species observed`;
 
@@ -1217,6 +1261,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
+});
+
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const closeBtn =
+  document.getElementById("closeCountryPanel");
+  if (!closeBtn) return;
+closeBtn.addEventListener("click", () => {
+
+  document.getElementById("infoPanel").classList.remove("open");
+
+  document.getElementById('countryName').textContent = 'Country';
+
+  document.getElementById('countryCount').textContent =
+      'Click a country to view species list';
+
+  document.getElementById('speciesList').innerHTML = '';
+
+});
 });
 
 </script>
