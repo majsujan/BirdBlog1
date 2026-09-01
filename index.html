@@ -36,7 +36,7 @@
 
 	  
     /* ========== Footer ========== */
-    footer { background: #1d3557; color: white; text-align: center; padding: 16px; margin-top: 20px; }
+    footer { background: #1d3557; color: white; text-align: center; padding: 16px; margin-top: 8px; }
 
 	  
     /* ========== Info Banner ========== */
@@ -54,7 +54,7 @@
     /* ========== World Map Explorer ========== */
 #mainPanel { position: relative; }
 
-#infoPanel { position: absolute; left: 0; top: 0; width: 320px; height: 60vh; min-height: 500px; z-index: 1000; transform: translateX(-110%); transition: transform 0.3s ease; padding-left: 12px; box-sizing: border-box; }
+#infoPanel { position: absolute; left: 0; top: 0; width: 320px; height: 60vh; min-height: 500px; z-index: 1000; transform: translateX(-110%); transition: transform 0.3s ease; padding-left: 12px; box-sizing: border-box; overflow: hidden; }
 
 #infoPanel.open { transform: translateX(0); }
 
@@ -63,11 +63,11 @@
 
 /* ========== Explore Section ========== */
 
-.explore-banner { background: #5F8F5E; margin-bottom: 20px; }
+.explore-banner { background: #5F8F5E; margin-bottom: 6px; }
 
 .explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
 
-.explore-title { color: white; text-align: center; margin: 0; font-size: 1rem; font-weight: 600; }
+.explore-title { color: white; text-align: center; margin: 0; font-size: 1.15rem; font-weight: 700; }
 
 .explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 1rem; }
 
@@ -223,12 +223,12 @@
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
-.swipe-indicator { display: none; position: absolute; bottom: 60px; left: 50%; width: 80px; height: 4px; background: rgba(255,255,255,0.35); border-radius: 999px; transform: translateX(-50%); overflow: hidden; pointer-events: none;  z-index: 3; }
-.swipe-indicator::after { content: ""; position: absolute; width: 24px; height: 100%; background: rgba(255,255,255,0.9); border-radius: inherit; animation: swipeHint 2s ease-in-out infinite; }
+.swipe-hand { display: none; position: absolute; bottom: 65px; left: 50%; transform: translateX(-50%); font-size: 24px; opacity:0.6; pointer-events: none;  animation: swipeHand 2.5s ease-in-out infinite; z-index: 4; }
 
-@keyframes swipeHint {
-  0% { left: -25px; }
-  100% { left: 80px;  }
+@keyframes swipeHand {
+0% { transform: translateX(-20px); }
+50% { transform: translateX(20px); }
+100% { transform: translateX(-20px); }
 }
 	  
 /* ========== Lightbox ========== */
@@ -261,7 +261,7 @@
 				  
   .panel-box.fixed-height { margin-bottom: 10px; }
 
-  .panel-box.merged-panel { flex: 1 1 auto; height: auto; }
+  .panel-box.merged-panel { flex: 1 1 auto; height: 100%; border-radius: 10px; }
 
   #thumbnailPanel { overflow: hidden; transition: max-height 0.35s ease, opacity 0.25s ease; }
 
@@ -269,7 +269,7 @@
   }  	  
 
 @media (max-width: 1024px) {
-  .swipe-indicator { display: block; }
+  .swipe-hand { display: block; }
 }
 	  
 @media (max-width: 768px) {
@@ -289,7 +289,7 @@
   
 	.panel-box p { font-size: 17px; line-height: 1.5; }
 
-	.explore-title { font-size: 0.95rem; font-weight: 600; white-space: nowrap; }
+	.explore-title { font-size: 1rem; font-weight: 600; white-space: nowrap; }
 	
 	#countryName { font-size: 24px; }
 	
@@ -358,7 +358,10 @@
      src=""
      alt="Featured Bird">
 	
-<div class="swipe-indicator"></div>
+<div class="swipe-hand">
+  👆
+</div>
+	
 <!-- Arrows -->
 <div onclick="navigateBird(-1)" class="nav-arrow left-arrow" aria-label="Previous">
   &#10094; <!-- Unicode left chevron -->
@@ -610,8 +613,8 @@ window.addEventListener("DOMContentLoaded", () => {
   birdFrame.addEventListener("touchend", e => { 
 	const endX = e.changedTouches[0].screenX;
     const SWIPE_THRESHOLD = 120;
-    if (endX < birdTouchStartX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-indicator")?.remove(); }
-    else if (endX > birdTouchStartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-indicator")?.remove(); }
+    if (endX < birdTouchStartX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-hand")?.remove(); }
+    else if (endX > birdTouchStartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-hand")?.remove(); }
   });
 });
 
