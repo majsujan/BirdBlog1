@@ -80,10 +80,7 @@
 
   /* ========== Map ========== */
 #map { width: 100%; height: 60vh; min-height: 500px; border-radius: 10px; box-sizing: border-box; }
-
-.map-hint { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 1000; background: rgba(255,255,255,0.92); padding: 8px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,.15); pointer-events: none; }
-	  
-	  
+  
   /* ========== Map Legend ========== */
 .legend { background: white; padding: 10px 12px; line-height: 1.2; color: #333; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); border: 1px solid #ddd; }
 
@@ -143,9 +140,7 @@
 
 
   /* ========== Country Panel and Species List========== */
-.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; background: white; border-radius: 10px; box-sizing: border-box }
-
-.panel-box.merged-panel { position: relative; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(4px); }
+.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box }
 
 .panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; }
 
@@ -173,8 +168,6 @@
 .species-btn { background: none; border: none; color: black; font-weight: normal; cursor: pointer; text-align: left; padding: 0; font-size: 1.05rem; width: 100%; display: inline-block; line-height: 1.4; white-space: normal; word-break: break-word; }
 
 .panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; cursor: pointer; }
-
-.panel-box.merged-panel { position: relative; }
 
 /* ========== Thumbnail Gallery ========== */
 	  
@@ -233,6 +226,7 @@
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
+.swipe-hint { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.45); color: white; font-size: 0.8rem; padding: 4px 10px; border-radius: 12px; z-index: 5; }
 	  
 /* ========== Lightbox ========== */
 .lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; flex-direction: column; z-index: 9999; }
@@ -256,7 +250,7 @@
 
   #mainPanel { display: flex; flex-direction: row; gap: 10px; align-items: stretch; }
     
-  #infoPanel { width: 85vw; max-width: 340px; height: 65vh; position: absolute; top: 10px; left: 0; overflow: hidden; z-index: 2000; background: transparent; box-shadow: 4px 0 16px rgba(0,0,0,.18); }
+  #infoPanel { width: 70vw; max-width: 280px; height: 65vh; position: absolute; top: 10px; left: 0; overflow: hidden; z-index: 2000; background: transparent; box-shadow: 4px 0 16px rgba(0,0,0,.18); }
 
   #map { height: 65vh; min-height: 450px; }
 
@@ -302,8 +296,6 @@
    .gallery-toggle { height: 42px; box-sizing: border-box; }
 
    #thumbnailGallery { font-size: 15px; }
-   .map-hint { font-size: 0.8rem; padding: 6px 12px; left: 55%; max-width: 80%; text-align: center; }
-}
 
   @media (max-width: 600px) { 
 	.nav-arrow { font-size: 36px; }
@@ -321,7 +313,13 @@
   header h2 { font-size: 14px; }
   header { padding: 6px 10px; }
 }
-	  
+
+@media (min-width: 769px) {
+  .swipe-hint {
+    display: none;
+  }
+}
+
 </style>
 	  
 	<script type="text/javascript">
@@ -351,6 +349,10 @@
 <div class="bird-day-main">
 
 <div class="bird-day-frame">
+
+<div class="swipe-hint">
+  ← Swipe or tap arrows →
+</div>
 	
 <img id="dailyBirdImage"
      class="bird-day-image"
@@ -429,7 +431,7 @@
 <div class="explore-banner">
   <div class="explore-inner">
 
-    <h2 class="explore-title">Explore</h2>
+    <h2 class="explore-title">🌍 Click a country to view species and photos</h2>
 
     <div class="explore-ticker">
       <div id="exploreTicker"
@@ -468,11 +470,8 @@
   </div>
 
   <div id="mapContainer">
-	  <div class="map-hint">
-  🌍 Click a country to view species and photos
-  </div>
-	  
-    <div id="map"></div>
+    <div id="map">
+	</div>
 </div>
 
 
@@ -491,9 +490,7 @@
 
 
   <script>
-    const map = L.map('map', {
-  center: [20, 0], zoom: 2, minZoom: 2, maxZoom: 4, zoomControl: false
-	});
+    const map = L.map('map', { center: [20, 0], zoom: 2, minZoom: 2, maxZoom: 4, zoomControl: false, scrollWheelZoom: false });
 L.control.zoom({
   position: 'topright'
 }).addTo(map);
@@ -537,7 +534,7 @@ function initApp() {
   const total =
     Object.values(birdData)
       .reduce((a, b) => a + b, 0);
-  const parts = [ `${birdKeys.length} species photographed worldwide` ];
+  const parts = [ `545 species observed worldwide` ];
 
   Object.entries(birdData)
     .sort((a,b) => b[1] - a[1])
@@ -597,7 +594,21 @@ function navigateBird(direction) {
 
   const name = birdKeys[currentBirdIndex];
   const url = birds[name].photo;
+	
+  const birdImage =
+  document.getElementById("dailyBirdImage");
+  let birdTouchStartX = 0;
+  birdImage.addEventListener( "touchstart", e => { 
+   birdTouchStartX = e.changedTouches[0].screenX; }
+);
 
+birdImage.addEventListener( "touchend", e => {
+    const endX = e.changedTouches[0].screenX;
+    if (endX < birdTouchStartX - 50) { navigateBird(1); }
+    if (endX > birdTouchStartX + 50) { navigateBird(-1); }
+  }
+);
+	
   document.getElementById("dailyBirdImage").src = url;
   document.getElementById("dailyBirdImage").alt = name;
   document.getElementById("dailyBirdCaption").textContent = name;
@@ -975,7 +986,6 @@ if (filteredBirds.length === 0) {
         layer.on('click', () => {
           selectedName  = name;
           selectedCount = count;
-		  document.querySelector(".map-hint")?.remove();
           document.getElementById("infoPanel").classList.add("open");
           document.getElementById('countryName').textContent  = name;
           document.getElementById('countryCount').textContent = `${count} species observed`;
@@ -1041,7 +1051,6 @@ marker.bindTooltip(`${name}: ${count} species`, {
       marker.on('click', () => {
         selectedName  = name;
         selectedCount = count;
-		document.querySelector(".map-hint")?.remove();
         document.getElementById("infoPanel").classList.add("open");
         document.getElementById('countryName').textContent  = name;
         document.getElementById('countryCount').textContent = `${count} species observed`;
