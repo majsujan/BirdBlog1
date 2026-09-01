@@ -199,10 +199,16 @@
   /* Theme variables (adjust to match your header mint) */
   :root { --mint-dark: 46, 111, 100; --mint-base: 168, 230, 207; }
 
-.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 42px; color: rgba(255,255,255,0.95); text-shadow: 0 0 6px rgba(80,80,80,.8), 0 0 12px rgba(80,80,80,.5), 2px 2px 6px rgba(0,0,0,.35); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; }
+.nav-arrow,
+.swipe-hand { -webkit-tap-highlight-color: transparent; }	  
+	  
+.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 42px; color: rgba(255,255,255,0.95); text-shadow: 0 0 8px rgba(40,40,40,.9), 0 0 18px rgba(40,40,40,.7), 2px 2px 8px rgba(0,0,0,.5); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; outline: none ;}
 	  
 .left-arrow { left: 12px; }
 .right-arrow { right: 12px; }
+
+.nav-arrow:focus,
+.nav-arrow:active { outline: none; background: transparent; }	  
 	  
 .nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
 
@@ -212,14 +218,14 @@
 
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16/9; max-height: 570px; overflow: hidden; box-sizing: border-box; touch-action: pan-y; }
 
-.bird-day-image { width: 100%; height: 100%; object-fit: contain; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.bird-day-image { width: 100%; height: 100%; object-fit: contain; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity .25s ease, transform .25s ease; }
 
 .bird-caption-bar { position: absolute; bottom: 0; left: 0; width: 100%; background: #333333; color: white; font-size: 16px; padding: 5px 12px; text-align: right; font-weight: normal; box-sizing: border-box; white-space: nowrap; }
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
 .swipe-hand { display: none; position: absolute; left: 50%; bottom: 85px; transform: translateX(-50%); pointer-events: none; z-index: 5; animation: swipeHand 2.5s ease-in-out infinite; }	  
-.swipe-hand svg { width: 130px; height: 70px; stroke: rgba(255,255,255,0.95); stroke-width: 3.5; fill: none; 
+.swipe-hand svg { width: 180px; height: 100px; stroke: rgba(255,255,255,0.95); stroke-width: 3.5; fill: none; 
 filter:
     drop-shadow(0 0 5px rgba(90,90,90,.8))
     drop-shadow(0 0 12px rgba(90,90,90,.5));
@@ -361,22 +367,14 @@ filter:
      alt="Featured Bird">
 	
 <div class="swipe-hand">
-<svg viewBox="0 0 120 60" aria-hidden="true">
-  <path d="M25 30 H5" />
-  <path d="M95 30 H115" />
-  <path d="M10 25 L5 30 L10 35" />
-  <path d="M110 25 L115 30 L110 35" />
-  <path d="M60 45
-           V18
-           C60 12 68 12 68 18
-           V40
-           M68 28
-           C68 22 76 22 76 28
-           V42
-           M76 32
-           C76 26 84 26 84 32
-           V44" />
-</svg>
+<div style="
+font-size:70px;
+color:white;
+text-shadow:
+0 0 8px rgba(0,0,0,.5),
+0 0 16px rgba(0,0,0,.3);
+">
+↔️🖐️
 </div>
 	
 <!-- Arrows -->
@@ -531,17 +529,25 @@ L.control.zoom({
 let birds = {};
 let birdKeys = [];
 let currentBirdIndex = 0;
+let shuffledBirds = [];
 
 // ✅ LOAD bird data from JSON
 fetch('birds.json')
   .then(response => response.json())
   .then(data => {
+
     birds = data;
     birdKeys = Object.keys(birds);
 
-let shuffledBirds =
-  shuffleArray(Object.entries(birds));
-if (sortBox.value === "random") { list = shuffledBirds; }
+    shuffledBirds =
+      shuffleArray(Object.entries(birds));
+
+    initApp();
+
+  })
+  .catch(error => {
+    console.error("Error loading birds.json:", error);
+  });
 
     // ✅ Start app ONLY after birds are loaded
     initApp();
@@ -611,6 +617,14 @@ function showRandomBird() {
 
 // ✅ Navigation
 
+function showBird(name, url) {
+  const img = document.getElementById("dailyBirdImage");
+  img.style.opacity = "0";
+  setTimeout(() => { img.src = url; img.alt = name;
+    document.getElementById( "dailyBirdCaption" ).textContent = name;
+    img.style.opacity = "1"; }, 150);
+}
+	  
 function navigateBird(direction) {	
   currentBirdIndex += direction;
   if (currentBirdIndex < 0) currentBirdIndex = birdKeys.length - 1;
@@ -619,17 +633,17 @@ function navigateBird(direction) {
   const name = birdKeys[currentBirdIndex];
   const url = birds[name].photo;
 	
-  document.getElementById("dailyBirdImage").src = url;
-  document.getElementById("dailyBirdImage").alt = name;
-  document.getElementById("dailyBirdCaption").textContent = name;
+showBird(name, url);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
   const birdFrame = document.querySelector(".bird-day-frame");
   if (!birdFrame) return;
-  let StartX = 0;
+  let startX = 0;
   let startY = 0;
-  birdFrame.addEventListener("touchstart", e => { startX = e.changedTouches[0].screenX; startY = e.changedTouches[0].screenY;
+  birdFrame.addEventListener("touchstart", e => { 
+    startX = e.changedTouches[0].screenX; 
+	startY = e.changedTouches[0].screenY;
   });
 
   birdFrame.addEventListener("touchend", e => { 
@@ -639,11 +653,11 @@ window.addEventListener("DOMContentLoaded", () => {
 	  const dy = Math.abs(endY - startY);
 	if (dx < dy) return;
     const SWIPE_THRESHOLD = 120;
-    if (endX < StartX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-hand")?.remove(); }
-    else if (endX > StartX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-hand")?.remove(); }
+    if (endX < startX - SWIPE_THRESHOLD) { navigateBird(1); document.querySelector(".swipe-hand")?.remove(); }
+    else if (endX > startX + SWIPE_THRESHOLD) { navigateBird(-1); document.querySelector(".swipe-hand")?.remove(); }
   });
 });
-
+	  
 // === Inject Thumbnails ===
 function shuffleArray(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
@@ -726,27 +740,27 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
-    if (sortBox.value === "alpha") {
+if (sortBox.value === "alpha") {
 
-      list.sort((a, b) =>
-        a[0].localeCompare(b[0])
-      );
+  list.sort((a, b) =>
+    a[0].localeCompare(b[0])
+  );
 
-    } else if (sortBox.value === "random") {
+} else if (sortBox.value === "random") {
 
-const shuffledBirds =
-  list = shuffleArray(list);
+  list = shuffledBirds;
 
-    } else if (
-      sortBox.value === "country" &&
-      countryBox.value
-    ) {
+} else if (
+  sortBox.value === "country" &&
+  countryBox.value
+) {
 
-      list = list.filter(([name, data]) =>
-        data.countries &&
-        data.countries.includes(countryBox.value)
-      );
-    }
+  list = list.filter(([name, data]) =>
+    data.countries &&
+    data.countries.includes(countryBox.value)
+  );
+}
+
 
     loadThumbnails(list);
   }
