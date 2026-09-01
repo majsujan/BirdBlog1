@@ -63,13 +63,13 @@
 
 /* ========== Explore Section ========== */
 
-.explore-banner { background: #5F8F5E; margin-bottom: 4px; }
+.explore-banner { background: #5F8F5E; margin-bottom: 8px; }
 
 .explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
 
-.explore-title { color: white; text-align: center; margin: 0; font-size: 1.15rem; font-weight: 700; }
+.explore-title { color: white; text-align: center; margin: 0; font-size: 1.2rem; font-weight: 700; }
 
-.explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 1rem; }
+.explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 1.05rem; }
 
 .explore-ticker-content { display: inline-block; padding-left: 100%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; }
 
@@ -140,7 +140,7 @@
 
 
   /* ========== Country Panel and Species List========== */
-.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box; margin-left: 12px; }
+.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box; margin-left: 0; }
 
 .panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; }
 .panel-close:hover { color: black; }
@@ -164,7 +164,7 @@
 
 .species-li::before { content: "📷"; position: absolute; left: 0; top: 0.7em; transform: translateY(-50%); font-size: 0.7rem; line-height: 1; }
 
-.species-btn { background: none; border: none; color: black; font-weight: normal; cursor: pointer; text-align: left; padding: 0; font-size: 1.05rem; width: 100%; display: inline-block; line-height: 1.4; white-space: normal; word-break: break-word; }
+.species-btn { background: none; border: none; color: black; font-weight: normal; cursor: pointer; text-align: left; padding: 0; font-size: 1rem; width: 100%; display: inline-block; line-height: 1.4; white-space: normal; word-break: break-word; }
 
 /* ========== Thumbnail Gallery ========== */
 	  
@@ -200,13 +200,14 @@
   :root { --mint-dark: 46, 111, 100; --mint-base: 168, 230, 207; }
 
  .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,0.60); color: rgba(90,90,90,0.85); text-shadow: 0 0 3px rgba(200,200,200,0.8); display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer;  z-index: 4; transition: all 0.2s ease; }
-  
 .left-arrow { left: 12px; }
 .right-arrow { right: 12px; }
 
- .nav-arrow:hover { background: rgba(255,255,255,0.85); transform: translateY(-50%) scale(1.08); }
+.nav-arrow { backdrop-filter: blur(3px); box-shadow: 0 0 4px rgba(200,200,200,.6); }
+	  
+.nav-arrow:hover { box-shadow: 0 0 10px rgba(200,200,200,.8); }
 
-.bird-day-layout { display: flex; flex-wrap: wrap; background: white; font-family: sans-serif; justify-content: flex-start; padding: 5px; }
+.bird-day-layout { display: flex; flex-wrap: wrap; background: white; font-family: sans-serif; justify-content: flex-start; padding: 8px; }
 
 .bird-day-main { flex: 0 1 auto; width: 100%; max-width: 1024px; background: #444; position: relative; }
 
@@ -218,12 +219,16 @@
 
 .bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
 
-.swipe-hand { display: none; position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%); font-size: 32px; color: rgba(255,255,255,0.85); text-shadow: 0 0 2px rgba(180,180,180,0.9), 0 0 6px rgba(180,180,180,0.6); pointer-events: none;  animation: swipeHand 2.5s ease-in-out infinite; z-index: 5; }
-
+.swipe-hand svg { width: 90px; height: 45px; stroke: rgba(255,255,255,0.9); stroke-width: 3; fill: none; 
+filter:
+    drop-shadow(0 0 2px rgba(180,180,180,.9))
+    drop-shadow(0 0 5px rgba(180,180,180,.5));
+}
+	  
 @keyframes swipeHand {
-  0% { transform: translateX(-60%) translateY(0); opacity: 0.4; }
-  50% { transform: translateX(-40%) translateY(0); opacity: 0.9; }
-  100% { transform: translateX(-60%) translateY(0); opacity: 0.4; }
+  0% { transform: translateX(-65%); opacity: 0..35; }
+  50% { transform: translateX(-35%); opacity: 0.9; }
+  100% { transform: translateX(-65%); opacity: 0.35; }
 }
 	  
 /* ========== Lightbox ========== */
@@ -248,7 +253,7 @@
 
   #mainPanel { display: flex; flex-direction: row; gap: 10px; align-items: stretch; }
     
-  #infoPanel { width: 65vw; max-width: 260px; height: 60vh; position: absolute; top: 10px; left: 0; overflow: hidden; z-index: 2000; background: transparent; }
+  #infoPanel { width: 65vw; max-width: 260px; height: 60vh; position: absolute; top: 10px; left: 0; padding-left:12px; z-index: 2000; background: transparent; border-radius: 10px; }
 
   #map { height: 65vh; min-height: 450px; }
 
@@ -256,7 +261,7 @@
 				  
   .panel-box.fixed-height { margin-bottom: 10px; }
 
-  .panel-box.merged-panel { flex: 1 1 auto; height: 100%; border-radius: 10px; }
+  .panel-box.merged-panel { flex: 1 1 auto; height: 100%; border-radius: 10px; margin-left: 0; }
 
   #thumbnailPanel { overflow: hidden; transition: max-height 0.35s ease, opacity 0.25s ease; }
 
@@ -284,7 +289,7 @@
   
 	.panel-box p { font-size: 17px; line-height: 1.5; }
 
-	.explore-title { font-size: 1rem; font-weight: 600; white-space: nowrap; }
+	.explore-title { font-size: 1.2rem; font-weight: 600; white-space: nowrap; }
 	
 	#countryName { font-size: 24px; }
 	
@@ -354,7 +359,22 @@
      alt="Featured Bird">
 	
 <div class="swipe-hand">
-  ← ☝ →
+<svg viewBox="0 0 120 60" aria-hidden="true">
+  <path d="M25 30 H5" />
+  <path d="M95 30 H115" />
+  <path d="M10 25 L5 30 L10 35" />
+  <path d="M110 25 L115 30 L110 35" />
+  <path d="M60 45
+           V18
+           C60 12 68 12 68 18
+           V40
+           M68 28
+           C68 22 76 22 76 28
+           V42
+           M76 32
+           C76 26 84 26 84 32
+           V44" />
+</svg>
 </div>
 	
 <!-- Arrows -->
