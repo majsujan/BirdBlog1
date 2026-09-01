@@ -542,20 +542,53 @@ function initApp() {
   speciesList = Object.keys(birds);
 
   updateTicker();
+
+  showRandomBird();
+
+  loadThumbnails();
+
+  const countryFilter =
+    document.getElementById("countryFilter");
+
+  const countries = [
+    ...new Set(
+      Object.values(birds)
+        .flatMap(b => b.countries || [])
+    )
+  ].sort();
+
+  countryFilter.innerHTML =
+    '<option value="">Select country</option>';
+
+  countries.forEach(country => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = country;
+    option.textContent = country;
+
+    countryFilter.appendChild(option);
+
+  });
+
+}
+
 function updateTicker() {
-  const total =
-    Object.values(birdData)
-      .reduce((a, b) => a + b, 0);
-  const parts = [ `545 species observed worldwide` ];
+
+  const parts = [
+    "545 species observed worldwide"
+  ];
 
   Object.entries(birdData)
     .sort((a,b) => b[1] - a[1])
     .forEach(([country,count]) => {
-      parts.push( `${country}: ${count}` );
+      parts.push(`${country}: ${count}`);
     });
 
   document.getElementById("exploreTicker")
     .textContent = parts.join(" 🦜 ");
+
 }
 
 // ✅ Bird of the day
