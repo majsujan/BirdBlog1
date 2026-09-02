@@ -599,11 +599,17 @@ function updateTicker() {
       if (!code) return;
 
       html += `
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <img
           src="https://flagcdn.com/24x18/${code}.png"
           alt="${country}"
-          class="ticker-flag")
+          class="ticker-flag">
+        ${count}
+      `;
+
+    });
+
+  document.getElementById("exploreTicker")
     .innerHTML = html;
 
 }
