@@ -71,7 +71,7 @@
 
 .explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 1.05rem; }
 
-.explore-ticker-content { display: inline-block; padding-left: 40%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; }
+.explore-ticker-content { display: inline-block; padding-left: 20%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; }
 
 @keyframes exploreTicker {
   from { transform: translateX(0); }
@@ -601,17 +601,15 @@ function updateTicker() {
       const flag =
         flags[country] || "🏳️";
 
-console.log(flag, country);
-
-parts.push(
-  `${flag} ${country}: ${count}`
-);
+      parts.push(
+        `${flag} ${count}`
+      );
 
     });
 
   document.getElementById("exploreTicker")
-    .textContent =
-      parts.join("           ");
+    .innerHTML =
+      "🇳🇴 🇧🇩 🇳🇱 🇹🇭 🇦🇼 🇧🇪";
 
 }
 
