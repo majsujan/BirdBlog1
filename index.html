@@ -590,27 +590,28 @@ loadThumbnails(
 
 function updateTicker() {
 
-  const total =
-    Object.values(birdData)
-      .reduce((a, b) => a + b, 0);
-
   const parts = [
-    `🌍 ${total} species observed worldwide`
+    "🌍 545 species observed worldwide"
   ];
 
   Object.entries(birdData)
     .sort((a,b) => b[1] - a[1])
     .forEach(([country,count]) => {
+
       const flag =
         flags[country] || "🏳️";
-      parts.push(
-        `${flag} ${country}: ${count}`
-      );
+
+console.log(flag, country);
+
+parts.push(
+  `${flag} ${country}: ${count}`
+);
+
     });
 
   document.getElementById("exploreTicker")
     .textContent =
-      parts.join("      •      ");
+      parts.join("           ");
 
 }
 
