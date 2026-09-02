@@ -220,10 +220,10 @@
 
 .bird-day-image { width: 100%; height: 100%; object-fit: contain; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: opacity .25s ease, transform .25s ease; }
 
-.bird-caption-bar { position: absolute; bottom: 0; left: 0; width: 100%; background: #333333; color: white; font-size: 16px; padding: 5px 12px; font-weight: normal; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; }
-.bird-copyright { position: absolute; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
-
-.swipe-indicator { display: flex; align-items: center; gap: 5px; margin-left: 10px; }
+.bird-caption-bar { position: absolute; bottom: 0; left: 0; width: 100%; background: #333333; color: white; font-size: 16px; padding: 5px 12px; box-sizing: border-box; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 12px; color: #888; }
+#dailyBirdCaption { justify-self: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
+.swipe-indicator { display: flex; align-items: center; justify-self: center; gap: 5px; min-width: 35px; }
 
 .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.3); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
 
@@ -236,8 +236,6 @@
 /* swipe right animation */
 
 .right-dot.swipe-active { transform: scale(1.8); background: rgba(255,255,255,.95); }
-
-}
 	  
 /* ========== Lightbox ========== */
 .lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; flex-direction: column; z-index: 9999; }
@@ -384,18 +382,15 @@
   <div class="swipe-indicator">
 
     <span class="dot left-dot"></span>
-
     <span class="dot center-dot"></span>
-
     <span class="dot right-dot"></span>
 
   </div>
 
-</div>
+  <div class="bird-copyright">
+    © Sujan Abu Jafar
+  </div>
 
-      <!-- Copyright -->
-     <div class="bird-copyright">
-        &copy; Sujan Abu Jafar
       </div>
     </div>
   </div>
