@@ -71,8 +71,9 @@
 
 .explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: white; font-size: 1.05rem; }
 
-.explore-ticker-content { display: inline-block; padding-left: 20%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; }
-
+.explore-ticker-content { display: inline-block; padding-left: 20%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; white-space: nowrap; line-height: 1.4; }
+.ticker-flag { width: 20px; height: 15px; vertical-align: middle; margin-right: 4px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+	  
 @keyframes exploreTicker {
   from { transform: translateX(0); }
   to { transform: translateX(-100%); }
@@ -516,12 +517,10 @@ L.control.zoom({
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    const birdData = {
-     "Norway": 192, "Sweden": 61, "Finland": 35, "Denmark": 115, "Italy": 60, "United Kingdom": 44, "Netherlands": 127, "Germany": 18, "Poland": 3, "Czech Republic": 2, "Latvia": 13, "Greece": 22, "Estonia": 55, "Bangladesh": 185, "Thailand": 126, "Aruba": 72, "Curaçao": 60, "Belgium": 33 };
-
-	  const flags = {
-  "Norway": "🇳🇴", "Sweden": "🇸🇪", "Finland": "🇫🇮", "Denmark": "🇩🇰", "Italy": "🇮🇹", "United Kingdom": "🇬🇧", "Netherlands": "🇳🇱", "Germany": "🇩🇪", "Poland": "🇵🇱", "Czech Republic": "🇨🇿", "Latvia": "🇱🇻", "Greece": "🇬🇷", "Estonia": "🇪🇪", "Bangladesh": "🇧🇩", "Thailand": "🇹🇭", "Aruba": "🇦🇼", "Curaçao": "🇨🇼", "Belgium": "🇧🇪" };
-
+ const birdData = { "Norway": 192, "Sweden": 61, "Finland": 35, "Denmark": 115, "Italy": 60, "United Kingdom": 44, "Netherlands": 127, "Germany": 18, "Poland": 3, "Czech Republic": 2, "Latvia": 13, "Greece": 22, "Estonia": 55, "Bangladesh": 185, "Thailand": 126, "Aruba": 72, "Curaçao": 60, "Belgium": 33 };
+ 
+ const flags = { "Norway": "no", "Sweden": "se", "Finland": "fi", "Denmark": "dk", "Italy": "it", "United Kingdom": "gb", "Netherlands": "nl", "Germany": "de", "Poland": "pl", "Czech Republic": "cz", "Latvia": "lv", "Greece": "gr", "Estonia": "ee", "Bangladesh": "bd", "Thailand": "th", "Aruba": "aw", "Curaçao": "cw", "Belgium": "be" };
+	  
 // ✅ GLOBAL VARIABLES
 let birds = {};
 let birdKeys = [];
@@ -583,33 +582,29 @@ loadThumbnails(
     option.textContent = country;
 
     countryFilter.appendChild(option);
-
   });
-
 }
 
 function updateTicker() {
 
-  const parts = [
-    "🌍 545 species observed worldwide"
-  ];
+  let html =
+    "🌍 545 species observed worldwide";
 
   Object.entries(birdData)
     .sort((a,b) => b[1] - a[1])
     .forEach(([country,count]) => {
 
-      const flag =
-        flags[country] || "🏳️";
+      const code = flags[country];
 
-      parts.push(
-        `${flag} ${count}`
-      );
+      if (!code) return;
 
-    });
-
-  document.getElementById("exploreTicker")
-    .innerHTML =
-      "🇳🇴 🇧🇩 🇳🇱 🇹🇭 🇦🇼 🇧🇪";
+      html += `
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img
+          src="https://flagcdn.com/24x18/${code}.png"
+          alt="${country}"
+          class="ticker-flag")
+    .innerHTML = html;
 
 }
 
