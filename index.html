@@ -17,9 +17,18 @@
   <!-- Custom Styles -->
   <style>
 	  
-    /* ========== Global Styles ========== */
-    body { margin: 0; font-family: 'Lato', sans-serif; background-color: #aad3df; color: #333; }
+   /* ========== Global Styles ========== */
 
+:root { --page-max-width: 1632px; --page-background: #ffffff; --outer-background: #aad3df; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { min-height: 100%; background-color: var(--outer-background); }
+
+body { min-height: 100vh; margin: 0; font-family: 'Lato', sans-serif; color: #333; background-color: var(--outer-background); }
+
+/* Maximum-width BirdBlog page */
+.site-page { width: 100%; max-width: var(--page-max-width); min-height: 100vh; margin: 0 auto; background-color: var(--page-background); box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.23); }
 	  
     /* ========== Header ========== */
     header { background: #5F8F5E; color: white; padding: 10px 20px; text-align: center; position: relative; }
@@ -221,7 +230,7 @@
 
 .thumbnail-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 6px;
   padding: 6px;
   box-sizing: border-box;
@@ -439,6 +448,7 @@
 	
 </head>
 <body>
+<div class="site-page">
   <!-- Page header with title and author -->
   <header>
     <h1>BirdBlog</h1>
@@ -603,6 +613,8 @@
 <footer>
   <p>© 2026 Sujan Abu Jafar | Powered by eBird Data</p>
 </footer>
+
+</div><!-- End .site-page -->
 
 
   <script>
