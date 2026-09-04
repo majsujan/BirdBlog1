@@ -182,14 +182,13 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 #countryFilter,
 .gallery-toggle { height: 42px; box-sizing: border-box; }
 
-.thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; max-width: 432px; height: 100%; max-height: 675px; margin: 0; padding: 0; background: #ffffff; border-left: 1px solid #e1e1e1; overflow: hidden; }
-	  
-.thumbnail-controls { flex: 0 0 auto; display: flex; align-items: center; flex-wrap: nowrap; gap: 8px; width: 100%; min-width: 0; margin: 0; padding: 8px; background: #f8f8f8; border-bottom: 1px solid #dddddd; }
+.thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; max-width: 432px; height: 100%; max-height: 675px; margin: 0; padding: 0; background: #1d3557; overflow: hidden; }
 
-#thumbnailPanel { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; background: white; }
+.thumbnail-controls { flex: 0 0 auto; width: 100%; margin: 0; padding: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; background: #1d3557; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
 
-	  
-#thumbnailGallery { width: 100%; margin: 0; }
+#thumbnailPanel { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; background: #1d3557; }
+
+#thumbnailGallery { width: 100%; margin: 0; background: #1d3557; }
 
 .thumbnail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; width: 100%; gap: 6px; padding: 6px; margin: 0; }
 
@@ -202,6 +201,16 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 .country-select { display: none; flex: 0 1 150px; min-width: 0; height: 42px; padding: 6px 10px; font: inherit; color: #333; background: #ffffff; border: 1px solid #c8c8c8; border-radius: 4px; }
 
 .thumbnail-search:focus, .thumbnail-select:focus, .country-select:focus { outline: 2px solid rgba(95, 143, 94, 0.35); outline-offset: 1px; border-color: #5f8f5e; }
+
+#thumbnailPanel { scrollbar-color: rgba(255, 255, 255, 0.45) #1d3557; scrollbar-width: thin; }
+
+#thumbnailPanel::-webkit-scrollbar { width: 8px; }
+
+#thumbnailPanel::-webkit-scrollbar-track { background: #1d3557; }
+
+#thumbnailPanel::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.45); border: 2px solid #1d3557; border-radius: 10px; }
+
+#thumbnailPanel::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.65); }
 
 /* ========== Leaflet Overrides ========== */
  .leaflet-control { background: none !important; border: none !important; box-shadow: none !important; }
