@@ -19,7 +19,7 @@
 	  
 /* ========== Global Styles ========== */
 
-:root { --page-max-width: 1632px; }
+:root { --page-max-width: 1632px; --ebird-blue: #385b75; }
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -44,8 +44,8 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 
 	  
     /* ========== Footer ========== */
-    footer { background: #1d3557; color: white; text-align: center; padding: 16px; margin-top: 4px; }
-
+  footer { width: 100%; margin: 0; padding: 16px; background: var(--ebird-blue); color: #ffffff; text-align: center; }
+  footer p { margin: 0;}
 	  
     /* ========== Info Banner ========== */
     #info { text-align: center; padding: 10px; font-size: 16px; background: #f6f6f6; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; }
@@ -60,18 +60,18 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 
 	  
     /* ========== World Map Explorer ========== */
-#mainPanel { position: relative; overflow: hidden; }
+#mainPanel { position: relative; width: 100%; margin: 0; padding: 0; overflow: hidden; }
 
 #infoPanel { position: absolute; left: 0; top: 0; width: 320px; height: 60vh; min-height: 500px; z-index: 1000; padding: 0; box-sizing: border-box; overflow: hidden; transform: translateX(calc(-100% - 20px)); opacity: 0; visibility: hidden; pointer-events: none; transition: transform 0.3s ease, opacity 0.2s ease, visibility 0s linear 0.3s; }
 
 #infoPanel.open { transform: translateX(0); opacity: 1; visibility: visible; pointer-events: auto; transition: transform 0.3s ease, opacity 0.2s ease, visibility 0s; }
 
-#mapContainer { width: 100%; position: relative; }
+#mapContainer { position: relative; width: 100%; margin: 0; padding: 0; }
 
 
 /* ========== Explore Section ========== */
 
-.explore-banner { background: #5F8F5E; margin-bottom: 8px; }
+.explore-banner { width: 100%; margin: 0; padding: 0; background: #5F8F5E; }
 
 .explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
 
@@ -88,7 +88,8 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 }
 
   /* ========== Map ========== */
-#map { width: 100%; height: 60vh; min-height: 500px; border-radius: 10px; box-sizing: border-box; }
+#map { display: block; width: 100%; height: 60vh; min-height: 500px; margin: 0; padding: 0; border: 0; border-radius: 0; }
+
   
   /* ========== Map Legend ========== */
 .legend { background: white; padding: 10px 12px; line-height: 1.2; color: #333; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); border: 1px solid #ddd; }
@@ -180,37 +181,37 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 #birdSearch,
 #birdSort,
 #countryFilter,
-.gallery-toggle { height: 42px; box-sizing: border-box; }
+.gallery-toggle { height: 42px; box-sizing: border-box; color: #333333; background-color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
 
-.thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; max-width: 432px; height: 100%; max-height: 675px; margin: 0; padding: 0; background: #1d3557; overflow: hidden; }
+.thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; max-width: 432px; height: 100%; max-height: 675px; margin: 0; padding: 0; background: var(--ebird-blue); overflow: hidden; }
 
-.thumbnail-controls { flex: 0 0 auto; width: 100%; margin: 0; padding: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; background: #1d3557; border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
+.thumbnail-controls { flex: 0 0 auto; width: 100%; margin: 0; padding: 8px; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; background: var(--ebird-blue); border-bottom: 1px solid rgba(255, 255, 255, 0.18); }
 
-#thumbnailPanel { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; background: #1d3557; }
+#thumbnailPanel { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; background: var(--ebird-blue); }
 
-#thumbnailGallery { width: 100%; margin: 0; background: #1d3557; }
+#thumbnailGallery { width: 100%; margin: 0; background: var(--ebird-blue); }
 
 .thumbnail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; width: 100%; gap: 6px; padding: 6px; margin: 0; }
 
 #thumbnailGallery img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; }
 	  
-.thumbnail-search { flex: 1 1 auto; width: 100%; min-width: 0; height: 42px; padding: 6px 10px; font: inherit; color: #333; background: #ffffff; border: 1px solid #c8c8c8; border-radius: 4px; }
+.thumbnail-search { flex: 1 1 auto; width: 100%; min-width: 0; height: 42px; padding: 6px 10px; font: inherit; color: #333; background: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
 
-.thumbnail-select { flex: 0 0 auto; min-width: 82px; height: 42px; padding: 6px 10px;  font: inherit; color: #333; background: #ffffff; border: 1px solid #c8c8c8; border-radius: 4px; }
+.thumbnail-select { flex: 0 0 auto; min-width: 82px; height: 42px; padding: 6px 10px;  font: inherit; color: #333; background: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
 
-.country-select { display: none; flex: 0 1 150px; min-width: 0; height: 42px; padding: 6px 10px; font: inherit; color: #333; background: #ffffff; border: 1px solid #c8c8c8; border-radius: 4px; }
+.country-select { display: none; flex: 0 1 150px; min-width: 0; height: 42px; padding: 6px 10px; font: inherit; color: #333; background: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
 
 .thumbnail-search:focus, .thumbnail-select:focus, .country-select:focus { outline: 2px solid rgba(95, 143, 94, 0.35); outline-offset: 1px; border-color: #5f8f5e; }
 
-#thumbnailPanel { scrollbar-color: rgba(255, 255, 255, 0.45) #1d3557; scrollbar-width: thin; }
+#thumbnailPanel { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.55) var(--ebird-blue); scrollbar-width: thin; }
 
 #thumbnailPanel::-webkit-scrollbar { width: 8px; }
 
-#thumbnailPanel::-webkit-scrollbar-track { background: #1d3557; }
+#thumbnailPanel::-webkit-scrollbar-track { background: var(--ebird-blue); }
 
-#thumbnailPanel::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.45); border: 2px solid #1d3557; border-radius: 10px; }
+#thumbnailPanel::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.5); border: 2px solid var(--ebird-blue); border-radius: 10px; }
 
-#thumbnailPanel::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.65); }
+#thumbnailPanel::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.72); }
 
 /* ========== Leaflet Overrides ========== */
  .leaflet-control { background: none !important; border: none !important; box-shadow: none !important; }
@@ -291,7 +292,7 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
   .gallery-toggle:hover { background: #f3f3f3; }
 
   /* Map responsive layout */
-  #mainPanel { display: flex; flex-direction: row; gap: 10px; align-items: stretch; }
+  #mainPanel { display: flex; flex-direction: row; gap: 0; align-items: stretch; margin: 0; padding: 0; }
 	
   #infoPanel { position: absolute; top: 10px; left: 0; width: 65vw; max-width: 260px; height: 60vh; padding-left: 12px; z-index: 2000; background: transparent; border-radius: 10px; }
 
