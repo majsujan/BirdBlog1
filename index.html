@@ -97,20 +97,21 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   
   /* ========== Map Legend ========== */
-.legend { background: white; padding: 10px 12px; line-height: 1.2; color: #333; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); border: 1px solid #ddd; }
+.legend { background: rgba(255,255,255,0.96); padding: 10px 12px; line-height: 1.2; color: #222; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.20); border: 1px solid rgba(0,0,0,0.15); backdrop-filter: blur(2px); }
 
 .legend .scale {
   background: linear-gradient(
     90deg,
-    rgb(240,235,255) 0%,
-    rgb(210,180,240) 20%,
-    rgb(170,110,220) 45%,
-    rgb(125,60,180) 65%,
-    rgb(220,140,20) 85%,
-    rgb(255,210,40) 100%
+    rgb(255,245,0) 0%,
+    rgb(255,205,0) 15%,
+    rgb(245,165,0) 30%,
+    rgb(235,125,0) 50%,
+    rgb(220,85,0) 70%,
+    rgb(200,45,0) 85%,
+    rgb(145,0,0) 100%
   );
-  width: 120px; height: 14px; border-radius: 8px; margin: 6px 0 4px; }
-.legend .labels { display: flex;  justify-content: space-between; font-size: 12px; color: #444; }
+}
+.legend .labels { display: flex;  justify-content: space-between; font-size: 12px; font-weight: 700; color: #222; }
 
 .legend-container { display: flex; align-items: center; gap: 8px; }
 
@@ -1003,13 +1004,15 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!count || count <= 0) return '#ffffff';
       const max = 200;
       const ratio = Math.min(count / max, 1);
-      const stops = [
-  [240,235,255], // lavender
-  [210,180,240],
-  [170,110,220],
-  [125,60,180], // purple
-  [220,140,20], // amber
-  [255,210,40]  // gold
+const stops = [
+  [255, 245, 0],
+  [255, 205, 0],
+  [245, 165, 0],
+  [235, 125, 0],
+  [220, 85, 0],
+  [200, 45, 0],
+  [175, 20, 0],
+  [145, 0, 0]
 ];
 	  const idx = Math.floor(ratio * (stops.length - 1));
       const next = Math.min(idx + 1, stops.length - 1);
