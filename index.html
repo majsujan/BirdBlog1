@@ -99,8 +99,17 @@ footer { margin-bottom: 0; margin-top: 0; }
   /* ========== Map Legend ========== */
 .legend { background: white; padding: 10px 12px; line-height: 1.2; color: #333; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); border: 1px solid #ddd; }
 
-.legend .scale { background: linear-gradient(90deg, rgb(255,255,0) 0%, rgb(255,220,0) 15%, rgb(255,180,0) 30%, rgb(255,140,0) 50%, rgb(255,100,0) 70%, rgb(255,60,0) 85%, rgb(255,0,0) 100%); width: 100px; height: 12px; border-radius: 8px; margin: 6px 0 4px; }
-
+.legend .scale {
+  background: linear-gradient(
+    90deg,
+    rgb(240,235,255) 0%,
+    rgb(210,180,240) 20%,
+    rgb(170,110,220) 45%,
+    rgb(125,60,180) 65%,
+    rgb(220,140,20) 85%,
+    rgb(255,210,40) 100%
+  );
+  width: 120px; height: 14px; border-radius: 8px; margin: 6px 0 4px; }
 .legend .labels { display: flex;  justify-content: space-between; font-size: 12px; color: #444; }
 
 .legend-container { display: flex; align-items: center; gap: 8px; }
@@ -994,8 +1003,15 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!count || count <= 0) return '#ffffff';
       const max = 200;
       const ratio = Math.min(count / max, 1);
-      const stops = [[255,247,188], [254,227,145], [254,196,79], [254,153,41], [217,95,14], [153,52,4]];
-      const idx = Math.floor(ratio * (stops.length - 1));
+      const stops = [
+  [240,235,255], // lavender
+  [210,180,240],
+  [170,110,220],
+  [125,60,180], // purple
+  [220,140,20], // amber
+  [255,210,40]  // gold
+];
+	  const idx = Math.floor(ratio * (stops.length - 1));
       const next = Math.min(idx + 1, stops.length - 1);
       const local = (ratio * (stops.length - 1)) % 1;
       const lerp = (a, b) => Math.round(a + (b - a) * local);
