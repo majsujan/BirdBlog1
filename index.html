@@ -71,10 +71,7 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 #mainPanel,
 #mapContainer,
 #map,
-footer {
-    margin-bottom: 0;
-    margin-top: 0;
-}
+footer { margin-bottom: 0; margin-top: 0; }
 
 
 /* ========== Explore Section ========== */
@@ -194,18 +191,9 @@ footer {
 .thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; margin: 0; padding: 0 6px; background: var(--ebird-blue); overflow: hidden; }
 
 .thumbnail-controls { display: flex; align-items: center; width: 100%; padding: 8px; gap: 8px; }
-	  .toolbar-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-		  margin-left: auto;
-    flex-shrink: 0;
-}
+.toolbar-right { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
 
-.gallery-toggle {
-    margin-left: 0;
-    flex: 0 0 42px;
-}
+.gallery-toggle { margin-left: 0; flex: 0 0 42px; }
 	  
 #thumbnailPanel { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; background: var(--ebird-blue); }
 
@@ -218,36 +206,11 @@ footer {
 .thumbnail-search-button { width: 42px; height: 42px; flex: 0 0 42px; background: transparent; border: none; box-shadow: none; color: #fff; text-shadow: 0 0 4px rgba(255,255,255,.35); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
 .thumbnail-search-button:hover { opacity: .8; } 
 	  
-.thumbnail-search {
-
-    flex: 1 1 auto;
-
-    min-width: 0;
-
-    height: 42px;
-
-    border: none;
-    border-radius: 8px;
-
-    padding: 0 12px;
-
-    background: rgba(255,255,255,.92);
-
-    color: #333;
-
-    transition:
-      max-width .25s ease,
-      opacity .25s ease,
-      padding .25s ease; } 
+.thumbnail-search { flex: 1 1 auto; min-width: 0; height: 42px; border: none; border-radius: 8px; padding: 0 12px; background: rgba(255,255,255,.92); color: #333; transition: max-width .25s ease, opacity .25s ease, padding .25s ease; } 
 .collapsed-search { width: 0; max-width: 0; padding: 0; border: none; opacity: 0; overflow: hidden; flex: 0 0 0; }
 .thumbnail-select { flex: 0 0 90px; height: 42px; border: none; border-radius: 8px; background: rgba(255,255,255,.92); color: #333; }
 .country-select { display: none; flex: 0 0 0; height: 42px; width: 0; min-width: 0; opacity: 0; overflow: hidden; border: none; border-radius: 8px; color: #333;background: rgba(255,255,255,.92); transition: flex-basis .25s ease, width .25s ease, opacity .25s ease; }
-.country-select.visible {
-    display: block;
-    flex: 0 0 auto;
-    width: auto;
-    opacity: 1;
-}
+.country-select.visible { display: block; flex: 0 0 auto; width: auto; opacity: 1; }
 .thumbnail-search:focus, .thumbnail-select:focus, .country-select:focus { outline: 2px solid rgba(95, 143, 94, 0.35); outline-offset: 1px; border-color: #5f8f5e; }
 
 #thumbnailPanel { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.55) var(--ebird-blue); scrollbar-width: thin; }
@@ -391,15 +354,15 @@ footer {
   .bird-copyright { font-size: 11px; }
 
   .thumbnail-search { flex: 1 1 100%; }
-.thumbnail-select { flex: 0 0 72px; width: 72px; }
+  .thumbnail-select { flex: 0 0 72px; width: 72px; }
   .country-select { flex: 0 0 auto; width: auto; max-width: 40vw; }
-.toolbar-right { flex-shrink: 1; }
+  .toolbar-right { flex-shrink: 1; }
 }
 	  
   @media (max-width: 600px) { 
 	.nav-arrow { font-size: 30px; }
     .left-arrow { left: 8px; }
-    .right-arrow { right: 8px; }
+    .right-arrow { right: 8px; } 
   }
 
 @media (max-width: 480px) {
@@ -1031,10 +994,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!count || count <= 0) return '#ffffff';
       const max = 200;
       const ratio = Math.min(count / max, 1);
-      const stops = [
-        [255, 255, 0], [255, 220, 0], [255, 180, 0], [255, 140, 0],
-        [255, 100, 0], [255, 60, 0], [255, 30, 0], [255, 0, 0]
-      ];
+      const stops = [[255,247,188], [254,227,145], [254,196,79], [254,153,41], [217,95,14], [153,52,4]];
       const idx = Math.floor(ratio * (stops.length - 1));
       const next = Math.min(idx + 1, stops.length - 1);
       const local = (ratio * (stops.length - 1)) % 1;
