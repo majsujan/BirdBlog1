@@ -268,7 +268,11 @@ footer { margin-bottom: 0; margin-top: 0; }
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
-.center-dot { width: 8px; height: 8px; background: white; border-color: rgba(0,0,0,.55); }
+.center-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,.45); background: rgba(255,255,255,.92); color: #222; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; cursor: pointer; padding: 0; line-height: 1; transition: transform .2s ease, background .2s ease; }
+.slideshow-dot { appearance: none; -webkit-appearance: none; outline: none; }
+.center-dot:hover { transform: scale(1.08); }
+
+.center-dot.playing { background: #ffffff; }
 .left-dot,
 .right-dot { width: 6px; height: 6px; }
 
@@ -445,9 +449,16 @@ footer { margin-bottom: 0; margin-top: 0; }
 <!-- Swipe dots -->
 <div class="swipe-indicator">
 
-  <span class="dot left-dot"></span>
-  <span class="dot center-dot"></span>
-  <span class="dot right-dot"></span>
+<span class="dot left-dot"></span>
+
+<button
+  id="slideshowToggle"
+  class="center-dot slideshow-dot"
+  aria-label="Start slideshow">
+  ▶
+</button>
+
+<span class="dot right-dot"></span>
 
 </div>
 
@@ -615,6 +626,9 @@ let birdKeys = [];
 let currentBirdIndex = 0;
 let shuffledBirds = [];
 
+let slideshowTimer = null;
+let slideshowRunning = false;
+
 // ✅ LOAD bird data from JSON
 fetch('birds.json')
   .then(response => response.json())
@@ -724,7 +738,9 @@ function showBird(name, url) {
 }
 	  
 function navigateBird(direction) {
-
+if (slideshowRunning) {
+  stopSlideshow();
+}
   currentBirdIndex += direction;
 
   if (currentBirdIndex < 0)
@@ -741,7 +757,22 @@ function navigateBird(direction) {
   animateSwipeDots(direction);
 
 }
+function advanceSlideshowBird() {
 
+  currentBirdIndex++;
+
+  if (currentBirdIndex >= birdKeys.length) {
+    currentBirdIndex = 0;
+  }
+
+  const name = birdKeys[currentBirdIndex];
+  const url = birds[name].photo;
+
+  showBird(name, url);
+
+  animateSwipeDots(1);
+
+}
 function animateSwipeDots(direction) {
 
   const dot = document.querySelector(
@@ -758,6 +789,76 @@ function animateSwipeDots(direction) {
 
 }
 
+function startSlideshow() {
+
+  if (slideshowRunning) return;
+
+  slideshowRunning = true;
+
+  const btn =
+    document.getElementById("slideshowToggle");
+
+  if (btn) {
+    btn.textContent = "❚❚";
+    btn.classList.add("playing");
+    btn.setAttribute(
+      "aria-label",
+      "Pause slideshow"
+    );
+  }
+
+  slideshowTimer = setInterval(() => {
+
+   advanceSlideshowBird(1);
+
+  }, 5000);
+
+}
+
+function stopSlideshow() {
+
+  slideshowRunning = false;
+
+  clearInterval(slideshowTimer);
+  slideshowTimer = null;
+
+  const btn =
+    document.getElementById("slideshowToggle");
+
+  if (btn) {
+    btn.textContent = "▶";
+    btn.classList.remove("playing");
+    btn.setAttribute(
+      "aria-label",
+      "Start slideshow"
+    );
+  }
+
+}
+
+function toggleSlideshow() {
+
+  if (slideshowRunning) {
+    stopSlideshow();
+  } else {
+    startSlideshow();
+  }
+
+}
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if (
+      document.hidden &&
+      slideshowRunning
+    ) {
+      stopSlideshow();
+    }
+
+  }
+);
+	  
 window.addEventListener("DOMContentLoaded", () => {
   const birdFrame = document.querySelector(".bird-day-frame");
   if (!birdFrame) return;
@@ -778,6 +879,24 @@ window.addEventListener("DOMContentLoaded", () => {
     if (endX < startX - SWIPE_THRESHOLD) { navigateBird(1); }
     else if (endX > startX + SWIPE_THRESHOLD) { navigateBird(-1); }
   });
+const slideshowBtn =
+  document.getElementById("slideshowToggle");
+
+if (slideshowBtn) {
+
+  slideshowBtn.addEventListener(
+    "click",
+    (e) => {
+
+      e.stopPropagation();
+
+      toggleSlideshow();
+
+    }
+  );
+
+}
+	
 });
 	  
 // === Inject Thumbnails ===
