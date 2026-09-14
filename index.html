@@ -248,15 +248,11 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 .nav-arrow,
 .swipe-hand { -webkit-tap-highlight-color: transparent; }	  
-	  
 .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 34px; color: rgba(255,255,255,0.95); text-shadow: 0 0 4px rgba(40,40,40,.7), 0 0 10px rgba(40,40,40,.5), 1px 1px 4px rgba(0,0,0,.35); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; outline: none ;}
-	  
 .left-arrow { left: 12px; }
 .right-arrow { right: 12px; }
-
 .nav-arrow:focus,
-.nav-arrow:active { outline: none; background: transparent; }	  
-	  
+.nav-arrow:active { outline: none; background: transparent; }	    
 .nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
 
 .bird-day-layout { display: grid; grid-template-columns: minmax(0, 22fr) minmax(420px, 12fr); width: 100%; margin: 0; align-items: start; background: white; font-family: 'Lato', sans-serif; }
@@ -266,17 +262,58 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-caption-bar { width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; } 
 .bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; }
 #dailyBirdCaption { justify-self: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
-.swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 
+.bird-card {
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+}
+
+.bird-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease;
+  transform-style: preserve-3d;
+}
+
+.bird-card.flipped .bird-card-inner {
+  transform: rotateY(180deg);
+}
+
+.bird-card-front,
+.bird-card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.bird-card-front {
+  background: #ffffff;
+}
+
+.bird-card-back {
+  transform: rotateY(180deg);
+  background: #fafafa;
+  padding: 20px;
+  overflow-y: auto;
+  color: #222;
+}
+
+.bird-card-back h3 {
+  margin-top: 0;
+}
+	  
+.swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
 .center-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,.45); background: rgba(255,255,255,.92); color: #222; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; cursor: pointer; padding: 0; line-height: 1; transition: transform .2s ease, background .2s ease; }
 .slideshow-dot { appearance: none; -webkit-appearance: none; outline: none; }
 .center-dot:hover { transform: scale(1.08); }
-
 .center-dot.playing { background: #ffffff; }
 .left-dot,
 .right-dot { width: 6px; height: 6px; }
-
 .left-dot.swipe-active, 
 .right-dot.swipe-active { transform: scale(1.8); background: white; border-color: rgba(0,0,0,.55); }
 	  
@@ -429,10 +466,35 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 <div class="bird-day-frame">
 
-<img id="dailyBirdImage"
-     class="bird-day-image"
-     src=""
-     alt="Featured Bird">
+<div id="dailyBirdCard" class="bird-card">
+
+  <div class="bird-card-inner">
+
+    <div class="bird-card-front">
+
+      <img id="dailyBirdImage"
+           class="bird-day-image"
+           src=""
+           alt="Featured Bird">
+
+    </div>
+
+    <div id="dailyBirdBack"
+         class="bird-card-back">
+
+      <h3 id="birdInfoName">Bird Name</h3>
+
+      <p><strong>Countries observed:</strong></p>
+
+      <div id="birdInfoCountries">
+        Loading...
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 <!-- Arrows -->
 <div onclick="navigateBird(-1)"
@@ -737,6 +799,19 @@ function updateTicker() {
 
 }
 
+function populateBirdInfo(name) {
+
+  const bird = birds[name];
+
+  document.getElementById("birdInfoName")
+    .textContent = name;
+
+  document.getElementById("birdInfoCountries")
+    .textContent =
+      (bird.countries || []).join(", ");
+
+}
+	  
 // ✅ Bird of the day
 function showRandomBird() {
   currentBirdIndex = Math.floor(Math.random() * birdKeys.length);
@@ -746,16 +821,20 @@ function showRandomBird() {
   document.getElementById("dailyBirdImage").src = photoUrl;
   document.getElementById("dailyBirdImage").alt = randomBird;
   document.getElementById("dailyBirdCaption").textContent = randomBird;
+	populateBirdInfo(randomBird);
 }
 
 // ✅ Navigation
 
 function showBird(name, url) {
-  const img = document.getElementById("dailyBirdImage");
+  document.getElementById("dailyBirdCard")?.classList.remove("flipped");
+const img =
+  document.getElementById("dailyBirdImage");
   img.style.opacity = "0";
   setTimeout(() => { img.src = url; img.alt = name;
-    document.getElementById( "dailyBirdCaption" ).textContent = name;
-    img.style.opacity = "1"; }, 150);
+  document.getElementById( "dailyBirdCaption" ).textContent = name;
+  populateBirdInfo(name);
+  img.style.opacity = "1"; }, 150);
 }
 	  
 function navigateBird(direction) {
@@ -1672,6 +1751,26 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const card =
+    document.getElementById("dailyBirdCard");
+
+  if (!card) return;
+
+  card.addEventListener("click", () => {
+
+    card.classList.toggle("flipped");
+
+  });
+
+});
+
+</script>
+	
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
