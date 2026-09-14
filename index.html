@@ -269,15 +269,16 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-card-front,
 .bird-card-back { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; }
 .bird-card-front { background: #ffffff; }
-.bird-card-back { transform: rotateY(180deg); background: linear-gradient( 135deg, #f8faf9 0%, #eef4f1 100% ); color: #264653; padding: 28px; overflow-y: auto; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center; padding-top: 40+x; }
+.bird-card-back { transform: rotateY(180deg); background: linear-gradient( 135deg, #f8faf9 0%, #eef4f1 100% ); color: #264653; padding: 28px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center; padding-top: 40px; }
 .bird-card-back h3 { margin-top: 0; }
 #birdInfoName { margin: 0 0 18px 0; font-size: 2rem; font-weight: 700; color: #2c6e49; text-align: center; }
 .bird-info-label { margin: 0 0 12px 0; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5f8f5e; }	  
 .bird-card-back::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(95,143,94,0.18); border-radius: 10px; pointer-events: none; }
-#birdInfoCountries { margin-top: 16px; width: 100%; max-width: 320px; }
-.bird-country-row { display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 6px 0; font-size: 1.05rem; color: #333; }
+#birdInfoCountries { margin-top: 16px; width: 100%; max-width: 380px; }
+.bird-country-row { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: 1rem; color: #333; }
 .bird-country-flag { width: 24px; height: 18px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
-
+.bird-country-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#birdInfoCountries.two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; }
 	  
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
@@ -779,8 +780,7 @@ function populateBirdInfo(name) {
 
   const bird = birds[name];
 
-  document.getElementById("birdInfoName")
-    .textContent = name;
+  document.getElementById("birdInfoName").textContent = name;
 
   const countries =
     bird.countries || [];
@@ -803,9 +803,10 @@ function populateBirdInfo(name) {
       `;
 
     }).join("");
-
-  document.getElementById("birdInfoCountries")
-    .innerHTML = countriesHtml;
+const countriesContainer =
+  document.getElementById("birdInfoCountries");
+countriesContainer.classList.toggle( "two-column",countries.length > 8 );
+  document.getElementById("birdInfoCountries").innerHTML = countriesHtml;
 
 }
 	  
