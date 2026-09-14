@@ -274,10 +274,9 @@ footer { margin-bottom: 0; margin-top: 0; }
 #birdInfoName { margin: 0 0 18px 0; font-size: 2rem; font-weight: 700; color: #2c6e49; text-align: center; }
 .bird-info-label { margin: 0 0 12px 0; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5f8f5e; }	  
 .bird-card-back::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(95,143,94,0.18); border-radius: 10px; pointer-events: none; }
-#birdInfoCountries { margin-top: 16px; width: 100%; max-width: 380px; }
-.bird-country-row { display: flex; align-items: center; gap: clamp(8px, 1vw, 14px); min-width: 0; padding: 4px 0; font-size: clamp(0.92rem, 0.5vw + 0.85rem, 1.08rem); color: #333; }
-
-.bird-country-flag { width: clamp(22px, 1.2vw + 18px, 28px); height: auto; flex-shrink: 0; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+#birdInfoCountries { margin-top: 14px; width: 100%; max-width: 420px; }
+.bird-country-row { display: flex; align-items: center; gap: var(--country-gap, 10px); min-width: 0; padding: 2px 0; font-size: var(--country-font-size, 1rem); color: #333; }
+.bird-country-flag { width: var(--flag-width, 24px); height: auto; flex-shrink: 0; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.2); } 
 .bird-country-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #birdInfoCountries.two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; }
 	  
@@ -806,8 +805,39 @@ function populateBirdInfo(name) {
     }).join("");
 const countriesContainer =
   document.getElementById("birdInfoCountries");
-countriesContainer.classList.toggle( "two-column",countries.length > 8 );
-  document.getElementById("birdInfoCountries").innerHTML = countriesHtml;
+
+countriesContainer.classList.toggle(
+  "two-column",
+  countries.length > 6
+);
+
+if (countries.length > 12) {
+
+  countriesContainer.style.setProperty( "--country-font-size", "0.72rem" );
+
+  countriesContainer.style.setProperty( "--country-gap", "4px" );
+
+  countriesContainer.style.setProperty( "--flag-width", "16px" );
+
+} else if (countries.length > 8) {
+
+  countriesContainer.style.setProperty( "--country-font-size", "0.82rem" );
+
+  countriesContainer.style.setProperty( "--country-gap", "6px" );
+
+  countriesContainer.style.setProperty( "--flag-width", "18px" );
+
+} else {
+
+  countriesContainer.style.setProperty( "--country-font-size", "1rem" );
+
+  countriesContainer.style.setProperty( "--country-gap", "10px" );
+
+  countriesContainer.style.setProperty( "--flag-width", "24px" );
+
+}
+
+countriesContainer.innerHTML = countriesHtml;
 
 }
 	  
