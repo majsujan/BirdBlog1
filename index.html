@@ -263,48 +263,25 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; }
 #dailyBirdCaption { justify-self: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
 
-.bird-card {
-  width: 100%;
-  height: 100%;
-  perspective: 1200px;
-}
+.bird-card { width: 100%; height: 100%; perspective: 1200px; }
 
-.bird-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s ease;
-  transform-style: preserve-3d;
-}
+.bird-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.85s cubic-bezier( 0.22, 1, 0.36, 1 ); transform-style: preserve-3d; }
 
-.bird-card.flipped .bird-card-inner {
-  transform: rotateY(180deg);
-}
+.bird-card.flipped .bird-card-inner { transform: rotateY(180deg); }
 
 .bird-card-front,
-.bird-card-back {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
+.bird-card-back { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; }
 
-.bird-card-front {
-  background: #ffffff;
-}
+.bird-card-front { background: #ffffff; }
 
-.bird-card-back {
-  transform: rotateY(180deg);
-  background: #fafafa;
-  padding: 20px;
-  overflow-y: auto;
-  color: #222;
-}
+.bird-card-back { transform: rotateY(180deg); background: linear-gradient( 135deg, #f8faf9 0%, #eef4f1 100% ); color: #264653; padding: 28px; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 
-.bird-card-back h3 {
-  margin-top: 0;
-}
+.bird-card-back h3 { margin-top: 0; }
+#birdInfoName { margin: 0 0 18px 0; font-size: 2rem; font-weight: 700; color: #2c6e49; text-align: center; }
+.bird-info-label { margin: 0; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5f8f5e; }	  
+#birdInfoCountries { margin-top: 10px; font-size: 1.15rem; line-height: 1.8; color: #333; max-width: 85%; }
+.bird-card-back::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(95,143,94,0.18); border-radius: 10px; pointer-events: none; }
+
 	  
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
@@ -484,7 +461,7 @@ footer { margin-bottom: 0; margin-top: 0; }
 
       <h3 id="birdInfoName">Bird Name</h3>
 
-      <p><strong>Countries observed:</strong></p>
+      <p><strong>Countries observed in:</strong></p>
 
       <div id="birdInfoCountries">
         Loading...
