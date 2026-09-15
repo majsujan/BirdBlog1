@@ -248,11 +248,15 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 .nav-arrow,
 .swipe-hand { -webkit-tap-highlight-color: transparent; }	  
+	  
 .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 34px; color: rgba(255,255,255,0.95); text-shadow: 0 0 4px rgba(40,40,40,.7), 0 0 10px rgba(40,40,40,.5), 1px 1px 4px rgba(0,0,0,.35); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; outline: none ;}
+	  
 .left-arrow { left: 12px; }
 .right-arrow { right: 12px; }
+
 .nav-arrow:focus,
-.nav-arrow:active { outline: none; background: transparent; }	    
+.nav-arrow:active { outline: none; background: transparent; }	  
+	  
 .nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
 
 .bird-day-layout { display: grid; grid-template-columns: minmax(0, 22fr) minmax(420px, 12fr); width: 100%; margin: 0; align-items: start; background: white; font-family: 'Lato', sans-serif; }
@@ -262,32 +266,17 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-caption-bar { width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; justify-content: space-between; align-items: center; } 
 .bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; }
 #dailyBirdCaption { justify-self: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
-
-.bird-card { width: 100%; height: 100%; perspective: 1200px; }
-.bird-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.85s cubic-bezier( 0.22, 1, 0.36, 1 ); transform-style: preserve-3d; }
-.bird-card.flipped .bird-card-inner { transform: rotateY(180deg); }
-.bird-card-front,
-.bird-card-back { position: absolute; inset: 0; width: 100%; height: 100%; backface-visibility: hidden; }
-.bird-card-front { background: #ffffff; }
-.bird-card-back { transform: rotateY(180deg); background: linear-gradient( 135deg, #f8faf9 0%, #eef4f1 100% ); color: #264653; padding: 28px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; text-align: center; padding-top: 40px; }
-.bird-card-back h3 { margin-top: 0; }
-#birdInfoName { margin: 0 0 18px 0; font-size: 2rem; font-weight: 700; color: #2c6e49; text-align: center; }
-.bird-info-label { margin: 0 0 12px 0; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #5f8f5e; }	  
-.bird-card-back::before { content: ""; position: absolute; inset: 14px; border: 1px solid rgba(95,143,94,0.18); border-radius: 10px; pointer-events: none; }
-#birdInfoCountries { margin-top: 14px; width: 100%; max-width: 420px; }
-.bird-country-row { display: flex; align-items: center; gap: var(--country-gap, 10px); min-width: 0; padding: 2px 0; font-size: var(--country-font-size, 1rem); color: #333; }
-.bird-country-flag { width: var(--flag-width, 24px); height: auto; flex-shrink: 0; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.2); } 
-.bird-country-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-#birdInfoCountries.two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 18px; }
-	  
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
+
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
 .center-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,.45); background: rgba(255,255,255,.92); color: #222; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; cursor: pointer; padding: 0; line-height: 1; transition: transform .2s ease, background .2s ease; }
 .slideshow-dot { appearance: none; -webkit-appearance: none; outline: none; }
 .center-dot:hover { transform: scale(1.08); }
+
 .center-dot.playing { background: #ffffff; }
 .left-dot,
 .right-dot { width: 6px; height: 6px; }
+
 .left-dot.swipe-active, 
 .right-dot.swipe-active { transform: scale(1.8); background: white; border-color: rgba(0,0,0,.55); }
 	  
@@ -440,38 +429,10 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 <div class="bird-day-frame">
 
-<div id="dailyBirdCard" class="bird-card">
-
-  <div class="bird-card-inner">
-
-    <div class="bird-card-front">
-
-      <img id="dailyBirdImage"
-           class="bird-day-image"
-           src=""
-           alt="Featured Bird">
-
-    </div>
-
-    <div id="dailyBirdBack"
-         class="bird-card-back">
-
-      <h3 id="birdInfoName">Bird Name</h3>
-
-      <p class="bird-info-label">
-  Observed in
-</p>
-
-
-      <div id="birdInfoCountries">
-        Loading...
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
+<img id="dailyBirdImage"
+     class="bird-day-image"
+     src=""
+     alt="Featured Bird">
 
 <!-- Arrows -->
 <div onclick="navigateBird(-1)"
@@ -776,71 +737,6 @@ function updateTicker() {
 
 }
 
-function populateBirdInfo(name) {
-
-  const bird = birds[name];
-
-  document.getElementById("birdInfoName").textContent = name;
-
-  const countries =
-    bird.countries || [];
-
-  const countriesHtml =
-    countries.map(country => {
-
-      const code = flags[country];
-
-      if (!code) return country;
-
-      return `
-        <div class="bird-country-row">
-          <img
-            src="https://flagcdn.com/24x18/${code}.png"
-            alt="${country}"
-            class="bird-country-flag">
-          <span>${country}</span>
-        </div>
-      `;
-
-    }).join("");
-const countriesContainer =
-  document.getElementById("birdInfoCountries");
-
-countriesContainer.classList.toggle(
-  "two-column",
-  countries.length > 6
-);
-
-if (countries.length > 12) {
-
-  countriesContainer.style.setProperty( "--country-font-size", "0.72rem" );
-
-  countriesContainer.style.setProperty( "--country-gap", "4px" );
-
-  countriesContainer.style.setProperty( "--flag-width", "16px" );
-
-} else if (countries.length > 8) {
-
-  countriesContainer.style.setProperty( "--country-font-size", "0.82rem" );
-
-  countriesContainer.style.setProperty( "--country-gap", "6px" );
-
-  countriesContainer.style.setProperty( "--flag-width", "18px" );
-
-} else {
-
-  countriesContainer.style.setProperty( "--country-font-size", "1rem" );
-
-  countriesContainer.style.setProperty( "--country-gap", "10px" );
-
-  countriesContainer.style.setProperty( "--flag-width", "24px" );
-
-}
-
-countriesContainer.innerHTML = countriesHtml;
-
-}
-	  
 // ✅ Bird of the day
 function showRandomBird() {
   currentBirdIndex = Math.floor(Math.random() * birdKeys.length);
@@ -850,20 +746,16 @@ function showRandomBird() {
   document.getElementById("dailyBirdImage").src = photoUrl;
   document.getElementById("dailyBirdImage").alt = randomBird;
   document.getElementById("dailyBirdCaption").textContent = randomBird;
-	populateBirdInfo(randomBird);
 }
 
 // ✅ Navigation
 
 function showBird(name, url) {
-  document.getElementById("dailyBirdCard")?.classList.remove("flipped");
-const img =
-  document.getElementById("dailyBirdImage");
+  const img = document.getElementById("dailyBirdImage");
   img.style.opacity = "0";
   setTimeout(() => { img.src = url; img.alt = name;
-  document.getElementById( "dailyBirdCaption" ).textContent = name;
-  populateBirdInfo(name);
-  img.style.opacity = "1"; }, 150);
+    document.getElementById( "dailyBirdCaption" ).textContent = name;
+    img.style.opacity = "1"; }, 150);
 }
 	  
 function navigateBird(direction) {
@@ -1780,26 +1672,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
-
-<script>
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const card =
-    document.getElementById("dailyBirdCard");
-
-  if (!card) return;
-
-  card.addEventListener("click", () => {
-
-    card.classList.toggle("flipped");
-
-  });
-
-});
-
-</script>
-	
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
