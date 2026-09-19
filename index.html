@@ -694,12 +694,35 @@ L.tileLayer(
 // ✅ GLOBAL VARIABLES
 let birds = {};
 let birdKeys = [];
+let scientificNames = {};	  
 let currentBirdIndex = 0;
 let shuffledBirds = [];
 
 let slideshowTimer = null;
 let slideshowRunning = false;
 
+
+fetch('scientific_names.csv')
+  .then(response => response.text())
+  .then(text => {
+
+    const lines = text.trim().split('\n');
+
+    lines.slice(1).forEach(line => {
+
+      const [commonName, scientificName] = line.split(';');
+
+      if (commonName && scientificName) {
+
+        scientificNames[
+          commonName.trim()
+        ] = scientificName.trim();
+
+      }
+
+    });
+
+  });	  
 // ✅ LOAD bird data from JSON
 fetch('birds.json')
   .then(response => response.json())
@@ -789,23 +812,74 @@ function updateTicker() {
 
 // ✅ Bird of the day
 function showRandomBird() {
-  currentBirdIndex = Math.floor(Math.random() * birdKeys.length);
-  const randomBird = birdKeys[currentBirdIndex];
-  const photoUrl = birds[randomBird].photo;
 
-  document.getElementById("dailyBirdImage").src = photoUrl;
-  document.getElementById("dailyBirdImage").alt = randomBird;
-  document.getElementById("dailyBirdCaption").textContent = randomBird;
+  currentBirdIndex =
+    Math.floor(Math.random() * birdKeys.length);
+
+  const randomBird =
+    birdKeys[currentBirdIndex];
+
+  const photoUrl =
+    birds[randomBird].photo;
+
+  document.getElementById(
+    "dailyBirdImage"
+  ).src = photoUrl;
+
+  document.getElementById(
+    "dailyBirdImage"
+  ).alt = randomBird;
+
+  document.getElementById(
+    "dailyBirdCaption"
+  ).textContent = randomBird;
+
+  document.querySelector(
+    ".drawer-scientific"
+  ).textContent =
+    scientificNames[randomBird] ||
+    "Scientific name unavailable";
+
+  document.querySelector(
+    ".drawer-observed"
+  ).textContent =
+    `Observed in ${birds[randomBird].countries.length} countries`;
+
 }
 
 // ✅ Navigation
 
 function showBird(name, url) {
-  const img = document.getElementById("dailyBirdImage");
+
+  const img =
+    document.getElementById("dailyBirdImage");
+
   img.style.opacity = "0";
-  setTimeout(() => { img.src = url; img.alt = name;
-    document.getElementById( "dailyBirdCaption" ).textContent = name;
-    img.style.opacity = "1"; }, 150);
+
+  setTimeout(() => {
+
+    img.src = url;
+    img.alt = name;
+
+    document.getElementById(
+      "dailyBirdCaption"
+    ).textContent = name;
+
+    document.querySelector(
+      ".drawer-scientific"
+    ).textContent =
+      scientificNames[name] ||
+      "Scientific name unavailable";
+
+    document.querySelector(
+      ".drawer-observed"
+    ).textContent =
+      `Observed in ${birds[name].countries.length} countries`;
+
+    img.style.opacity = "1";
+
+  }, 150);
+
 }
 	  
 function navigateBird(direction) {
