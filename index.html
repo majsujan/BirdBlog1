@@ -277,7 +277,7 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-info-toggle.open { transform: rotate(180deg); }
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; height: 95px; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(35px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 100; }
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(35px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 100; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
@@ -840,10 +840,10 @@ function showRandomBird() {
     scientificNames[randomBird] ||
     "Scientific name unavailable";
 
-  document.querySelector(
-    ".drawer-observed"
-  ).textContent =
-    `Observed in ${birds[randomBird].countries.length} countries`;
+document.querySelector(
+  ".drawer-observed"
+).textContent =
+  `Observed in ${birds[name].countries.join(", ")}`;
 
 }
 
