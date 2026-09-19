@@ -264,130 +264,31 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
 .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
-.bird-caption-bar {
-  position: relative;
+.bird-caption-bar { position: relative; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+.bird-title-group { display: flex; align-items: center; gap: 4px; width: fit-content; }
 
-  width: 100%;
-  background: #333333;
-  color: white;
+.bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 15px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
 
-  font-size: 18px;
+.bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
+.bird-info-toggle { transform-origin: center; }
 
-  padding: 6px 12px;
-  min-height: 36px;
+.bird-info-toggle:hover:not(.open) { transform: translateY(-2px) scale(1.15); }
 
-  box-sizing: border-box;
+.bird-info-toggle.open { transform: rotate(180deg); }
+.bird-info-toggle:active { transform: scale(0.95); }
 
-  display: flex;
-  align-items: center;
-}
-.bird-title-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-}
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; height: 95px; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(35px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 100; }
+
+.bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+.drawer-scientific { font-style: italic; font-size: 18px; color: #ffffff; line-height: 1.5; margin-bottom: 6px; }
+
+.drawer-observed { font-size: 14px; color: #ececec; line-height: 1.5; margin-bottom: 4px; }
+
+.drawer-trivia { font-size: 14px; color: #ececec; line-height: 1.5; }
 	  
-#dailyBirdCaption {
-  flex: 1;
-}
-
-.bird-info-toggle {
-  background: none;
-  border: none;
-
-  color: rgba(255,255,255,.92);
-
-  font-size: 15px;
-  line-height: 1;
-
-  cursor: pointer;
-
-  padding: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition:
-    transform .25s ease,
-    opacity .25s ease,
-    color .25s ease;
-}
-
-.bird-info-toggle:hover {
-  color: #ffffff;
-  transform: translateY(-2px) scale(1.15);
-}
-
-.bird-info-toggle:active {
-  transform: scale(0.95);
-}
-.bird-info-toggle.open {
-  transform: rotate(180deg) scale(1.05);
-}
-.bird-info-drawer {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 100%;
-
-  height: 95px;
-
-  background: rgba(45,45,45,.72);
-  backdrop-filter: blur(4px);
-
-  padding: 10px 14px;
-
-  box-sizing: border-box;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  opacity: 0;
-
-  transform: translateY(35px);
-
-  pointer-events: none;
-
-  transition:
-    opacity .32s ease,
-    transform .32s cubic-bezier(.22,.8,.28,1);
-
-  z-index: 100;
-}
-
-.bird-info-drawer.open {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.drawer-scientific {
-  font-style: italic;
-  font-size: 17px;
-  color: #ffffff;
-  line-height: 1.45;
-  margin-bottom: 3px;
-}
-
-.drawer-observed {
-  font-size: 14px;
-  color: #e2e2e2;
-  line-height: 1.45;
-  margin-bottom: 2px;
-}
-
-.drawer-trivia {
-  font-size: 14px;
-  color: #e2e2e2;
-  line-height: 1.45;
-}
-	  
-.bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; }
-#dailyBirdCaption { justify-self: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
+.bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; flex-shrink: 0; margin-left: auto; }
+#dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
