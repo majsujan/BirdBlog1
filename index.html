@@ -281,7 +281,13 @@ footer { margin-bottom: 0; margin-top: 0; }
   display: flex;
   align-items: center;
 }
-
+.bird-title-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+	  
 #dailyBirdCaption {
   flex: 1;
 }
@@ -290,21 +296,36 @@ footer { margin-bottom: 0; margin-top: 0; }
   background: none;
   border: none;
 
-  color: white;
+  color: rgba(255,255,255,.92);
 
-  font-size: 18px;
+  font-size: 15px;
+  line-height: 1;
 
   cursor: pointer;
 
-  padding: 0 6px;
+  padding: 0;
 
-  transition: transform .25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform .25s ease,
+    opacity .25s ease,
+    color .25s ease;
 }
 
+.bird-info-toggle:hover {
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.15);
+}
+
+.bird-info-toggle:active {
+  transform: scale(0.95);
+}
 .bird-info-toggle.open {
-  transform: rotate(180deg);
+  transform: rotate(180deg) scale(1.05);
 }
-
 .bird-info-drawer {
   position: absolute;
 
@@ -312,9 +333,9 @@ footer { margin-bottom: 0; margin-top: 0; }
   right: 0;
   bottom: 100%;
 
-  height: 80px;
+  height: 95px;
 
-  background: rgba(45,45,45,.85);
+  background: rgba(45,45,45,.72);
   backdrop-filter: blur(4px);
 
   padding: 10px 14px;
@@ -327,13 +348,13 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   opacity: 0;
 
-  transform: translateY(25px);
+  transform: translateY(35px);
 
   pointer-events: none;
 
   transition:
-    opacity .25s ease,
-    transform .25s ease;
+    opacity .32s ease,
+    transform .32s cubic-bezier(.22,.8,.28,1);
 
   z-index: 100;
 }
@@ -346,21 +367,23 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 .drawer-scientific {
   font-style: italic;
-  font-size: 15px;
-  color: white;
-  line-height: 1.3;
+  font-size: 17px;
+  color: #ffffff;
+  line-height: 1.45;
+  margin-bottom: 3px;
 }
 
 .drawer-observed {
   font-size: 14px;
-  color: #dcdcdc;
-  line-height: 1.3;
+  color: #e2e2e2;
+  line-height: 1.45;
+  margin-bottom: 2px;
 }
 
 .drawer-trivia {
   font-size: 14px;
-  color: #dcdcdc;
-  line-height: 1.3;
+  color: #e2e2e2;
+  line-height: 1.45;
 }
 	  
 .bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; }
@@ -584,6 +607,8 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   </div>
 
+<div class="bird-title-group">
+
   <span id="dailyBirdCaption">
     Loading...
   </span>
@@ -592,12 +617,14 @@ footer { margin-bottom: 0; margin-top: 0; }
     id="birdInfoToggle"
     class="bird-info-toggle"
     aria-label="Show bird info">
-    ˄
+    ▲
   </button>
 
-  <div class="bird-copyright">
-    © Sujan Abu Jafar
-  </div>
+</div>
+
+<div class="bird-copyright">
+  © Sujan Abu Jafar
+</div>
 
 </div>
 
@@ -1848,10 +1875,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.classList.toggle("open");
 
-    btn.textContent =
-      drawer.classList.contains("open")
-        ? "˅"
-        : "˄";
+btn.textContent =
+  drawer.classList.contains("open")
+    ? "▼"
+    : "▲";
 
   });
 
