@@ -701,44 +701,7 @@ let shuffledBirds = [];
 let slideshowTimer = null;
 let slideshowRunning = false;
 
-
-fetch('scientific_names.csv')
-  .then(response => response.text())
-  .then(text => {
-
-    const lines = text.trim().split('\n');
-
-    lines.slice(1).forEach(line => {
-
-      const [commonName, scientificName] =
-        line.split(';');
-
-      if (commonName && scientificName) {
-
-        scientificNames[
-          commonName.trim()
-        ] = scientificName.trim();
-
-      }
-
-    });
-
-    return fetch('birds.json');
-
-  })
-  .then(response => response.json())
-  .then(data => {
-
-    birds = data;
-    birdKeys = Object.keys(birds);
-
-    shuffledBirds =
-      shuffleArray(Object.entries(birds));
-
-    initApp();
-
-  });
-  });	  
+ 
 // ✅ LOAD bird data from JSON
 fetch('scientific_names.csv')
   .then(response => response.text())
