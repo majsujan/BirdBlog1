@@ -499,12 +499,11 @@ footer { margin-bottom: 0; margin-top: 0; }
     </div>
 
     <div class="drawer-observed">
-      Observed in ... to be updated
     </div>
 
-    <div class="drawer-trivia">
-      Trivia ... to be updated
-    </div>
+<div class="drawer-trivia">
+  ℹ️ Bird facts coming soon
+</div>
 
   </div>
 
@@ -845,7 +844,7 @@ document.querySelector(
 document.querySelector(
   ".drawer-observed"
 ).textContent =
-  `Observed in: ${birds[randomBird].countries.join(", ")}`;
+ `🌍 ${birds[randomBird].countries.join(", ")}`;
 
 }
 
@@ -876,7 +875,7 @@ function showBird(name, url) {
 document.querySelector(
   ".drawer-observed"
 ).textContent =
-  `Observed in: ${birds[name].countries.join(", ")}`;
+  `🌍 ${birds[name].countries.join(", ")}`;
 
     img.style.opacity = "1";
 
