@@ -277,7 +277,7 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-info-toggle.open { transform: none; }
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; top: 0; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(30px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .drawer-title { font-size: 20px; font-weight: 700; color: white; margin-bottom: 6px; }
@@ -492,25 +492,26 @@ footer { margin-bottom: 0; margin-top: 0; }
 <div id="birdNameBar" class="bird-caption-bar">
 
   <!-- Hidden drawer -->
-  <div id="birdInfoDrawer" class="bird-info-drawer">
-  <div id="dailyBirdCaption"
-    class="drawer-title">
-	  Loading...
+<div id="birdInfoDrawer" class="bird-info-drawer">
+
+  <div class="bird-title-group">
+
+    <span id="dailyBirdCaption">
+      Loading...
+    </span>
+
+    <button
+      id="birdInfoToggle"
+      class="bird-info-toggle"
+      aria-label="Show bird info">
+      ▼
+    </button>
+
   </div>
 
-    <div class="drawer-scientific"></div>
-    <div class="drawer-observed"></div>
-    <div class="drawer-trivia"></div>
-
-  </div>
-
-<div class="bird-title-group">
-  <button
-    id="birdInfoToggle"
-    class="bird-info-toggle"
-    aria-label="Show bird info">
-    △
-  </button>
+  <div class="drawer-scientific"></div>
+  <div class="drawer-observed"></div>
+  <div class="drawer-trivia"></div>
 
 </div>
 
