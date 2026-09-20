@@ -264,9 +264,34 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
 .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
-.bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
-.bird-title-group { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 0 1 auto; }
+.bird-caption-bar {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background: #333333;
+  color: white;
+  font-size: 18px;
+  padding: 6px 12px;
+  min-height: 36px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.bird-title-group {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 0 1 auto;
 
+  transition:
+    transform .32s cubic-bezier(.22,.8,.28,1);
+}
+.bird-title-group.lifted {
+  transform: translateY(-95px);
+}
 .bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
 
 .bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
@@ -277,10 +302,10 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-info-toggle.open { transform: none; }
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(30px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.drawer-title { font-size: 20px; font-weight: 700; color: white; margin-bottom: 6px; }
+
 .drawer-scientific { font-style: italic; font-size: 18px; color: #ffffff; line-height: 1.5; margin-bottom: 6px; }
 
 .drawer-observed { font-size: 16px; color: #ececec; line-height: 1.5; margin-bottom: 4px; }
@@ -492,26 +517,33 @@ footer { margin-bottom: 0; margin-top: 0; }
 <div id="birdNameBar" class="bird-caption-bar">
 
   <!-- Hidden drawer -->
-<div id="birdInfoDrawer" class="bird-info-drawer">
+  <div id="birdInfoDrawer" class="bird-info-drawer">
 
-  <div class="bird-title-group">
+    <div class="drawer-scientific">
+      Scientific name
+    </div>
 
-    <span id="dailyBirdCaption">
-      Loading...
-    </span>
+    <div class="drawer-observed">
+    </div>
 
-    <button
-      id="birdInfoToggle"
-      class="bird-info-toggle"
-      aria-label="Show bird info">
-      ▼
-    </button>
+<div class="drawer-trivia">
+  ℹ️ Bird facts coming soon
+</div>
 
   </div>
 
-  <div class="drawer-scientific"></div>
-  <div class="drawer-observed"></div>
-  <div class="drawer-trivia"></div>
+<div class="bird-title-group">
+
+  <span id="dailyBirdCaption">
+    Loading...
+  </span>
+
+  <button
+    id="birdInfoToggle"
+    class="bird-info-toggle"
+    aria-label="Show bird info">
+    △
+  </button>
 
 </div>
 
@@ -1843,13 +1875,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const drawer =
     document.getElementById("birdInfoDrawer");
 
+  const titleGroup =
+   document.querySelector(".bird-title-group");
+
   if (!btn || !drawer) return;
 
   btn.addEventListener("click", () => {
 
-    drawer.classList.toggle("open");
+drawer.classList.toggle("open");
 
-    btn.classList.toggle("open");
+btn.classList.toggle("open");
+
+titleGroup.classList.toggle("lifted");
 
 btn.textContent =
   drawer.classList.contains("open")
