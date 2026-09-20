@@ -1,2741 +1,1873 @@
-{
-  "Abbott's Babbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417329/bIofIYR_uy6k8y.jpg",
-    "countries": ["Bangladesh"]
-  },
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BirdBlog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  "Alpine Swift": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417518/v4KcU17_hfwkyp.jpg",
-    "countries": ["Greece", "Italy"]
-  },
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
-  "American Coot": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788609385/vVgalJj_-_Imgur_k8lpd0.jpg",
-    "countries": ["Curaçao"]
-  },
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-  "American Flamingo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472017/5_-_SFjp4oG_jxlbom.jpg",
-    "countries": ["Curaçao"]
-  },
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  "American Kestrel": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610405/5SSc9bh_-_Imgur_fstf70.jpg",
-    "countries": ["Aruba", "Curaçao"]
-  },
+  <!-- Custom Styles -->
+  <style>
+	  
+/* ========== Global Styles ========== */
 
-  "American Oystercatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610459/oKzv79m_-_Imgur_e4rhyl.jpg",
-    "countries": ["Aruba"]
-  },
+:root { --page-max-width: 1632px; --ebird-blue: #385b75; }
 
-  "American Wigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472371/5_-_tnXyoht_v1cf5t.jpg",
-    "countries": ["Aruba"]
-  },
+*, *::before, *::after { box-sizing: border-box; }
 
-  "Arctic Loon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610055/jpgrZVm_-_Imgur_lhgbjz.jpg",
-    "countries": ["Norway"]
-  },
+html, body { min-height: 100%; margin: 0; background-color: #ffffff; }
 
-  "Arctic Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610524/xhIrClt_-_Imgur_jhvqua.jpg",
-    "countries": ["Norway"]
-  },
+body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 
-  "Ashy Drongo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610578/RprE64J_-_Imgur_q7zhzo.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
+.site-page { width: 100%; max-width: var(--page-max-width); min-height: 100vh; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.23); }
+	  
+    /* ========== Header ========== */
+    header { background: #5F8F5E; color: white; padding: 10px 20px; text-align: center; position: relative; }
+	
+	header h1 { font-size: 36px; margin: 8px 0; }
+	  
+    header h2 { font-size: 20px; margin: 8px 0; }
+	  
+    nav { background: #2c6e49; display: flex; justify-content: center; padding: 10px 0; }
+	  
+    nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
+	  
+    nav li { color: white; font-weight: 600; }
 
-  "Ashy Minivet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610549/hXEGfMq_-_Imgur_lhbjlc.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
+	  
+    /* ========== Footer ========== */
+  footer { width: 100%; margin: 0; padding: 16px; background: var(--ebird-blue); color: #ffffff; text-align: center; display: block; }
+  footer p { margin: 0;}
+	  
+    /* ========== Info Banner ========== */
+    #info { text-align: center; padding: 10px; font-size: 16px; background: #f6f6f6; border-top: 1px solid #e6e6e6; border-bottom: 1px solid #e6e6e6; }
 
-  "Ashy Woodswallow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610856/Yfle011_-_Imgur_qf0em6.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
+	  
+    /* ========== Species Filter Panel ========== */
+    #species-filter { max-width: 95%; margin: 20px auto 30px; padding: 16px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
 
-  "Asian Barred Owlet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610677/YVah7aZ_-_Imgur_bau7pa.jpg",
-    "countries": ["Bangladesh"]
-  },
+    #speciesList h4 { margin: 10px 0; font-size:16px; }
 
-  "Asian Brown Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610704/TLpSuKF_-_Imgur_zgzgd8.jpg",
-    "countries": ["Thailand"]
-  },
+    #speciesList ul { margin: 8px 0 0; font-size:14px; }
 
-  "Asian Fairy-bluebird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
+	  
+    /* ========== World Map Explorer ========== */
+#mainPanel { position: relative; width: 100%; margin: 0; padding: 0; overflow: hidden; }
 
-  "Asian Golden Weaver": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610737/o3hGuWj_-_Imgur_um9ywb.jpg",
-    "countries": ["Thailand"]
-  },
+#infoPanel { position: absolute; left: 0; top: 0; width: 320px; height: 60vh; min-height: 500px; z-index: 1000; padding: 0; box-sizing: border-box; overflow: hidden; transform: translateX(calc(-100% - 20px)); opacity: 0; visibility: hidden; pointer-events: none; transition: transform 0.3s ease, opacity 0.2s ease, visibility 0s linear 0.3s; }
 
-  "Asian Green Bee-eater": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471540/1_-_rinr6Zc_cvo7ug.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
+#infoPanel.open { transform: translateX(0); opacity: 1; visibility: visible; pointer-events: auto; transition: transform 0.3s ease, opacity 0.2s ease, visibility 0s; }
 
-  "Asian Koel": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417734/DSC_4770-Edit_jmbla9.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
+#mapContainer { position: relative; width: 100%; margin: 0; padding: 0; }
 
-  "Asian Openbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610045/IUM8Eg0_-_Imgur_rrnykn.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
+#mainPanel,
+#mapContainer,
+#map,
+footer { margin-bottom: 0; margin-top: 0; }
 
-  "Asian Palm Swift": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788610792/MrKuYfZ_-_Imgur_dulvsv.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
 
-  "Asian Tit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417744/DSC_6332-Edit_k6ka9v.jpg",
-    "countries": ["Bangladesh"]
-  },
+/* ========== Explore Section ========== */
 
-  "Atlantic Puffin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639393/WGxlFbr_-_Imgur_tna2kk.jpg",
-    "countries": ["Norway"]
-  },
+.explore-banner { width: 100%; margin: 0; padding: 0; background: #ffffff; }
 
-  "Baillon's Crake": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639475/lEVQmlw_-_Imgur_uchbht.jpg",
-    "countries": ["Bangladesh"]
-  },
+.explore-inner { max-width: 1600px; margin: 0 auto; padding: 10px; }
 
-  "Bananaquit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639560/j7RJnTD_-_Imgur_jwoj1d.jpg",
-    "countries": ["Aruba", "Curaçao"]
-  },
+.explore-title { color: #222; text-align: center; margin: 0; font-size: 1.2rem; font-weight: 700; }
 
-  "Bank Swallow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639667/KJNy9Jm_-_Imgur_dzfu7e.jpg",
-    "countries": ["Bangladesh", "Curaçao", "Estonia", "Netherlands", "Norway"]
-  },
+.explore-ticker { overflow: hidden; white-space: nowrap; margin-top: 6px; color: #444; font-size: 1.05rem; }
 
-  "Bar-headed Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639740/qny7Yjj_-_Imgur_s6akcp.jpg",
-    "countries": ["Netherlands", "Norway"]
-  },
+.explore-ticker-content { display: inline-block; padding-left: 20%; animation: exploreTicker 80s linear infinite; font-size: 1rem; font-weight: 400; white-space: nowrap; line-height: 1.4; }
+.ticker-flag { width: 20px; height: 15px; vertical-align: middle; margin-left: 12px; margin-right: 4px; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+	  
+@keyframes exploreTicker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
 
-  "Bar-tailed Godwit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639120/3j3pCbR_-_Imgur_vzmdix.jpg",
-    "countries": ["Norway", "Sweden"]
-  },
+  /* ========== Map ========== */
+#map { display: block; width: 100%; height: 60vh; min-height: 500px; margin: 0; padding: 0; border: 0; border-radius: 0; }
 
-  "Bare-eyed Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639182/8IxkDn7_-_Imgur_t1pu5u.jpg",
-    "countries": ["Aruba", "Curaçao"]
-  },
-
-  "Barn Swallow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722038/K5TqgSB_-_Imgur_1_g6inu2.jpg",
-    "countries": ["Aruba","Belgium","Czech Republic","Denmark","Estonia","Germany","Greece","Netherlands","Norway","Thailand","United Kingdom"]
-  },
-
-  "Barnacle Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940431/21_-_rYMIq4b_kjd5vu.jpg",
-    "countries": ["Belgium","Denmark","Finland","Netherlands","Norway","Sweden"]
-  },
-
-  "Baya Weaver": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788638957/yyVS2vE_-_Imgur_zy1ruu.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
-
-  "Bearded Reedling": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Belted Kingfisher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640076/NzHlFN3_-_Imgur_txxn0f.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Bengal Bushlark": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417760/DSC_9425-Edit_vae2qr.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Black Baza": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Black Drongo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788639924/d4Tituf_-_Imgur_kwy2sd.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
-
-  "Black Grouse": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640247/vixDqZW_-_Imgur_rqusn3.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Black Guillemot": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722038/QZN8uDE_-_Imgur_t592pk.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Black Kite": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788644894/DSC_0663-Edit_vdri2l.jpg",
-    "countries": ["Bangladesh", "Italy"]
-  },
-
-  "Black Redstart": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417644/DSC_0052-Enhanced-NR_ggnrml.jpg",
-    "countries": [ "Netherlands"]
-  },
-
-  "Black Woodpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722854/D4ciu6l_-_Imgur_bb5wad.jpg",
-    "countries": ["Norway", "Sweden"]
-  },
-
-  "Black-bellied Plover": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722770/rAXBOar_-_Imgur_cjea7i.jpg",
-    "countries": ["Aruba","Curaçao","Norway", "Sweden"]
-  },
-
-  "Black-bellied Whistling-Duck": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472007/2_-_rOBjw3u_ymjpbm.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Black-collared Starling": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722036/cEVIrjo_-_Imgur_ym7i6m.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Black-crested Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788723287/rgEplW5_-_Imgur_dk7qnl.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
-
-  "Black-crowned Night Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788723401/tLxyEGu_-_Imgur_spphbs.jpg",
-    "countries": ["Aruba", "Bangladesh"]
-  },
-
-  "Black-faced Grassquit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788723469/A7Rts2B_-_Imgur_m6i5ng.jpg",
-    "countries": ["Aruba", "Curaçao"]
-  },
-
-  "Black-headed Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788723571/EcgautQ_-_Imgur_b0k3ef.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Black-headed Cuckooshrike": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788723720/oQBr3O8_-_Imgur_qz7awe.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Black-headed Gull": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940072/1_-_mQH8kVR_iawbli.jpg",
-    "countries": ["Belgium","Denmark","Estonia","Latvia","Norway","Netherlands","Sweden","Finland","United Kingdom"]
-  },
-
-  "Black-headed Ibis": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472036/11_-_npFZmw7_xyyahg.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Black-hooded Oriole": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788611414/8_-_geXQV4M_trbpl4.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Black-legged Kittiwake": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Black-naped Monarch": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788611719/6_-_mb8LAEj_n9zfoh.jpg",
-    "countries": ["Bangladesh", "Thailand"]
-  },
-
-  "Black-naped Oriole": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722035/PNiqQSP_-_Imgur_opczx3.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Black-necked Stilt": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788611749/10_-_owtNJrU_i5dxsn.jpg",
-    "countries": ["Aruba", "Curaçao"]
-  },
-
-  "Black-rumped Flameback": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788611772/15_-_tDMGmi9_ldo7he.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Black-tailed Godwit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940436/28_-_Xt2jcb9_cid3wj.jpg",
-    "countries": ["Bangladesh","Netherlands","Sweden"]
-  },
-
-  "Black-winged Cuckooshrike": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722035/eHiwT0k_-_Imgur_ubo010.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Black-winged Stilt": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472040/12_-_WsBsYzl_z3hcmf.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Blossom-headed Parakeet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Blue Whistling-Thrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788611812/14_-_QTNCXvs_egmj5o.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Blue-bearded Bee-eater": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788641501/DSC_0040-Edit_ptwe2g.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Blue-crowned Parakeet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940073/11_-_n4dFbCy_cssked.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Blue-tailed Bee-eater": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722035/Ro6A0T8_-_Imgur_ho62yj.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Blue-tailed Emerald": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722035/L5ZwvBB_-_Imgur_szpm7k.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Blue-throated Barbet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640656/7_-_dNJCmzv_yt17f0.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Blue-throated Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640444/9_-_l9fhuFt_n3brt9.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Blue-winged Teal": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788724074/mvMfji6_-_Imgur_ns6hpu.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Bluethroat": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788611663/2_-_ScarzHR_hnxuuc.jpg",
-    "countries": ["Bangladesh","Denmark","Estonia","Norway"]
-  },
-
-  "Blyth's Paradise-Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640504/5_-_P6wY759_r1gq6i.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Blyth's Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640360/13_-_ecgunjW_mohkmn.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Blyth's Reed Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640392/12_-_NuVg2AP_bsf4i5.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Bohemian Waxwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417655/DSC_0233-Edit_4_k944kx.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Booted Eagle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788724020/rsRgLgW_-_Imgur_jrme5x.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Brahminy Kite": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417750/DSC_7171-Edit_fx0lgj.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Brambling": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788641086/yWFZQ3O_-_Imgur_vcab2v.jpg",
-    "countries": ["Denmark","Netherlands","Norway","Sweden"]
-  },
-
-  "Brant": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Bronze-winged Jacana": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722035/p0H48UH_-_Imgur_r1cucr.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Bronzed Drongo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788722035/0ofpSZq_-_Imgur_pdsefg.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Brown Boobook": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Brown Pelican": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324727/aonbYA3_-_Imgur_a3pnj8.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Brown Shrike": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324727/J6evOqQ_-_Imgur_gvubzx.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Brown-crested Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324727/R6r8NBm_-_Imgur_p7mnmu.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Brown-throated Parakeet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324726/Pum5PVZ_-_Imgur_lyenzz.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Brown-throated Sunbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324726/C1CEajj_-_Imgur_lqafdl.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Burrowing Owl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324725/ieBAWxJ_-_Imgur_ozaory.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Cachar Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324725/xT6qGWB_-_Imgur_dovpum.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Canada Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940417/4_-_MrK4ILT_irszze.jpg",
-    "countries": ["Belgium","Finland","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Carib Grackle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324724/U0vCvUk_-_Imgur_gesnsd.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Caribbean Elaenia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324724/Q2jfMML_-_Imgur_eoljy9.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Caribbean Martin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324723/VtvcbSs_-_Imgur_k2cygv.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Carrion Crow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940428/18_-_R7Slxrb_dbclv2.jpg",
-    "countries": ["Denmark","Germany","Netherlands","United Kingdom"]
-  },
-
-  "Caspian Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Cetti's Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Changeable Hawk-Eagle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324723/om93tS9_-_Imgur_mrmgkw.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Chestnut Munia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324723/sNY73Qp_-_Imgur_r7wbve.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Chestnut-headed Bee-eater": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324722/XLmo4pR_-_Imgur_cffye5.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Chestnut-tailed Starling": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324722/T2xs8py_-_Imgur_af41bo.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Chinese Pond-Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324721/pdVyT7M_-_Imgur_t1d2mv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Cinnamon Bittern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324721/qNwtdio_-_Imgur_zexguo.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Citrine Wagtail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472023/7_-_6XTU9vR_qfhh82.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Clamorous Reed Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324721/wGRXuAW_-_Imgur_lsrasm.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Coal Tit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417651/DSC_0198-Edit_103957_bwcodx.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Collared Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324721/uBd1BcT_-_Imgur_f2nvbd.jpg",
-    "countries": ["Greece"]
-  },
-
-  "Collared Kingfisher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324720/XcqRlRw_-_Imgur_wqv9lt.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Collared Scops-Owl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Common Buzzard": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940419/7_-_Q9VhFT7_w9p0ci.jpg",
-    "countries": ["Denmark","Estonia","Germany","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Common Chaffinch": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324720/LuShc8S_-_Imgur_boqhxb.jpg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Germany","Latvia","Netherlands","Norway"]
-  },
-
-  "Common Chiffchaff": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789324720/8MttBRs_-_Imgur_qmywas.jpg",
-    "countries": ["Belgium","Denmark","Germany","Netherlands","Norway", "Sweden","United Kingdom"]
-  },
-
-  "Common Crane": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417690/DSC_1828-Edit_084455_up0o6s.jpg",
-    "countries": ["Denmark","Estonia","Norway"]
-  },
-
-  "Common Cuckoo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940426/16_-_ZCxDgST_gu4alw.jpg",
-    "countries": ["Denmark","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Common Eider": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417662/DSC_0339-Edit_014334_lckmca.jpg",
-    "countries": ["Denmark","Estonia","Norway"]
-  },
-
-  "Common Firecrest": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472360/2_-_6h7UIZ9_tkjegq.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Common Flameback": {
-    "photo": "https://i.imgur.com/wf8234S.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Common Gallinule": {
-    "photo": "https://i.imgur.com/XdEALLH.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Common Goldeneye": {
-    "photo": "https://i.imgur.com/0FsAfwJ.jpeg",
-    "countries": ["Denmark","Finland","Norway","Sweden"]
-  },
-
-  "Common Grasshopper Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Common Green-Magpie": {
-    "photo": "https://i.imgur.com/kfgRv7j.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Common Greenshank": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417753/DSC_7511-Edit_105902_abtigv.jpg",
-    "countries": ["Belgium","Norway"]
-  },
-
-  "Common Ground Dove": {
-    "photo": "https://i.imgur.com/5jKZ2uR.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Common Gull": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940418/6_-_frAwvD9_f8snqr.jpg",
-    "countries": ["Denmark","Estonia","Finland","Latvia","Netherlands","Norway","Sweden"]
-  },
-
-  "Common Hawk-Cuckoo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417759/DSC_9230-Edit_ffehge.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Common Hill Myna": {
-    "photo": "https://i.imgur.com/sdncWvP.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Common Hoopoe": {
-    "photo": "https://i.imgur.com/TspRD3I.jpeg",
-    "countries": ["Bangladesh","Greece","Italy","Thailand"]
-  },
-
-  "Common Iora": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471544/3_-_zveXYvL_nvxopl.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Common Kingfisher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422642/2_-_2TuV6BB_ps56uz.jpg",
-    "countries": ["Bangladesh","Netherlands"]
-  },
-
-  "Common Loon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Common Merganser": {
-    "photo": "https://i.imgur.com/8y6e1sL.jpeg",
-    "countries": ["Estonia","Italy","Netherlands","Norway"]
-  },
-
-  "Common Murre": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Common Myna": {
-    "photo": "https://i.imgur.com/WDQtnl8.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Common Pochard": {
-    "photo": "https://i.imgur.com/YQD32tQ.jpeg",
-    "countries": ["Denmark","Finland","Netherlands","Sweden"]
-  },
-
-  "Common Quail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Common Raven": {
-    "photo": "https://i.imgur.com/HmgOqez.jpeg",
-    "countries": ["Finland","Italy","Norway","Sweden"]
-  },
-
-  "Common Redshank": {
-    "photo": "https://i.imgur.com/tKUvAYN.jpeg",
-    "countries": ["Bangladesh","Belgium","Denmark","Netherlands","Norway"]
-  },
-
-  "Common Redstart": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417646/DSC_0092-Enhanced-NR-Edit_xrfyku.jpg",
-    "countries": ["Denmark","Italy","Netherlands","Norway"]
-  },
-
-  "Common Reed Warbler": {
-    "photo": "https://i.imgur.com/T1CGuSV.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Netherlands"]
-  },
-
-  "Common Ringed Plover": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417745/DSC_6550-Edit_104941_phfihl.jpg",
-    "countries": ["Denmark","Netherlands","Norway"]
-  },
-
-  "Common Rosefinch": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Common Sandpiper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940425/14_-_YzzxHUy_z9x3og.jpg",
-    "countries": ["Bangladesh","Belgium","Denmark","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Common Scoter": {
-    "photo": "https://i.imgur.com/1cNzS5y.jpeg",
-    "countries": ["Denmark","Norway"]
-  },
-
-  "Common Shelduck": {
-    "photo": "https://i.imgur.com/PnyAbMc.jpeg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Common Snipe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417695/DSC_3321-Edit-2_063744_nkbsxt.jpg",
-    "countries": ["Bangladesh","Denmark","Estonia","Netherlands","Norway","Sweden"]
-  },
-
-  "Common Swift": {
-    "photo": "https://i.imgur.com/PyKx8gB.jpeg",
-    "countries": ["Czech Republic","Denmark","Estonia","Germany","Greece","Italy","Norway","Netherlands"]
-  },
-
-  "Common Tailorbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789325998/mGLeUvQ_-_Imgur_p3pmme.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Common Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940420/8_-_f9MWWbt_q3jbiw.jpg",
-    "countries": ["Belgium","Denmark","Estonia","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Common Wood-Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940422/10_-_Qk0vfQb_xfzr1c.jpg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Germany","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Copper-throated Sunbird": {
-    "photo": "https://i.imgur.com/qTl4p2M.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Coppersmith Barbet": {
-    "photo": "https://i.imgur.com/Jh5qcc9.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Corn Bunting": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Cotton Pygmy-Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472027/8_-_gRbFoth_t6zyvv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Crested Bobwhite": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Crested Caracara": {
-    "photo": "https://i.imgur.com/954V6BF.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Crested Goshawk": {
-    "photo": "https://i.imgur.com/wBcduU0.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Crested Serpent-Eagle": {
-    "photo": "https://i.imgur.com/LI7uYOP.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Crested Tit": {
-    "photo": "https://i.imgur.com/zz9SaXx.jpeg",
-    "countries": ["Norway","Sweden"]
-  },
-
-  "Curlew Sandpiper": {
-    "photo": "https://i.imgur.com/5wdud6Z.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Dark-necked Tailorbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472390/10_-_I1O4wMJ_f0jwwi.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Dark-sided Flycatcher": {
-    "photo": "https://i.imgur.com/OKgUDMi.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Delicate Prinia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417657/DSC_0259-Edit-Edit_vj3h7x.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Dollarbird": {
-    "photo": "https://i.imgur.com/LCi8ntX.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Dunlin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417688/DSC_1482-Edit_084514_f4z3t5.jpg",
-    "countries": ["Netherlands","Norway","Sweden"]
-  },
-
-  "Dunnock": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417693/DSC_2858-Edit-2_ngljfx.jpg",
-    "countries": ["Denmark","Norway","United Kingdom"]
-  },
-
-  "Dusky Broadbill": {
-    "photo": "https://i.imgur.com/YmAg7dY.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Dusky Warbler": {
-    "photo": "https://i.imgur.com/NFJvufk.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Eared Dove": {
-    "photo": "https://i.imgur.com/jVnZaEa.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Eared Grebe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422475/4_-_1w8j12P_sl2rrf.jpg",
-    "countries": ["Italy"]
-  },
-
-  "Eastern Cattle-Egret": {
-    "photo": "https://i.imgur.com/Y3HF9oU.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Eastern Red-rumped Swallow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472046/14_-_bNDBWHA_qm5uh3.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Egyptian Goose": {
-    "photo": "https://i.imgur.com/XY0n42F.jpeg",
-    "countries": ["Netherlands","United Kingdom"]
-  },
-
-  "Eurasian Bittern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Estonia"]
-  },
-
-  "Eurasian Blackbird": {
-    "photo": "https://i.imgur.com/31XuJQD.jpeg",
-    "countries": ["Belgium","Denmark","Germany","Greece","Italy","Latvia","Netherlands","Norway","Sweden","Estonia","Finland"]
-  },
-
-  "Eurasian Blackcap": {
-    "photo": "https://i.imgur.com/h76plcI.jpeg",
-    "countries": ["Denmark","Germany","Italy","Netherlands","Norway","Estonia"]
-  },
-
-  "Eurasian Blue Tit": {
-    "photo": "https://i.imgur.com/Mn7nw7l.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Bullfinch": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471547/4_-_tbCRpLK_d77dya.jpg",
-    "countries": ["Denmark","Norway","Sweden"]
-  },
-
-  "Eurasian Collared-Dove": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422659/7_-_eijaApd_bvv71a.jpg",
-    "countries": ["Bangladesh","Denmark","Germany","Greece","Italy","Netherlands","United Kingdom"]
-  },
-
-  "Eurasian Coot": {
-    "photo": "https://i.imgur.com/k451t8H.jpeg",
-    "countries": ["Bangladesh","Belgium","Denmark","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Crag-Martin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Italy"]
-  },
-
-  "Eurasian Curlew": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940426/15_-_Ua5Xwff_v2qv5v.jpg",
-    "countries": ["Belgium","Denmark","Netherlands","Norway"]
-  },
-
-  "Eurasian Goshawk": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Netherlands","Norway","Sweden"]
-  },
-
-  "Eurasian Green Woodpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Germany","Italy","Netherlands"]
-  },
-
-  "Eurasian Hobby": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940422/11_-_lg662Kg_dswo6v.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Eurasian Jackdaw": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940416/2_-_7HtKHPI_nunjl0.jpg",
-    "countries": ["Denmark","Finland","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Jay": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789826482/27p8RMg_-_Imgur_wz4e4f.jpg",
-    "countries": ["Belgium","Denmark","Greece","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Kestrel": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940452/32_-_Sbqd4Vt_w4nxns.jpg",
-    "countries": ["Bangladesh","Denmark","Germany","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Linnet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940451/30_-_Vy3TNjm_jzdgsx.jpg",
-    "countries": ["Denmark","Netherlands","Norway"]
-  },
-
-  "Eurasian Magpie": {
-    "photo": "https://i.imgur.com/E7DVmR9.jpeg",
-    "countries": ["Belgium","Denmark","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Moorhen": {
-    "photo": "https://i.imgur.com/49wJnkO.jpeg",
-    "countries": ["Bangladesh","Denmark","Italy","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Eurasian Nuthatch": {
-    "photo": "https://i.imgur.com/XQy5P1V.jpeg",
-    "countries": ["Denmark","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Oystercatcher": {
-    "photo": "https://i.imgur.com/Yesj4c3.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Eurasian Penduline-Tit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Estonia"]
-  },
-
-  "Eurasian Siskin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471561/10_-_PoaSOvQ_pmexft.jpg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway","Sweden"]
-  },
-
-  "Eurasian Skylark": {
-    "photo": "https://i.imgur.com/9z1rIoz.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Norway"]
-  },
-
-  "Eurasian Sparrowhawk": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417659/DSC_0334-Edit_tnvn66.jpg",
-    "countries": ["Belgium","Denmark","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Eurasian Spoonbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940417/5_-_xku6EbU_jl5a4r.jpg",
-    "countries": ["Belgium","Denmark","Netherlands"]
-  },
-
-  "Eurasian Three-toed Woodpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640910/23_-_VPkNKaO_in46yp.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Eurasian Tree Sparrow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940435/26_-_noUpQQd_tyip35.jpg",
-    "countries": ["Denmark","Estonia","Italy","Netherlands","Norway","Thailand"]
-  },
-
-  "Eurasian Treecreeper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417650/DSC_0188-Edit_zgmrdv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Eurasian Whimbrel": {
-    "photo": "https://i.imgur.com/WXpoAux.jpeg",
-    "countries": ["Netherlands","Norway"]
-  },
-
-  "Eurasian Wigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471552/6_-_GR6YKVA_uhokcb.jpg",
-    "countries": ["Denmark","Finland","Netherlands","Norway","Sweden"]
-  },
-
-  "Eurasian Woodcock": {
-    "photo": "https://i.imgur.com/pK3Dy8E.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Eurasian Wren": {
-    "photo": "https://i.imgur.com/4RSHo1d.jpeg",
-    "countries": ["Denmark","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Eurasian Wryneck": {
-    "photo": "https://i.imgur.com/5tsos7A.jpeg",
-    "countries": ["Bangladesh","Italy"]
-  },
-
-  "European Golden-Plover": {
-    "photo": "https://i.imgur.com/X9or1DC.jpeg",
-    "countries": ["Denmark","Norway"]
-  },
-
-  "European Goldfinch": {
-    "photo": "https://i.imgur.com/9MPGmdQ.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Italy","Netherlands","Norway"]
-  },
-
-  "European Greenfinch": {
-    "photo": "https://i.imgur.com/Zmz4I7f.jpeg",
-    "countries": ["Denmark","Finland","Estonia","Netherlands","Norway","Sweden"]
-  },
-
-  "European Herring Gull": {
-    "photo": "https://i.imgur.com/c5U09LZ.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "European Honey-buzzard": {
-    "photo": "https://i.imgur.com/QG6B0Om.jpeg",
-    "countries": ["Netherlands"]
-  },
-
-  "European Pied Flycatcher": {
-    "photo": "https://i.imgur.com/FgAba5d.jpeg",
-    "countries": ["Italy","Norway"]
-  },
-
-  "European Robin": {
-    "photo": "https://i.imgur.com/41TNCro.jpeg",
-    "countries": ["Denmark","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "European Serin": {
-    "photo": "https://i.imgur.com/tn9Wc0X.jpeg",
-    "countries": ["Italy"]
-  },
-
-  "European Shag": {
-    "photo": "https://i.imgur.com/0Pdr9ZA.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "European Starling": {
-    "photo": "https://i.imgur.com/HfB3Ppc.jpeg",
-    "countries": ["Denmark","Estonia","Latvia","Netherlands","Norway","United Kingdom"]
-  },
-
-  "European Stonechat": {
-    "photo": "https://i.imgur.com/kRUUR36.jpeg",
-    "countries": ["Italy","Netherlands"]
-  },
-
-  "European Turtle-Dove": {
-    "photo": "https://i.imgur.com/FMsWzB1.jpeg",
-    "countries": ["Netherlands","Norway"]
-  },
-
-  "Ferruginous Duck": {
-    "photo": "https://i.imgur.com/UgTRNOw.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Fieldfare": {
-    "photo": "https://i.imgur.com/y7Y9eCx.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Latvia","Netherlands","Norway","Sweden"]
-  },
-
-  "Forest Wagtail": {
-    "photo": "https://i.imgur.com/3hxmV69.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Fulvous-breasted Woodpecker": {
-    "photo": "https://i.imgur.com/4utcEXZ.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Gadwall": {
-    "photo": "https://i.imgur.com/sGscrL8.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Garden Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Garganey": {
-    "photo": "https://i.imgur.com/ZXVy47u.jpeg",
-    "countries": ["Bangladesh","Denmark","Italy","Norway"]
-  },
-
-  "Glaucous Gull": {
-    "photo": "https://i.imgur.com/LPRUdVL.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Glossy Ibis": {
-    "photo": "https://i.imgur.com/zFrEsSx.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Goldcrest": {
-    "photo": "https://i.imgur.com/e10n1iD.jpeg",
-    "countries": ["Denmark","Italy","Netherlands","Norway","Sweden"]
-  },
-
-  "Golden Eagle": {
-    "photo": "https://i.imgur.com/Kgjl1B1.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Golden-crested Myna": {
-    "photo": "https://i.imgur.com/rorX8We.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Golden-fronted Leafbird": {
-    "photo": "https://i.imgur.com/6amOLd5.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Golden-headed Cisticola": {
-    "photo": "https://i.imgur.com/IHD3xsU.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Gray Heron": {
-    "photo": "https://i.imgur.com/xSalhOs.jpeg",
-    "countries": ["Bangladesh","Denmark","Estonia","Italy","Netherlands","Norway","Sweden","Thailand","United Kingdom"]
-  },
-
-  "Gray Kingbird": {
-    "photo": "https://i.imgur.com/OiR877S.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Gray Partridge": {
-    "photo": "https://i.imgur.com/iTKqImZ.jpeg",
-    "countries": ["Denmark","Netherlands"]
-  },
-
-  "Gray Wagtail": {
-    "photo": "https://i.imgur.com/gD6hn1L.jpeg",
-    "countries": ["Bangladesh","Italy","Norway"]
-  },
-
-  "Gray-backed Shrike": {
-    "photo": "https://i.imgur.com/590Lo0V.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Gray-eyed Bulbul": {
-    "photo": "https://i.imgur.com/dKZ1OxQ.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Gray-headed Canary-Flycatcher": {
-    "photo": "https://i.imgur.com/UPxNMfj.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Gray-headed Fish-Eagle": {
-    "photo": "https://i.imgur.com/2k9gltJ.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Gray-headed Lapwing": {
-    "photo": "https://i.imgur.com/gbSMCfS.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Gray-headed Swamphen": {
-    "photo": "https://i.imgur.com/T1LSI3p.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Gray-throated Martin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Graylag Goose": {
-    "photo": "https://i.imgur.com/UesYIXB.jpeg",
-    "countries": ["Belgium","Denmark","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Great Black-backed Gull": {
-    "photo": "https://i.imgur.com/ttHZ4K4.jpeg",
-    "countries": ["Finland","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Great Blue Heron": {
-    "photo": "https://i.imgur.com/zbgvVMW.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Great Cormorant": {
-    "photo": "https://i.imgur.com/Gn8zMBd.jpeg",
-    "countries": ["Bangladesh","Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","Poland","United Kingdom"]
-  },
-
-  "Great Crested Grebe": {
-    "photo": "https://i.imgur.com/bDmgPgX.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Italy","Netherlands","Norway"]
-  },
-
-  "Great Egret": {
-    "photo": "https://i.imgur.com/UesYIXB.jpeg",
-    "countries": ["Aruba","Bangladesh","Curaçao","Netherlands","Sweden","Thailand"]
-  },
-
-  "Great Gray Shrike": {
-    "photo": "https://i.imgur.com/HZBVybx.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Great Hornbill": {
-    "photo": "https://i.imgur.com/bcHBa1T.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Great Myna": {
-    "photo": "https://i.imgur.com/Oyfw1Np.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Great Skua": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Great Snipe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Great Spotted Woodpecker": {
-    "photo": "https://i.imgur.com/Y0nMkHV.jpeg",
-    "countries": ["Belgium","Denmark","Finland","Netherlands","Norway","Sweden"]
-  },
-
-  "Great Tit": {
-    "photo": "https://i.imgur.com/fG3197p.jpeg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Greece","Italy","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Great-tailed Grackle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Greater Coucal": {
-    "photo": "https://i.imgur.com/91US29x.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Greater Flameback": {
-    "photo": "https://i.imgur.com/uLH1oFM.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Greater Painted-Snipe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Greater Racket-tailed Drongo": {
-    "photo": "https://i.imgur.com/s1R8MTk.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Greater Scaup": {
-    "photo": "https://i.imgur.com/hvU13st.jpeg",
-    "countries": ["Netherlands","Norway","Sweden"]
-  },
-
-  "Greater Spotted Eagle": {
-    "photo": "https://i.imgur.com/9DpXgtq.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Greater White-fronted Goose": {
-    "photo": "https://i.imgur.com/odQvC6g.jpeg",
-    "countries": ["Netherlands"]
-  },
-
-  "Greater Whitethroat": {
-    "photo": "https://i.imgur.com/ejkJXLY.jpeg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Greater Yellowlegs": {
-    "photo": "https://i.imgur.com/4Cb8o3H.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Greater Yellownape": {
-    "photo": "https://i.imgur.com/5HfdoTd.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Green Heron": {
-    "photo": "https://i.imgur.com/oHoa1KT.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Green Sandpiper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789933590/DSC_6309-Edit_awzkep.jpg",
-    "countries": ["Bangladesh","Belgium","Netherlands","United Kingdom"]
-  },
-
-  "Green-billed Malkoha": {
-    "photo": "https://i.imgur.com/iEENr69.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Green-eared Barbet": {
-    "photo": "https://i.imgur.com/YZ1SLAd.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Green-winged Teal": {
-    "photo": "https://i.imgur.com/CXOimi6.jpeg",
-    "countries": ["Denmark","Netherlands","Norway","Sweden"]
-  },
-
-  "Greenish Warbler": {
-    "photo": "https://i.imgur.com/dh7VL6o.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Groove-billed Ani": {
-    "photo": "https://i.imgur.com/5Vdw6JY.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Hair-crested Drongo": {
-    "photo": "https://i.imgur.com/ygXHI2B.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Hawfinch": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Hazel Grouse": {
-    "photo": "https://i.imgur.com/HLcVeCf.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Heart-spotted Woodpecker": {
-    "photo": "https://i.imgur.com/hX2gF8s.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Hen Harrier": {
-    "photo": "https://i.imgur.com/GPzI5g1.jpeg",
-    "countries": ["Denmark","Norway"]
-  },
-
-  "Hodgson's Hawk-Cuckoo": {
-    "photo": "https://i.imgur.com/GL3J8VP.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Hooded Crow": {
-    "photo": "https://i.imgur.com/kXLcrXo.jpeg",
-    "countries": ["Denmark","Estonia","Finland","Greece","Italy","Latvia","Norway","Sweden"]
-  },
-
-  "Horned Grebe": {
-    "photo": "https://i.imgur.com/2IhuD41.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Horned Lark": {
-    "photo": "https://i.imgur.com/hIJDFTg.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "House Crow": {
-    "photo": "https://i.imgur.com/uMRjE3U.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "House Sparrow": {
-    "photo": "https://i.imgur.com/0MFxrVW.jpeg",
-    "countries": ["Aruba","Curaçao","Bangladesh","Denmark","Estonia","Finland","Germany","Greece","Latvia","Netherlands","Norway","Thailand"]
-  },
-
-  "House Swift": {
-    "photo": "https://i.imgur.com/wns269j.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Hudsonian Godwit": {
-    "photo": "https://i.imgur.com/nJDLq18.jpeg",
-    "countries": ["Aruba"]
-  },
-
-  "Hudsonian Whimbrel": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470338/24_-_WXpoAux_jp8irz.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Iceland Gull": {
-    "photo": "https://i.imgur.com/BqJWwmO.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Icterine Warbler": {
-    "photo": "https://i.imgur.com/2VecVXX.jpeg",
-    "countries": ["Denmark","Estonia","Norway"]
-  },
-
-  "Indian Cormorant": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Indian Cuckoo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Indian Pied Starling": {
-    "photo": "https://i.imgur.com/o4ENZYa.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Indian Pond-Heron": {
-    "photo": "https://i.imgur.com/aDRgOM8.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Indian Silverbill": {
-    "photo": "https://i.imgur.com/WkKplxY.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Indochinese Roller": {
-    "photo": "https://i.imgur.com/7DvZAmE.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Italian Sparrow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Italy"]
-  },
-
-  "Japanese Sparrowhawk": {
-    "photo": "https://i.imgur.com/X87aI7a.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Javan Pond-Heron": {
-    "photo": "https://i.imgur.com/AcG1hx7.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Jerdon's Baza": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Jungle Babbler": {
-    "photo": "https://i.imgur.com/gZBDKJa.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Jungle Myna": {
-    "photo": "https://i.imgur.com/YZrFAOj.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Killdeer": {
-    "photo": "https://i.imgur.com/2YR7Suh.jpeg",
-    "countries": ["Aruba"]
-  },
-
-  "King Eider": {
-    "photo": "https://i.imgur.com/0eTZGD3.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Lapland Longspur": {
-    "photo": "https://i.imgur.com/hlJIRgh.jpeg",
-    "countries": ["Norway"]
-  },
-
-  "Large Scimitar-Babbler": {
-    "photo": "https://i.imgur.com/1mxo6dl.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Large-billed Crow": {
-    "photo": "https://i.imgur.com/IBKOPJO.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Laughing Gull": {
-    "photo": "https://i.imgur.com/ROB09Dx.jpeg",
-    "countries": ["Aruba"]
-  },
-
-  "Least Sandpiper": {
-    "photo": "https://i.imgur.com/L3VgKVo.jpeg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Lesser Black-backed Gull": {
-    "photo": "https://i.imgur.com/ZS5FuOX.jpeg",
-    "countries": ["Aruba","Belgium","Denmark","Netherlands","Norway"]
-  },
-
-  "Lesser Necklaced Laughingthrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Lesser Racket-tailed Drongo": {
-    "photo": "https://i.imgur.com/XbfeFnH.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Lesser Scaup": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422893/21_-_B0kyO7m_wo1b02.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Lesser Spotted Woodpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789755406/653201520_lb8qy3.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Lesser Whistling-Duck": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789418005/646124557_uwqnim.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Lesser Whitethroat": {
-    "photo": "https://i.imgur.com/MUSkXAP.jpeg",
-    "countries": ["Denmark","Italy","Norway"]
-  },
-
-  "Lesser Yellowlegs": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472014/4_-_6aRgx9H_wycosl.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Lineated Barbet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471566/12_-_PtKHjH2_cthkj9.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Little Blue Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422889/20_-_WLGDju5_ykuw8m.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Little Cormorant": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422656/6_-_jQPlxuq_fr3lzi.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Little Egret": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422870/15_-_f4cFhDP_u7zniu.jpg",
-    "countries": ["Bangladesh","Belgium","Italy","Netherlands","Thailand"]
-  },
-
-  "Little Grebe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422490/7_-_dE8KZMk_mcxeah.jpg",
-    "countries": ["Italy","Netherlands","Sweden"]
-  },
-
-  "Little Owl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422867/14_-_84nBdUb_smqckx.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Little Ringed Plover": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788724655/DSC_0007-Edit_oa7pl5.jpg",
-    "countries": ["Bangladesh","Netherlands","Norway"]
-  },
-
-  "Little Spiderhunter": {
-    "photo": "https://i.imgur.com/p2tEVlr.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Little Stint": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422863/13_-_tJqb2Gh_otzzhz.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Little Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422912/26_-_s8hehgL_drxllr.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Long-eared Owl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Long-tailed Duck": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422904/24_-_G0ShAeV_osfcex.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Long-tailed Jaeger": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940424/13_-_MJDXapw_zjavpp.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Long-tailed Shrike": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471571/14_-_B4ybD0y_oe7nbv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Long-tailed Tit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422877/17_-_ImoqwK2_g7gvdu.jpg",
-    "countries": ["Denmark","Italy","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Magnificent Frigatebird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471573/15_-_VeOqTvD_j493qo.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Malaysian Pied-Fantail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Mallard": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422831/4_-_t8yVlmD_aers9l.jpg",
-    "countries": ["Denmark","Estonia","Finland","Italy","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Mangrove Yellow Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640783/7_-_8cxMcWU_qdx1ft.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Marsh Tit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422821/1_-_vNBzi66_szfgo8.jpg",
-    "countries": ["Netherlands","Norway"]
-  },
-
-  "Marsh Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940435/27_-_B2OtsNH_lsa0x7.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Meadow Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940423/12_-_iY1xh9G_hyfm4c.jpg",
-    "countries": ["Denmark","Netherlands","Norway","Sweden"]
-  },
-
-  "Medium Egret": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Merlin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422842/7_-_oWUboZf_esuq8g.jpg",
-    "countries": ["Aruba","Norway"]
-  },
-
-  "Middle Spotted Woodpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Mistle Thrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417664/DSC_0362_omremh.jpg",
-    "countries": ["Denmark","Netherlands"]
-  },
-
-  "Monk Parakeet": {
-    "photo": "https://i.imgur.com/Eugx69Z.jpeg",
-    "countries": ["Greece"]
-  },
-
-  "Mountain Hawk-Eagle": {
-    "photo": "https://i.imgur.com/JCqK9ND.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Mountain Imperial-Pigeon": {
-    "photo": "https://i.imgur.com/ZUy44hD.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Moustached Barbet": {
-    "photo": "https://i.imgur.com/vtsz9Fz.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Mute Swan": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417746/DSC_6650-Edit_vugssv.jpg",
-    "countries": ["Denmark","Estonia","Finland","Italy","Netherlands","Norway","Sweden","United Kingdom","Poland"]
-  },
-
-  "Neotropic Cormorant": {
-    "photo": "https://i.imgur.com/XG4wFv7.jpeg",
-    "countries": ["Aruba"]
-  },
-
-  "Northern Gannet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725454/DSC_3705-Edit_121126_ctufaf.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Northern Lapwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725126/DSC_3296_063532_rbksqc.jpg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","United Kingdom"]
-  },
-
-  "Northern Nutcracker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471549/5_-_yCdlMXF_kjeqmm.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Northern Parula": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422853/10_-_3IQnSZX_jnajq4.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Northern Pintail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640951/21_-_DyNdlPz_glfz3n.jpg",
-    "countries": ["Denmark","Norway","Sweden"]
-  },
-
-  "Northern Scrub-Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422845/8_-_bAceyjm_e21unx.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Northern Shoveler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422856/11_-_1375bK7_tftsl2.jpg",
-    "countries": ["Denmark","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Northern Waterthrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422849/9_-_DjxXnJt_bkimlq.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Northern Wheatear": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725383/DSC_4404-Edit_120821_2_jegr8v.jpg",
-    "countries": ["Denmark","Netherlands","Norway"]
-  },
-
-  "Northern Yellow Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/15_-_Arq0xUb_uoysff.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Ochraceous Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789826517/DSC_0087_gcag7z.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Olive-backed Pipit": {
-    "photo": "https://i.imgur.com/ULp545C.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Oriental Darter": {
-    "photo": "https://i.imgur.com/uOMgaLj.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Oriental Honey-buzzard": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422828/3_-_eOGnBC6_ebzu8x.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Oriental Magpie-Robin": {
-    "photo": "https://i.imgur.com/IgVB6tH.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Oriental Pied-Hornbill": {
-    "photo": "https://i.imgur.com/4wvjYJu.jpeg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Ornate Sunbird": {
-    "photo": "https://i.imgur.com/ltWimTO.jpeg",
-    "countries": ["Thailand"]
-  },
-
-  "Osprey": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725351/DSC_4263-Edit_gggpng.jpg",
-    "countries": ["Aruba","Curaçao","Bangladesh","Denmark"]
-  },
-
-  "Pacific Reef-Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789841926/SSzFllT_-_Imgur_o7cjxf.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Pacific Swallow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789841975/lfVdK7f_-_Imgur_h3sjxn.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Paddyfield Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842241/9oanoCy_-_Imgur_te6yto.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Pale-billed Flowerpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725351/DSC_4263-Edit_gggpng.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Pale-chinned Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789841997/DEHgEix_-_Imgur_wqyekb.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Pallas's Fish-Eagle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472043/13_-_w4zisea_kqucwz.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Pallid Swift": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Greece"]
-  },
-
-  "Parasitic Jaeger": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789755171/663467591_ujo7wg.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Parrot Crossbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842041/TerQilM_-_Imgur_oizk1j.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Peregrine Falcon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842191/gROYhhY_-_Imgur_rvitkd.jpg",
-    "countries": ["Aruba","Curaçao","Bangladesh","Netherlands","Norway"]
-  },
-
-  "Pied Avocet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940431/22_-_qA21cnc_furyrh.jpg",
-    "countries": ["Denmark","Netherlands"]
-  },
-
-  "Pied Kingfisher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422639/1_-_yfP8wVs_fhjjbw.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Pied-billed Grebe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842015/4mauvwV_-_Imgur_isjmf8.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Pin-striped Tit-Babbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842927/ZWo8BiY_-_Imgur_mfdhtw.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Pine Grosbeak": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Pink-footed Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842926/gJEkzJy_-_Imgur_pz3wjz.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Pink-necked Green-Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842925/vjDtuGQ_-_Imgur_hi5pmz.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Plain Prinia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422646/3_-_N6xuSQI_tqalvy.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Plain-backed Sparrow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842924/REJmuoL_-_Imgur_pngs6r.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Plaintive Cuckoo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842923/00WFmCe_-_Imgur_lhhz5j.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Prairie Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842922/ia5EK9v_-_Imgur_wvwqme.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Puff-throated Babbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842922/DJZJkDP_-_Imgur_cpuzel.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Puff-throated Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Purple Sandpiper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842921/bX7uX3u_-_Imgur_u1fc6j.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Purple-rumped Sunbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640814/1_-_T32uGmf_v0cvb0.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rain Quail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Razorbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640814/1_-_T32uGmf_v0cvb0.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Red Collared-Dove": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842920/LNcdxq6_-_Imgur_gnnejq.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Red Crossbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842919/0vb5rw4_-_Imgur_t9yvud.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Red Junglefowl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472367/4_-_0A91pEf_ydm3ss.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Red Kite": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842918/oT80GM4_-_Imgur_xtr0s4.jpg",
-    "countries": ["Germany","Sweden","United Kingdom"]
-  },
-
-  "Red Knot": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842918/F7FLTxs_-_Imgur_v1tdxv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Red-backed Shrike": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940437/29_-_aldXvkU_ol4bpz.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Red-breasted Merganser": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842917/0oqqxTF_-_Imgur_ntxp3n.jpg",
-    "countries": ["Denmark","Estonia","Norway"]
-  },
-
-  "Red-breasted Parakeet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842916/ZSvnujy_-_Imgur_letjmj.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Red-eyed Vireo": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Red-necked Grebe": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417739/DSC_5720_zvqguv.jpg",
-    "countries": ["Denmark","Netherlands"]
-  },
-
-  "Red-necked Phalarope": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725296/DSC_0839-Edit_084528_md2ukh.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Red-throated Loon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422464/3_-_LDSSuXg_qmpoma.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Red-vented Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725106/DSC_3697-Edit_jwkwxn.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Red-wattled Lapwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471576/16_-_VAEBLaG_bnqmqx.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Red-whiskered Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842915/uVqBNTf_-_Imgur_hiaq6n.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Redpoll": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842914/KO6tIVa_-_Imgur_smiigu.jpg",
-    "countries": ["Denmark","Estonia","Norway"]
-  },
-
-  "Redwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842914/MI1Jq4I_-_Imgur_in8ktv.jpg",
-    "countries": ["Denmark","Norway","Netherlands","Sweden"]
-  },
-
-  "Reed Bunting": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940451/31_-_yGC3XWE_mhbswm.jpg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Richard's Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842913/bgf6ddC_-_Imgur_z1ccas.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Ring Ouzel": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Ring-necked Pheasant": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842912/RQTVaxy_-_Imgur_pcuxmf.jpg",
-    "countries": ["Denmark","Italy","Netherlands"]
-  },
-
-  "River Lapwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rock Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417669/DSC_0421-Edit_my8ykk.jpg",
-    "countries": ["Aruba","Curaçao","Bangladesh","Denmark","Estonia","Finland","Greece","Italy","Latvia","Netherlands","Norway","Poland","Sweden","Thailand","United Kingdom"]
-  },
-
-  "Rock Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842911/Udc26cB_-_Imgur_rutpqy.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Rook": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842910/RevHlUn_-_Imgur_trfo5n.jpg",
-    "countries": ["Denmark","Norway"]
-  },
-
-  "Rose-ringed Parakeet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842910/dMTZBJr_-_Imgur_ywttvb.jpg",
-    "countries": ["Bangladesh","Greece","Italy","Netherlands","United Kingdom"]
-  },
-
-  "Roseate Spoonbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842909/84261Jo_-_Imgur_ljgujd.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Ross's Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789417931/609576764_wdkfiy.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Rosy Minivet": {
-    "photo": "https://i.imgur.com/gVnMrD9.jpeg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rosy Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842908/u9mwpuO_-_Imgur_tpvon5.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rough-legged Hawk": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940415/1_-_0iVqw0C_yhbc7u.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Royal Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842907/aeX5V0e_-_Imgur_x08amn.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Ruby-cheeked Sunbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842906/XypYDuu_-_Imgur_nsamai.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Ruby-topaz Hummingbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842906/rcQUBL8_-_Imgur_ptfgwt.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Ruddy Turnstone": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842905/0jDqBCb_-_Imgur_ab4bsl.jpg",
-    "countries": ["Aruba","Curaçao","Norway"]
-  },
-
-  "Ruddy-breasted Crake": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842905/MNYm5Bj_-_Imgur_bfkdkz.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Ruff": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417738/DSC_5610-Edit_112728_wsugcj.jpg",
-    "countries": ["Netherlands","Norway"]
-  },
-
-  "Rufous Treepie": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725435/DSC_3798-Edit_helaev.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rufous Woodpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rufous-bellied Niltava": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rufous-collared Sparrow": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842904/Y25MydX_-_Imgur_ci6wq4.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Rufous-gorgeted Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Rufous-necked Laughingthrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789842903/eMD8cU9_-_Imgur_vpblxk.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Saffron Finch": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423257/7_-_cchTb90_fxdk9h.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Sanderling": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423285/14_-_6VzuY2O_hmik2b.jpg",
-    "countries": ["Aruba","Norway"]
-  },
-
-  "Sandwich Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423269/10_-_TRlrMPm_md6e5i.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Sardinian Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413576/kcJcZTz_-_Imgur_ialdii.jpg",
-    "countries": ["Greece"]
-  },
-
-  "Savi's Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Scaly-breasted Munia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640974/19_-_JGIQHNF_f4z9tm.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Scaly-naped Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Scarlet Minivet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423298/17_-_6r4BiKB_ohshyr.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Scarlet-backed Flowerpecker": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413576/bKQ3mKJ_-_Imgur_dt72gl.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Sedge Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725179/DSC_2756-Edit_124952_r3txmm.jpg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Shikra": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Shiny Cowbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423252/6_-_zTcWuS6_qmx21g.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Short-billed Dowitcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423261/8_-_nQmtuCm_zf6y9g.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Short-eared Owl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423232/1_-_Is3hmOx_gwdxrh.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Short-toed Snake-Eagle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413576/zAu7Y4i_-_Imgur_f8k1jm.jpg",
-    "countries": ["Italy"]
-  },
-
-  "Short-toed Treecreeper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413576/eRzlQ53_-_Imgur_pkaxyb.jpg",
-    "countries": ["Denmark","Germany","Netherlands"]
-  },
-
-  "Siamese Pied Starling": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413577/1cZSpnv_-_Imgur_kkgend.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Siberian Blue Robin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423240/3_-_pHpf1Z4_mimxv9.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Siberian Jay": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725026/DSC_0353-Edit_060853_scvfgz.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Siberian Rubythroat": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413577/ldgPpqc_-_Imgur_p7defn.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Siberian Stonechat": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423289/15_-_j1KK2fW_p47wqz.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Silver-backed Needletail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Small Minivet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413577/EAPfesi_-_Imgur_zoowm2.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Smew": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472020/6_-_uipT0a0_fl6aj7.jpg",
-    "countries": ["Denmark","Norway"]
-  },
-
-  "Snowy Egret": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423265/9_-_nZuJFGk_k1vi1i.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Solitary Sandpiper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423273/11_-_6riR7Rs_ehoj7k.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Song Thrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940430/20_-_f7fKGgX_dbhzzb.jpg",
-    "countries": ["Denmark","Finland","Netherlands","Norway"]
-  },
-
-  "Southern Lapwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423281/13_-_1R260X2_agjo5j.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Spotted Crake": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Spotted Dove": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423248/5_-_f3pYP3g_nyyvqg.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Spotted Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413578/uHgOjAj_-_Imgur_djgyqe.jpg",
-    "countries": ["Denmark","Estonia","Netherlands","Norway"]
-  },
-
-  "Spotted Owlet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471586/20_-_ysZPfut_qucyml.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Spotted Redshank": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Spotted Sandpiper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423277/12_-_COnDvZi_zeswzt.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Stejneger's Scoter": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423294/16_-_JVvqXhc_ql2rp2.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Stock Dove": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940453/33_-_eRY392m_kamq8t.jpg",
-    "countries": ["Belgium","Netherlands","United Kingdom"]
-  },
-
-  "Stork-billed Kingfisher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413578/xobgeRH_-_Imgur_q8rjqk.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Streak-eared Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413579/sX8r5sN_-_Imgur_v357bu.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Striated Babbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417762/DSC_9586-Edit_yjvowf.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Striated Grassbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472030/9_-_ybIpvNo_pgiqoq.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Little Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782423244/4_-_TdRzOB7_augixb.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Taiga Bean-Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470340/35_-_A6zjIYY_d0opjq.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Taiga Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640933/22_-_kSmJHtL_pprlkj.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "Tawny Owl": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Temminck's Stint": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788725232/DSC_1135-Edit_rwfq0e.jpg",
-    "countries": ["Bangladesh","Norway"]
-  },
-
-  "Thick-billed Green-Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Thick-billed Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417682/DSC_0790_2_ajlsob.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Thrush Nightingale": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Denmark"]
-  },
-
-  "Tree Pipit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782417667/DSC_0379-Edit_bvvcuq.jpg",
-    "countries": ["Greece","Netherlands","Norway"]
-  },
-
-  "Tricolored Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470340/32_-_dS4UVnO_ytcbme.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Tricolored Munia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413580/ToS53cZ_-_Imgur_j54egs.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Tropical Mockingbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472010/3_-_ZWPC4fa_ofpsvt.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Tufted Duck": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470340/33_-_bpjQllO_pt0aya.jpg",
-    "countries": ["Denmark","Estonia","Finland","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "Tundra Bean-Goose": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413580/oT6Vb7j_-_Imgur_qq9jxg.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Twite": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470340/34_-_VztQFDy_nrr0iv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Two-barred Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470339/29_-_RVPYXUL_ycjke0.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Van Hasselt's Sunbird": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470340/30_-_u9WYZBX_q8gyg9.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Velvet Scoter": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470339/28_-_82bQdPH_vrfpje.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Venezuelan Troupial": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470338/23_-_boIRjlT_r15t0u.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Verditer Flycatcher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470338/22_-_LbaLpbH_suoxo6.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Vernal Hanging-Parrot": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Vinous-breasted Myna": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413581/2uApOOU_-_Imgur_gybfaj.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Water Rail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413581/y6bF3mr_-_Imgur_djtztf.jpg",
-    "countries": ["Denmark","Netherlands","Norway"]
-  },
-
-  "Western Cattle-Egret": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Western House-Martin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788724792/DSC_0231-Edit_thhjei.jpg",
-    "countries": ["Belgium","Denmark","Estonia","Germany","Italy","Netherlands","Norway"]
-  },
-
-  "Western Marsh Harrier": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789758798/567663571_tmo60g.jpg",
-    "countries": ["Denmark","Italy","Netherlands","Norway"]
-  },
-
-  "Western Yellow Wagtail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470338/20_-_3UxgiLE_unscx2.jpg",
-    "countries": ["Estonia","Italy","Netherlands","Norway"]
-  },
-
-  "Whinchat": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782940434/25_-_mpZQ8hj_fcyxpf.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Whiskered Tern": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "White Stork": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640886/24_-_8zOPtS6_q2nvhv.jpg",
-    "countries": ["Belgium","Estonia","Italy","Netherlands"]
-  },
-
-  "White Wagtail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413582/ODNEduu_-_Imgur_f2wojo.jpg",
-    "countries": ["Belgium","Denmark","Estonia","Finland","Italy","Latvia","Netherlands","Norway","Sweden","United Kingdom"]
-  },
-
-  "White-bellied Sea-Eagle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413583/WQeIR0I_-_Imgur_jkbcua.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "White-breasted Waterhen": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470339/27_-_6gNmmcS_dhhzib.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "White-cheeked Pintail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/16_-_JcPh6Y8_nuwpts.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "White-crested Laughingthrush": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413584/9AqJvec_-_Imgur_fbvmal.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "White-eyed Parakeet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470338/25_-_2H9x4kh_tf2pad.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "White-nest Swiftlet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789826518/DSC_0044_hpghvk.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "White-rumped Munia": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470339/26_-_poRd96m_t2kboy.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "White-rumped Shama": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470338/21_-_xvVKa2d_i32miy.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "White-tailed Eagle": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/10_-_WNcEz5M_wdnktl.jpg",
-    "countries": ["Denmark","Netherlands","Norway"]
-  },
-
-  "White-tailed Hawk": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/14_-_nTrwpl0_j5ar9u.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "White-tailed Robin": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/8_-_KBIHAsm_uwieql.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "White-throated Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/6_-_oi7NKeD_g2jwyy.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "White-throated Dipper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788724728/DSC_0089-Edit_4_pmyey4.jpg",
-    "countries": ["Norway"]
-  },
-
-  "White-throated Fantail": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422673/11_-_mBwLzqT_e5fbw1.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "White-throated Kingfisher": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/4_-_scoTOTI_iznefm.jpg",
-    "countries": ["Bangladesh","Thailand"]
-  },
-
-  "White-tipped Dove": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "White-winged Crossbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/1_-_4evdTCh_smsxkl.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Whooper Swan": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788640866/25_-_mTsJZBf_nw0061.jpg",
-    "countries": ["Finland","Norway"]
-  },
-
-  "Willet": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/17_-_Gz3RD9Y_uk9hvv.jpg",
-    "countries": ["Curaçao"]
-  },
-
-  "Willow Ptarmigan": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788645543/DSC_0479-Edit_zbcfp2.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Willow Tit": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413584/K4iTHSK_-_Imgur_ffdhl5.jpg",
-    "countries": ["Norway","Sweden"]
-  },
-
-  "Willow Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/18_-_u3TBZHM_aood7p.jpg",
-    "countries": ["Denmark","Estonia","Italy","Netherlands","Norway","Sweden"]
-  },
-
-  "Wood Lark": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413585/5ZoohcN_-_Imgur_bicwlq.jpg",
-    "countries": ["Netherlands"]
-  },
-
-  "Wood Sandpiper": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782471067/c3_-_bk2caf7_peku47.jpg",
-    "countries": ["Bangladesh","Norway"]
-  },
-
-  "Wood Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789859397/618198868_srdx4g.jpg",
-    "countries": ["Greece","Norway"]
-  },
-
-  "Wreathed Hornbill": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413586/j9Kkvjj_-_Imgur_lp0p4q.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Yellow Oriole": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/13_-_GUM22N8_sscixd.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Yellow-billed Loon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Norway"]
-  },
-
-  "Yellow-breasted Bunting": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413586/QO3Mupk_-_Imgur_t23fie.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Yellow-browed Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/7_-_n5GDlXr_z1foze.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Yellow-crowned Night Heron": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/12_-_RWWDPfu_jry39f.jpg",
-    "countries": ["Aruba","Curaçao"]
-  },
-
-  "Yellow-footed Green-Pigeon": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470337/9_-_eX6XMyc_zif3su.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Yellow-legged Gull": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/11_-_vL7r5dR_lrey7x.jpg",
-    "countries": ["Greece","Italy"]
-  },
-
-  "Yellow-vented Bulbul": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413586/rfARI6K_-_Imgur_nsqewv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Yellow-vented Warbler": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782470336/5_-_Y34neLA_l7nngj.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Yellow-wattled Lapwing": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Yellowhammer": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782472004/1_-_5Ehw5B0_lgpeti.jpg",
-    "countries": ["Denmark","Finland","Germany","Norway"]
-  },
-
-  "Zebra Dove": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413586/dvkUler_-_Imgur_outqrv.jpg",
-    "countries": ["Thailand"]
-  },
-
-  "Zitting Cisticola": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413587/qcg1o7W_-_Imgur_1_laawfm.jpg",
-    "countries": ["Bangladesh"]
-  },
-
-  "Muscovy Duck": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413588/JcPh6Y8_-_Imgur_tf6g5b.jpg",
-    "countries": ["Aruba"]
-  },
-
-  "Barnacle x Canada Goose (hybrid)": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1782422459/2_-_hByJPlZ_qijmhn.jpg",
-    "countries": ["Netherlands"]
-  },
   
-"Graylag x Canada Goose (hybrid)": {
-  "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1788521251/Designer_qslnqv.jpg",
-   "countries": ["Netherlands"]
-    },
+  /* ========== Map Legend ========== */
+.legend { background: rgba(255,255,255,0.96); padding: 10px 12px; line-height: 1.2; color: #222; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.20); border: 1px solid rgba(0,0,0,0.15); backdrop-filter: blur(2px); }
+
+.legend .scale {
+  background: linear-gradient(
+    90deg,
+    rgb(255,245,0) 0%,
+    rgb(255,205,0) 15%,
+    rgb(245,165,0) 30%,
+    rgb(235,125,0) 50%,
+    rgb(220,85,0) 70%,
+    rgb(200,45,0) 85%,
+    rgb(145,0,0) 100%
+  );
+}
+.legend .labels { display: flex;  justify-content: space-between; font-size: 12px; font-weight: 700; color: #222; }
+
+.legend-container { display: flex; align-items: center; gap: 8px; }
+
+.scale { width: 100px; height: 10px; background: linear-gradient(to right, #fef0d9, #fd8d3c, #d7301f); border-radius: 5px; }
+
+.legend-label { font-size: 12px; color: #333; }
+
+	  
+/* --- About Panel/ Hamburger Menu --- */ 
+.hamburger-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 28px; color: white; background: transparent; border: none; cursor: pointer; }
+
+.hamburger-btn:focus-visible { outline: 2px solid #ffd166; outline-offset: 2px;}
+
+.hamburger-btn.open .bar:nth-child(1) { transform: translateY(5px) rotate(45deg); }
+
+.hamburger-btn.open .bar:nth-child(2) { opacity: 0; }
+
+.hamburger-btn.open .bar:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
+
+.hamburger-panel[hidden] { display: none !important; }
+	  
+.hamburger-panel { position: absolute; overflow-y: auto; background: rgba(38, 70, 83, 0.98); color: #fff; border-radius: 0px; padding: 16px; box-shadow: 0 8px 20px rgba(0,0,0,.25); box-sizing: border-box; z-index: 9990; display: flex; flex-direction: column; gap: 12px; width: 95%; }
+
+.hamburger-top { display: flex; justify-content: space-between; align-items: stretch; gap: 12px; }
+
+.panel-box.hamburger-photo { flex: 0 0 auto; display: flex; align-items: center; justify-content: flex-start; background: none; border: none; box-shadow: none; padding: 0; margin: 0;  border-radius: 0; }
+
+.panel-box.hamburger-photo img { width: 90px; height: 90px; object-fit: cover; background: none; border: none; box-shadow: none; padding: 0; margin: 0; border-radius: 6px; }
+
+.panel-box.hamburger-social { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; height: 90px; background: none; border: none; box-shadow: none; padding: 0; margin: 0; border-radius: 10px; }
+
+.panel-box.hamburger-social a { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: none; color: inherit; text-decoration: none; position: relative; z-index: 1; transition: transform .15s ease, box-shadow .15s ease; }
+
+.hamburger-social a:hover { transform: translateY(-1px); box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+
+.hamburger-title { font-size: 1.25rem; font-weight: bold; text-align: justify; margin-top: 12px; }
+
+.hamburger-text { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
+
+.profile-image { width: 90px; height: 90px; object-fit: cover; background: none; border: none; box-shadow: none; padding: 0; margin: 0; border-radius: 6px; }
+
+.about-title { font-size: 1.25rem; font-weight: bold; text-align: justify; margin-top: 12px; }
+
+.about-text { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
+
+  /* ========== World Panel========== */
+.panel-box.fixed-height, 
+.panel-box.merged-panel { padding: 12px 14px; background: white; border-radius: 10px; }
+	  
+.panel-box.fixed-height { flex: 0 0 auto; margin-bottom: 12px; padding-top: 12px; padding-right: 14px; padding-left: 14px; padding-bottom: 12px; }
+
+
+  /* ========== Country Panel and Species List========== */
+.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box; margin-left: 0; }
+
+.panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; }
+.panel-close:hover { color: black; }
+	  
+.panel-box.fixed-height h2, 
+.panel-box.merged-panel h2 { margin: 0 0 4px 0; line-height: 1.25; font-size: 1.5rem; }
+
+#countryCount { margin-top: 0; margin-bottom: 2px; font-size: 1rem; color: #333; }
+
+#speciesList { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 6px 8px; margin-top: 2px; box-sizing: border-box; }
+
+#speciesList::-webkit-scrollbar { width: 8px; }
+	  
+#speciesList::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+#speciesList::-webkit-scrollbar-thumb:hover { background: #999; }
+
+.species-ul { list-style: none; padding-left: 0; margin: 0; margin-top: 0; }
+
+.species-li { position: relative; padding-left: 20px; margin-bottom: 4px; text-align: left; }
+
+.species-li::before { content: "📷"; position: absolute; left: 0; top: 0.7em; transform: translateY(-50%); font-size: 0.7rem; line-height: 1; }
+
+.species-btn { background: none; border: none; color: black; font-weight: normal; cursor: pointer; text-align: left; padding: 0; font-size: 1rem; width: 100%; display: inline-block; line-height: 1.4; white-space: normal; word-break: break-word; }
+
+/* ========== Thumbnail Gallery ========== */
+
+#birdSearch,
+#birdSort,
+#countryFilter,
+.gallery-toggle { height: 42px; box-sizing: border-box; color: #333333; background-color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
+
+.thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; margin: 0; padding: 0 6px; background: var(--ebird-blue); overflow: hidden; }
+
+.thumbnail-controls { display: flex; align-items: center; width: 100%; padding: 8px; gap: 8px; }
+.toolbar-right { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
+
+.gallery-toggle { margin-left: 0; flex: 0 0 42px; }
+	  
+#thumbnailPanel { flex: 1 1 auto; min-height: 0; width: 100%; margin: 0; padding: 0; overflow-x: hidden; overflow-y: auto; background: var(--ebird-blue); }
+
+#thumbnailGallery { width: 100%; margin: 0; background: var(--ebird-blue); }
+
+.thumbnail-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; width: 100%; gap: 5px; padding: 5px; margin: 0; }
+
+#thumbnailGallery img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; }
+
+.thumbnail-search-button { width: 42px; height: 42px; flex: 0 0 42px; background: transparent; border: none; box-shadow: none; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 0 6px rgba(220,220,220,0.45); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.thumbnail-search-button:hover { opacity: .8; } 
+.thumbnail-search-button svg { filter: drop-shadow(0 0 3px rgba(220,220,220,0.7)); pointer-events: none; display: block; transform: translateX(-1px); }
+	  
+.thumbnail-search { flex: 1 1 auto; min-width: 0; height: 42px; border: none; border-radius: 8px; padding: 0 12px; background: rgba(255,255,255,.92); color: #333; transition: max-width .25s ease, opacity .25s ease, padding .25s ease; } 
+.collapsed-search { width: 0; max-width: 0; padding: 0; border: none; opacity: 0; overflow: hidden; flex: 0 0 0; }
+.thumbnail-select { flex: 0 0 90px; height: 42px; border: none; border-radius: 8px; background: rgba(255,255,255,.92); color: #333; }
+.country-select { display: none; flex: 0 0 0; height: 42px; width: 0; min-width: 0; opacity: 0; overflow: hidden; border: none; border-radius: 8px; color: #333;background: rgba(255,255,255,.92); transition: flex-basis .25s ease, width .25s ease, opacity .25s ease; }
+.country-select.visible { display: block; flex: 0 0 auto; width: auto; opacity: 1; }
+.thumbnail-search:focus, .thumbnail-select:focus, .country-select:focus { outline: 2px solid rgba(95, 143, 94, 0.35); outline-offset: 1px; border-color: #5f8f5e; }
+
+#thumbnailPanel { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.55) var(--ebird-blue); scrollbar-width: thin; }
+
+#thumbnailPanel::-webkit-scrollbar { width: 8px; }
+
+#thumbnailPanel::-webkit-scrollbar-track { background: var(--ebird-blue); }
+
+#thumbnailPanel::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.5); border: 2px solid var(--ebird-blue); border-radius: 10px; }
+
+#thumbnailPanel::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.72); }
+
+#imageContainer,
+#message { display: none; }	  
+/* ========== Leaflet Overrides ========== */
+ .leaflet-control { background: none !important; border: none !important; box-shadow: none !important; }
+
+
+
+/* ========== Bird Of The Day ========== */
+
+  /* Theme variables (adjust to match your header mint) */
+  :root { --mint-dark: 46, 111, 100; --mint-base: 168, 230, 207; }
+
+.nav-arrow,
+.swipe-hand { -webkit-tap-highlight-color: transparent; }	  
+	  
+.nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 34px; color: rgba(255,255,255,0.95); text-shadow: 0 0 4px rgba(40,40,40,.7), 0 0 10px rgba(40,40,40,.5), 1px 1px 4px rgba(0,0,0,.35); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; outline: none ;}
+	  
+.left-arrow { left: 12px; }
+.right-arrow { right: 12px; }
+
+.nav-arrow:focus,
+.nav-arrow:active { outline: none; background: transparent; }	  
+	  
+.nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
+
+.bird-day-layout { display: grid; grid-template-columns: minmax(0, 22fr) minmax(420px, 12fr); width: 100%; margin: 0; align-items: start; background: white; font-family: 'Lato', sans-serif; }
+.bird-day-main { width: 100%; min-width: 0; margin: 0; padding: 0; position: relative; background: #444; }
+.bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
+.bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
+
+.bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+.bird-title-group { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 0 1 auto; }
+
+.bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
+
+.bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
+.bird-info-toggle { transform-origin: center; }
+
+.bird-info-toggle:hover:not(.open) { transform: translateY(-2px) scale(1.15); }
+
+.bird-info-toggle.open { transform: none; }
+.bird-info-toggle:active { transform: scale(0.95); }
+
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
+
+.bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+.drawer-scientific { font-style: italic; font-size: 18px; color: #ffffff; line-height: 1.5; margin-bottom: 6px; }
+
+.drawer-observed { font-size: 16px; color: #ececec; line-height: 1.5; margin-bottom: 4px; }
+
+.drawer-trivia { font-size: 16px; color: #ececec; line-height: 1.5; }
+	  
+.bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; flex-shrink: 0; margin-left: auto; }
+#dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
+
+.dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
+.center-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,.45); background: rgba(255,255,255,.92); color: #222; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; cursor: pointer; padding: 0; line-height: 1; transition: transform .2s ease, background .2s ease; }
+.slideshow-dot { appearance: none; -webkit-appearance: none; outline: none; }
+.center-dot:hover { transform: scale(1.08); }
+
+.center-dot.playing { background: #ffffff; }
+.left-dot,
+.right-dot { width: 6px; height: 6px; }
+
+.left-dot.swipe-active, 
+.right-dot.swipe-active { transform: scale(1.8); background: white; border-color: rgba(0,0,0,.55); }
+	  
+/* ========== Lightbox ========== */
+.lightbox { display: none; position: fixed; inset: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; flex-direction: column; z-index: 9999; }
+
+.lightbox-close { position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; }
+
+.lightbox-image { max-width: 90%; max-height: 80%; border-radius: 8px; margin-bottom: 12px; }
+
+.lightbox-caption { margin-top: 10px; padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; font-size: 18px; border-radius: 6px; text-align: center; max-width: 90%; }
+
+	  
+/* ========== Responsive Layout ========== */
+
+
+/* Hidden on desktop */
+.gallery-toggle { display: none; }
+
+@media (max-width: 1024px) {
+
+  /* Place thumbnails and controls below the featured photo */
+  .bird-day-layout { grid-template-columns: 1fr; width: 100%; margin: 0; padding: 0; gap: 0; }
+
+  .bird-day-main { width: 100%; max-width: none; }
+
+  .thumbnail-column { width: 100%; max-width: none; height: auto; max-height: none; }
+
+  #thumbnailPanel { width: 100%; max-height: 320px; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; transition: max-height 0.35s ease, opacity 0.25s ease; }
+
+#thumbnailPanel.collapsed { max-height: 0 !important; height: 0 !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; opacity: 0; overflow: hidden; }
+
+  /* Four thumbnails per row on tablets */
+  .thumbnail-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 8px; }
+
+  /* Show gallery collapse button */
+  .gallery-toggle { display: flex; align-items: center; justify-content: center; flex: 0 0 42px; width: 42px; height: 42px; border: 1px solid #ccc; border-radius: 4px; background: white; color: #555; font-size: 18px;cursor: pointer; transition: background 0.2s ease; }
+
+  .gallery-toggle:hover { background: #f3f3f3; }
+
+  /* Map responsive layout */
+  #mainPanel { display: flex; flex-direction: row; gap: 0; align-items: stretch; margin: 0; padding: 0; }
+	
+  #infoPanel { position: absolute; top: 10px; left: 0; width: 65vw; max-width: 260px; height: 60vh; padding-left: 12px; z-index: 2000; background: transparent; border-radius: 10px; }
+
+  #map { height: 65vh; min-height: 450px; }
+
+  #speciesList { max-height: calc(65vh - 110px); }
+
+  .panel-box.fixed-height { margin-bottom: 10px; }
+
+  .panel-box.merged-panel { flex: 1 1 auto; height: 100%; border-radius: 10px; margin-left: 0; }
+}
+
+@media (max-width: 768px) {
+	header h1 { font-size: 28px; }
+    
+	header h2 { font-size: 16px; }
+   
+	header { padding: 8px 12px; }
+
+	#thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; margin: 0; overflow: visible; }
+	
+	#thumbnailPanel { max-height: 260px; }
+	
+	.panel-box.hamburger-photo img { width: 80px; height: 80px; }
+	
+	.panel-box.hamburger-social { height: 80px; }
+
+	.panel-box.hamburger-social a { width: 32px; height: 32px; }
   
-  "European Herring x Glaucous Gull (hybrid)": {
-    "photo": "https://res.cloudinary.com/dtkdzyvah/image/upload/v1789413588/rP9W1JZ_-_Imgur_qc54uy.jpg",
-    "countries": ["Norway"]
+	.panel-box p { font-size: 17px; line-height: 1.5; }
+
+	.explore-title { font-size: 1rem; font-weight: 600; white-space: nowrap; }
+	
+	#countryName { font-size: 24px; }
+	
+    #countryCount { font-size: 17px; line-height: 1.5; }
+	
+    .species-btn { font-size: 17px; line-height: 1.3; }
+	
+    .species-li { margin-bottom: 6px; }
+
+   #birdSearch,
+   #birdSort,
+   #countryFilter,
+   .gallery-toggle { height: 42px; box-sizing: border-box; }
+  .about-text { line-height: 1.45; margin-top: 6px; } 
+
+  .bird-copyright { font-size: 11px; }
+
+  .thumbnail-search { flex: 1 1 100%; }
+  .thumbnail-select { flex: 0 0 72px; width: 72px; }
+  .country-select { flex: 0 0 auto; width: auto; max-width: 40vw; }
+  .toolbar-right { flex-shrink: 1; }
+}
+	  
+  @media (max-width: 600px) { 
+	.nav-arrow { font-size: 30px; }
+    .left-arrow { left: 8px; }
+    .right-arrow { right: 8px; } 
+  }
+
+@media (max-width: 480px) {
+
+  header h1 { font-size: 22px; }
+
+  header h2 { font-size: 14px; }
+
+  header { padding: 6px 10px; }
+
+  #thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; }
+
+  #thumbnailPanel { max-height: 240px; }
+
+  .thumbnail-controls { gap: 6px; padding: 6px; }
+
+  .thumbnail-search { min-width: 0; padding-inline: 8px; }
+
+  .thumbnail-select { padding-inline: 7px; }
+}
+
+</style>
+	  
+	<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y9xn5xuu6l");
+</script>
+	
+</head>
+<body>
+<div class="site-page">
+  <!-- Page header with title and author -->
+  <header>
+    <h1>BirdBlog</h1>
+    <h2>Sujan Abu Jafar</h2>
+	<button id="hamburgerToggle" class="hamburger-btn" aria-label="Open menu" aria-controls="hamburgerPanel" aria-expanded="false">
+	  ☰
+	</button>
+
+  </header>
+
+<!-- === Bird Photo of the Day Layout === -->
+<div class="bird-day-layout">
+<div class="bird-day-main">
+  <!-- LEFT: Main Bird Image -->
+
+<div class="bird-day-frame">
+
+<img id="dailyBirdImage"
+     class="bird-day-image"
+     src=""
+     alt="Featured Bird">
+
+<!-- Arrows -->
+<div onclick="navigateBird(-1)"
+     class="nav-arrow left-arrow"
+     aria-label="Previous">
+  &#10094;
+</div>
+
+<div onclick="navigateBird(1)"
+     class="nav-arrow right-arrow"
+     aria-label="Next">
+  &#10095;
+</div>
+
+<!-- Swipe dots -->
+<div class="swipe-indicator">
+
+<span class="dot left-dot"></span>
+
+<button
+  id="slideshowToggle"
+  class="center-dot slideshow-dot"
+  aria-label="Start slideshow">
+  ▶
+</button>
+
+<span class="dot right-dot"></span>
+
+</div>
+
+</div>
+
+<!-- Caption now OUTSIDE the 16:9 frame -->
+<div id="birdNameBar" class="bird-caption-bar">
+
+  <!-- Hidden drawer -->
+  <div id="birdInfoDrawer" class="bird-info-drawer">
+
+    <div class="drawer-scientific">
+      Scientific name
+    </div>
+
+    <div class="drawer-observed">
+    </div>
+
+<div class="drawer-trivia">
+  ℹ️ Bird facts coming soon
+</div>
+
+  </div>
+
+<div class="bird-title-group">
+
+  <span id="dailyBirdCaption">
+    Loading...
+  </span>
+
+  <button
+    id="birdInfoToggle"
+    class="bird-info-toggle"
+    aria-label="Show bird info">
+    △
+  </button>
+
+</div>
+
+<div class="bird-copyright">
+  © Sujan Abu Jafar
+</div>
+
+</div>
+
+</div> <!-- bird-day-main -->
+
+<!-- RIGHT: Thumbnails -->
+<div class="thumbnail-column">
+
+  <!-- Search / Sort Bar -->
+<div id="thumbnailControls"
+     class="thumbnail-controls">
+
+<button
+  id="searchToggle"
+  class="thumbnail-search-button"
+  aria-label="Search species">
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    aria-hidden="true">
+    <circle
+      cx="10"
+      cy="10"
+      r="6"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="2.2"/>
+    <line
+      x1="14.5"
+      y1="14.5"
+      x2="19"
+      y2="19"
+      stroke="#ffffff"
+      stroke-width="2.2"
+      stroke-linecap="round"/>
+  </svg>
+</button>
+
+<input
+  type="text"
+  id="birdSearch"
+  class="thumbnail-search collapsed-search"
+  placeholder="Search species...">
+
+<div class="toolbar-right">
+
+  <select id="countryFilter"
+          class="country-select">
+  </select>
+
+  <select id="birdSort"
+          class="thumbnail-select">
+    <option value="alpha">A-Z</option>
+    <option value="random">Random</option>
+    <option value="country">Country</option>
+  </select>
+
+  <button id="toggleGalleryBtn"
+          class="gallery-toggle"
+          aria-label="Collapse gallery">
+    −
+  </button>
+
+</div>
+
+  </div>
+
+<div id="thumbnailPanel">
+
+<div id="thumbnailGallery"
+     class="thumbnail-grid">
+
+      <!-- Thumbnails will be injected here -->
+
+    </div>
+	  
+  </div>
+	
+</div>
+</div>
+
+<!-- EXPLORE PANEL -->
+<div class="explore-banner">
+  <div class="explore-inner">
+
+    <h2 class="explore-title">🌍 Select a country to explore species & photos</h2>
+
+    <div class="explore-ticker">
+      <div id="exploreTicker"
+           class="explore-ticker-content">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAIN PANEL -->
+
+<div id="mainPanel">
+
+  <div id="infoPanel">
+
+<!-- Merged Country & Species panel -->
+<div class="panel-box merged-panel">
+	<button id="closeCountryPanel"
+        class="panel-close">
+  ✕
+</button>
+	
+  <h2 id="countryName">Country</h2>
+	
+  <!-- tighter gap, smaller count text -->
+  <p id="countryCount">Click a country to view species list</p>
+
+  <!-- Scrollable species list with compact spacing -->
+  <div id="speciesList">
+    <p style="text-align:center; color:#555; margin: 6px 0;">
+    <!-- species items will be inserted here -->
+  </div>
+</div>
+
+  </div>
+
+  <div id="mapContainer">
+    <div id="map">
+	</div>
+</div>
+
+
+</div>
+
+
+<!-- OUTSIDE MAIN PANEL -->
+<div id="imageContainer">
+  <img id="speciesImage" src="" alt="">
+</div>
+<div id="message"></div>
+
+<footer>
+  <p>© 2026 Sujan Abu Jafar | Powered by eBird Data</p>
+</footer>
+
+</div><!-- End .site-page -->
+
+
+  <script>
+    const map = L.map('map', { center: [20, 0], zoom: 1.5, minZoom: 1.5, maxZoom: 4, zoomControl: false, scrollWheelZoom: false });
+L.control.zoom({
+  position: 'topright'
+}).addTo(map);
+	  
+L.tileLayer(
+  'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}',
+  {
+    attribution: 'Tiles © Esri'
+  }
+).addTo(map);
+
+
+
+ const birdData = { "Norway": 192, "Sweden": 61, "Finland": 35, "Denmark": 115, "Italy": 60, "United Kingdom": 44, "Netherlands": 127, "Germany": 18, "Poland": 3, "Czech Republic": 2, "Latvia": 13, "Greece": 22, "Estonia": 55, "Bangladesh": 185, "Thailand": 126, "Aruba": 72, "Curaçao": 60, "Belgium": 33 };
+ 
+ const flags = { "Norway": "no", "Sweden": "se", "Finland": "fi", "Denmark": "dk", "Italy": "it", "United Kingdom": "gb", "Netherlands": "nl", "Germany": "de", "Poland": "pl", "Czech Republic": "cz", "Latvia": "lv", "Greece": "gr", "Estonia": "ee", "Bangladesh": "bd", "Thailand": "th", "Aruba": "aw", "Curaçao": "cw", "Belgium": "be" };
+	  
+// ✅ GLOBAL VARIABLES
+let birds = {};
+let birdKeys = [];
+let scientificNames = {};	  
+let currentBirdIndex = 0;
+let shuffledBirds = [];
+
+let slideshowTimer = null;
+let slideshowRunning = false;
+
+ 
+// ✅ LOAD bird data from JSON
+fetch('scientific_names.csv')
+  .then(response => response.text())
+  .then(text => {
+
+    const lines = text.trim().split('\n');
+
+    lines.slice(1).forEach(line => {
+
+      const [commonName, scientificName] =
+        line.split(';');
+
+      if (commonName && scientificName) {
+
+        scientificNames[
+          commonName.trim()
+        ] = scientificName.trim();
+
+      }
+
+    });
+
+    return fetch('birds.json');
+
+  })
+  .then(response => response.json())
+  .then(data => {
+
+    birds = data;
+    birdKeys = Object.keys(birds);
+birdKeys.forEach(name => {
+
+  const preload = new Image();
+
+  preload.src =
+    birds[name].photo;
+
+});
+    shuffledBirds =
+      shuffleArray(Object.entries(birds));
+
+    initApp();
+
+  })
+  .catch(error => {
+    console.error("Error loading birds.json:", error);
+  });
+	
+function initApp() {
+
+  speciesList = Object.keys(birds);
+
+  updateTicker();
+
+  showRandomBird();
+
+loadThumbnails(
+  [...Object.entries(birds)]
+    .sort((a, b) =>
+      a[0].localeCompare(b[0])
+    )
+);
+
+  const countryFilter =
+    document.getElementById("countryFilter");
+
+  const countries = [
+    ...new Set(
+      Object.values(birds)
+        .flatMap(b => b.countries || [])
+    )
+  ].sort();
+
+  countryFilter.innerHTML =
+    '<option value="">Select country</option>';
+
+  countries.forEach(country => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = country;
+    option.textContent = country;
+
+    countryFilter.appendChild(option);
+  });
+}
+
+function updateTicker() {
+
+  let html =
+    "🌍 World 545 species";
+
+  Object.entries(birdData)
+    .sort((a,b) => b[1] - a[1])
+    .forEach(([country,count]) => {
+
+      const code = flags[country];
+
+      if (!code) return;
+
+      html += `
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <img
+          src="https://flagcdn.com/24x18/${code}.png"
+          alt="${country}"
+          class="ticker-flag">
+        ${country} ${count}
+      `;
+
+    });
+
+  document.getElementById("exploreTicker")
+    .innerHTML = html;
+
+}
+
+// ✅ Bird of the day
+function showRandomBird() {
+
+  currentBirdIndex =
+    Math.floor(Math.random() * birdKeys.length);
+
+  const randomBird =
+    birdKeys[currentBirdIndex];
+
+  const photoUrl =
+    birds[randomBird].photo;
+
+  document.getElementById(
+    "dailyBirdImage"
+  ).src = photoUrl;
+
+  document.getElementById(
+    "dailyBirdImage"
+  ).alt = randomBird;
+
+  document.getElementById(
+    "dailyBirdCaption"
+  ).textContent = randomBird;
+
+document.querySelector(
+  ".drawer-scientific"
+).textContent =
+  scientificNames[randomBird] || "";
+
+
+document.querySelector(
+  ".drawer-observed"
+).textContent =
+ `🌍 ${birds[randomBird].countries.join(", ")}`;
+
+}
+
+// ✅ Navigation
+
+function showBird(name, url) {
+
+  const img =
+    document.getElementById("dailyBirdImage");
+
+  img.style.opacity = "0";
+
+  setTimeout(() => {
+
+    img.src = url;
+    img.alt = name;
+
+    document.getElementById(
+      "dailyBirdCaption"
+    ).textContent = name;
+
+    document.querySelector(
+      ".drawer-scientific"
+    ).textContent =
+      scientificNames[name] ||
+      "Scientific name unavailable";
+
+document.querySelector(
+  ".drawer-observed"
+).textContent =
+  `🌍 ${birds[name].countries.join(", ")}`;
+
+    img.style.opacity = "1";
+
+  }, 50);
+
+}
+	  
+function navigateBird(direction) {
+if (slideshowRunning) {
+  stopSlideshow();
+}
+  currentBirdIndex += direction;
+
+  if (currentBirdIndex < 0)
+    currentBirdIndex = birdKeys.length - 1;
+
+  if (currentBirdIndex >= birdKeys.length)
+    currentBirdIndex = 0;
+
+  const name = birdKeys[currentBirdIndex];
+  const url = birds[name].photo;
+
+  showBird(name, url);
+
+  animateSwipeDots(direction);
+
+}
+function advanceSlideshowBird() {
+
+  currentBirdIndex++;
+
+  if (currentBirdIndex >= birdKeys.length) {
+    currentBirdIndex = 0;
+  }
+
+  const name = birdKeys[currentBirdIndex];
+  const url = birds[name].photo;
+
+  showBird(name, url);
+
+  animateSwipeDots(1);
+
+}
+function animateSwipeDots(direction) {
+
+  const dot = document.querySelector(
+    direction > 0
+      ? ".right-dot"
+      : ".left-dot"
+  );
+
+  if (!dot) return;
+
+  dot.classList.add("swipe-active");
+
+  setTimeout(() => { dot.classList.remove("swipe-active"); }, 250);
+
+}
+
+function startSlideshow() {
+
+  if (slideshowRunning) return;
+
+  slideshowRunning = true;
+
+  const btn =
+    document.getElementById("slideshowToggle");
+
+  if (btn) {
+    btn.textContent = "❚❚";
+    btn.classList.add("playing");
+    btn.setAttribute(
+      "aria-label",
+      "Pause slideshow"
+    );
+  }
+
+  slideshowTimer = setInterval(() => {
+
+   advanceSlideshowBird(1);
+
+  }, 5000);
+
+}
+
+function stopSlideshow() {
+
+  slideshowRunning = false;
+
+  clearInterval(slideshowTimer);
+  slideshowTimer = null;
+
+  const btn =
+    document.getElementById("slideshowToggle");
+
+  if (btn) {
+    btn.textContent = "▶";
+    btn.classList.remove("playing");
+    btn.setAttribute(
+      "aria-label",
+      "Start slideshow"
+    );
+  }
+
+}
+
+function toggleSlideshow() {
+
+  if (slideshowRunning) {
+    stopSlideshow();
+  } else {
+    startSlideshow();
+  }
+
+}
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if (
+      document.hidden &&
+      slideshowRunning
+    ) {
+      stopSlideshow();
+    }
+
+  }
+);
+	  
+window.addEventListener("DOMContentLoaded", () => {
+  const birdFrame = document.querySelector(".bird-day-frame");
+  if (!birdFrame) return;
+  let startX = 0;
+  let startY = 0;
+  birdFrame.addEventListener("touchstart", e => { 
+    startX = e.changedTouches[0].screenX; 
+	startY = e.changedTouches[0].screenY;
+  });
+
+  birdFrame.addEventListener("touchend", e => { 
+	const endX = e.changedTouches[0].screenX;
+	const endY = e.changedTouches[0].screenY;
+	  const dx = Math.abs(endX - startX);
+	  const dy = Math.abs(endY - startY);
+	if (dx < dy) return;
+    const SWIPE_THRESHOLD = 120;
+    if (endX < startX - SWIPE_THRESHOLD) { navigateBird(1); }
+    else if (endX > startX + SWIPE_THRESHOLD) { navigateBird(-1); }
+  });
+const slideshowBtn =
+  document.getElementById("slideshowToggle");
+
+if (slideshowBtn) {
+
+  slideshowBtn.addEventListener(
+    "click",
+    (e) => {
+
+      e.stopPropagation();
+
+      toggleSlideshow();
+
+    }
+  );
+
+}
+	
+});
+	  
+// === Inject Thumbnails ===
+function shuffleArray(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function loadThumbnails(list = Object.entries(birds)) {
+
+  const gallery = document.getElementById("thumbnailGallery");
+
+  gallery.innerHTML = "";
+
+list.forEach(([name, data]) => {
+
+  const wrapper = document.createElement("div");
+wrapper.style = ` position: relative; width: 100%; aspect-ratio: 16 / 9; cursor: pointer; overflow: hidden; border-radius: 4px; background: #e8e8e8; `;
+
+  const thumb = document.createElement("img");
+  thumb.loading = "eager";
+  thumb.decoding = "async";
+  thumb.src = data.photo;
+  thumb.alt = name;
+  thumb.title = name;
+  thumb.style = ` display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.18); transition: transform 0.2s ease; `;
+
+  const label = document.createElement("div");
+  label.textContent = name;
+  label.style = `
+    position:absolute; bottom:0; left:0; width:100%; background:rgba(0,0,0,0.5); color:white; font-size:12px; padding:4px 6px; box-sizing:border-box;
+    text-align:center; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:0;
+	transform:translateY(100%); transition:opacity 0.2s ease, transform 0.2s ease;
+  `;
+
+  wrapper.appendChild(thumb);
+  wrapper.appendChild(label);
+
+wrapper.onmouseenter = () => {
+  thumb.style.transform = "scale(1.05)";
+  label.style.opacity = "1";
+  label.style.transform = "translateY(0)";
+};
+
+wrapper.onmouseleave = () => {
+  thumb.style.transform = "scale(1)";
+  label.style.opacity = "0";
+  label.style.transform = "translateY(100%)";
+};
+wrapper.onclick = () => {
+
+  currentBirdIndex =
+    birdKeys.indexOf(name);
+
+  showBird(name, data.photo);
+
+};
+
+gallery.appendChild(wrapper);
+  });
+}
+document.addEventListener("DOMContentLoaded", () => {
+
+  const searchBox =
+    document.getElementById("birdSearch");
+
+  const sortBox =
+    document.getElementById("birdSort");
+
+  const countryBox =
+    document.getElementById("countryFilter");
+
+  function updateGallery() {
+
+    let list = Object.entries(birds);
+
+    const search =
+      searchBox.value.toLowerCase();
+
+    if (search) {
+
+      list = list.filter(([name]) =>
+        name.toLowerCase().includes(search)
+      );
+    }
+
+if (sortBox.value === "alpha") {
+
+  list.sort((a, b) =>
+    a[0].localeCompare(b[0])
+  );
+
+} else if (sortBox.value === "random") {
+
+  list = shuffleArray(
+    Object.entries(birds)
+  );
+
+} else if (
+  sortBox.value === "country" &&
+  countryBox.value
+) {
+
+  list = list.filter(([name, data]) =>
+    data.countries &&
+    data.countries.includes(countryBox.value)
+  );
+
+}
+
+
+    loadThumbnails(list);
+  }
+
+  sortBox.addEventListener("change", () => {
+
+if (sortBox.value === "country") {
+
+  countryBox.style.display = "block";
+  countryBox.style.flex = "0 0 auto";
+  countryBox.style.width = "auto";
+  countryBox.style.opacity = "1";
+
+} else {
+
+  countryBox.style.display = "none";
+  countryBox.style.flex = "0 0 0";
+  countryBox.style.width = "0";
+  countryBox.style.opacity = "0";
+  countryBox.value = "";
+
+}
+
+    updateGallery();
+  });
+
+  countryBox.addEventListener(
+    "change",
+    updateGallery
+  );
+
+  searchBox.addEventListener(
+    "input",
+    updateGallery
+  );
+
+});
+   
+   
+    // ======== PHOTO VIEWER LOGIC ========
+    let speciesList = [];
+    let currentIndex = -1;
+    const img = document.getElementById("speciesImage");
+    const message = document.getElementById("message");
+    const closeBtn = document.getElementById("closeLightbox");
+
+    function showSpecies(name) {
+  const photoUrl = birds[name]?.photo;
+  if (photoUrl) {
+    document.getElementById('lightboxImage').src = photoUrl;
+    document.getElementById('lightboxImage').alt = name;
+document.getElementById('lightboxCaption').textContent = name;
+    document.getElementById('lightbox').style.display = 'flex';
+  } else {
+    alert("No photo available for this species.");
   }
 }
+// Wait until the DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+  // Close when ❌ clicked
+  document.getElementById('closeLightbox').onclick = () => {
+    document.getElementById('lightbox').style.display = 'none';
+  };
+
+  // Close when background clicked
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') {
+      e.currentTarget.style.display = 'none';
+    }
+  });
+});
+
+    window.showSpecies = showSpecies;
+
+    img.addEventListener("click", () => {
+      if (img.requestFullscreen) {
+        img.requestFullscreen();
+      } else if (img.webkitRequestFullscreen) {
+        img.webkitRequestFullscreen();
+      } else if (img.msRequestFullscreen) {
+        img.msRequestFullscreen();
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        closeBtn.classList.add("visible");
+      } else {
+        closeBtn.classList.remove("visible");
+      }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    img.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    img.addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        currentIndex = (currentIndex + 1) % speciesList.length;
+        showSpecies(speciesList[currentIndex]);
+      } else if (touchEndX > touchStartX + 50) {
+        currentIndex = (currentIndex - 1 + speciesList.length) % speciesList.length;
+        showSpecies(speciesList[currentIndex]);
+      }
+    }
+
+    // ======== MAP CHOROPLETH LOGIC ========
+    // ======== MAP CHOROPLETH LOGIC ========
+
+    function getColor(count) {
+      if (!count || count <= 0) return '#ffffff';
+      const max = 200;
+      const ratio = Math.min(count / max, 1);
+const stops = [
+  [255, 245, 0],
+  [255, 205, 0],
+  [245, 165, 0],
+  [235, 125, 0],
+  [220, 85, 0],
+  [200, 45, 0],
+  [175, 20, 0],
+  [145, 0, 0]
+];
+	  const idx = Math.floor(ratio * (stops.length - 1));
+      const next = Math.min(idx + 1, stops.length - 1);
+      const local = (ratio * (stops.length - 1)) % 1;
+      const lerp = (a, b) => Math.round(a + (b - a) * local);
+      const r = lerp(stops[idx][0], stops[next][0]);
+      const g = lerp(stops[idx][1], stops[next][1]);
+      const b = lerp(stops[idx][2], stops[next][2]);
+      return `rgb(${r},${g},${b})`;
+    }
+
+    const aliasMap = {
+      "United States of America": "United States",
+      "Russian Federation": "Russia",
+      "Curacao": "Curaçao",
+      "Aruba": "Aruba"
+    };
+    const normalizeName = n => aliasMap[n] || n;
+
+    function countryStyle(name) {
+      const count = birdData[name] || 0;
+      return {
+        fillColor: getColor(count),
+        color: '#333',
+        weight: 0.8,
+        fillOpacity: 0.65
+      };
+    }
+
+    const legend = L.control({ position: 'bottomright' });
+    legend.onAdd = function() {
+      const div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = `
+        <div class="legend-container">
+      <span class="legend-label">1</span>
+      <div class="scale"></div>
+      <span class="legend-label">200+</span>
+    </div>
+  `;
+      return div;
+    };
+    legend.addTo(map);
+
+    
+
+fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+  .then(r => r.json())
+  .then(data => {
+    const filtered = {
+      type: 'FeatureCollection',
+      features: data.features.filter(f => (normalizeName(f.properties.name) in birdData))
+    };
+
+    // --- ✅ STATE + ESC ---
+    let selectedName = null;
+    let selectedCount = 0;
+
+    function resetCountryPanel() {
+      selectedName  = null;
+      selectedCount = 0;
+
+      document.getElementById('countryName').textContent  = 'Country';
+      document.getElementById('countryCount').textContent = 'Click a country to view species list';
+
+      const speciesListDiv = document.getElementById('speciesList');
+      speciesListDiv.innerHTML = `
+        <p style="text-align:center; color:#555; margin: 6px 0;">
+        </p>`;
+    }
+document
+  .getElementById("closeCountryPanel")
+  .addEventListener("click", () => {
+
+    resetCountryPanel();
+
+    document
+      .getElementById("infoPanel")
+      .classList.remove("open");
+
+  });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    resetCountryPanel();
+    document.getElementById("infoPanel").classList.remove("open");
+  }
+});
+
+    // ✅ Helper: render species list for the current selection
+    function renderSelectedSpeciesList() {
+      const speciesListDiv = document.getElementById('speciesList');
+      speciesListDiv.innerHTML = '';
+
+      if (!selectedName) {
+        speciesListDiv.innerHTML = `
+          <p style="text-align:center; color:#555; margin: 6px 0;">
+                   </p>`;
+        return;
+      }
+
+const filteredBirds = Object.entries(birds)
+  .filter(([name, data]) => data.countries.includes(selectedName))
+  .map(([name]) => name);
+
+if (filteredBirds.length === 0) {
+  speciesListDiv.innerHTML = `<p style="text-align:center; color:#555;">
+    No species data available for ${selectedName}
+  </p>`;
+  return;
+}
+
+      const ul = document.createElement('ul');
+      ul.className = 'species-ul';
+
+      filteredBirds.forEach(birdName => {
+        const li  = document.createElement('li');
+        li.className = 'species-li';
+
+        const btn = document.createElement('button');
+        btn.className = 'species-btn';
+        btn.textContent = birdName;
+        btn.onclick = () => showSpecies(birdName);
+
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+
+      speciesListDiv.appendChild(ul);
+    }
+    // --- end state ---
+
+    const geoLayer = L.geoJSON(filtered, {
+      style: f => countryStyle(normalizeName(f.properties.name)),
+
+      onEachFeature: (feature, layer) => {
+        const name  = normalizeName(feature.properties.name);
+        const count = birdData[name] || 0;
+
+        // ✅ HOVER: update header + temporarily hide species list if hovering another country
+        layer.on('mouseover', () => {
+          document.getElementById('countryName').textContent  = name;
+          document.getElementById('countryCount').textContent = `${count} species observed`;
+          layer.setStyle({ weight: 2, color: '#111' });
+          if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) layer.bringToFront();
+
+          // Hide the species list if hovering a different country than the selected one
+          if (selectedName !== name) {
+            const speciesListDiv = document.getElementById('speciesList');
+            speciesListDiv.innerHTML = `
+              <p style="text-align:center; color:#777; margin: 6px 0;">
+                Click to view details: ${name}...
+              </p>`;
+          }
+        });
+
+        // ✅ HOVER OUT: restore header + restore species list to last selected
+        layer.on('mouseout', () => {
+          if (selectedName) {
+            document.getElementById('countryName').textContent  = selectedName;
+            document.getElementById('countryCount').textContent = `${selectedCount} species observed`;
+            renderSelectedSpeciesList(); // restore list to the locked selection
+          } else {
+            document.getElementById('countryName').textContent  = 'Country';
+            document.getElementById('countryCount').textContent = 'Click a country to view species details';
+            renderSelectedSpeciesList(); // default placeholder
+          }
+          geoLayer.resetStyle(layer);
+        });
+
+        // ✅ CLICK: lock selection + render list
+        layer.on('click', () => {
+          selectedName  = name;
+          selectedCount = count;
+          document.getElementById("infoPanel").classList.add("open");
+          document.getElementById('countryName').textContent  = name;
+          document.getElementById('countryCount').textContent = `${count} species observed`;
+          
+          renderSelectedSpeciesList(); // centralized list rendering
+        });
+
+        layer.bindTooltip(`${name}: ${count} species`, { sticky: true });
+      }
+    }).addTo(map);
+
+ const customMarkers = {
+  "Aruba": { lat: 14.2,  lng: -73.0, realLat: 12.5211, realLng: -69.9683, radius: 10 },
+  "Curaçao": { lat: 9.8, lng: -66.5, realLat: 12.1696, realLng: -68.99, radius: 10 }
+};
+
+    // ✅ Markers (normalize names for consistency)
+    Object.entries(customMarkers).forEach(([rawName, coords]) => {
+      const name  = normalizeName(rawName);
+      const count = birdData[name] || 0;
+
+const marker = L.circleMarker([coords.lat, coords.lng], {
+  radius: coords.radius || 6,
+  fillColor: getColor(count),
+  color: '#333',
+  weight: 1.5,
+  fillOpacity: 0.75
+}).addTo(map);
+
+marker.bindTooltip(`${name}: ${count} species`, {
+  permanent: false,
+  direction: 'top'
+});
+
+      // ✅ HOVER: same temporary reset behavior as countries
+      marker.on('mouseover', () => {
+        document.getElementById('countryName').textContent  = name;
+        document.getElementById('countryCount').textContent = `${count} species observed`;
+
+        if (selectedName !== name) {
+          const speciesListDiv = document.getElementById('speciesList');
+          speciesListDiv.innerHTML = `
+            <p style="text-align:center; color:#777; margin: 6px 0;">
+              Click to view details: ${name}...
+            </p>`;
+        }
+      });
+
+      // ✅ HOVER OUT: restore selection (or default)
+      marker.on('mouseout', () => {
+        if (selectedName) {
+          document.getElementById('countryName').textContent  = selectedName;
+          document.getElementById('countryCount').textContent = `${selectedCount} species observed`;
+          renderSelectedSpeciesList();
+        } else {
+          document.getElementById('countryName').textContent  = 'Country';
+          document.getElementById('countryCount').textContent = 'Click a country to view species details';
+          renderSelectedSpeciesList();
+        }
+      });
+
+      // ✅ CLICK: lock selection + render list
+      marker.on('click', () => {
+        selectedName  = name;
+        selectedCount = count;
+        document.getElementById("infoPanel").classList.add("open");
+        document.getElementById('countryName').textContent  = name;
+        document.getElementById('countryCount').textContent = `${count} species observed`;
+
+        renderSelectedSpeciesList();
+      });
+
+    });
+  })
+  .catch(err => {
+    console.error('GeoJSON load error:', err);
+    document.getElementById('info').textContent = 'Could not load map data. Check your internet connection.';
+  });
+
+
+ // Attach lightbox close handlers after the DOM is parsed
+    window.addEventListener('DOMContentLoaded', () => {
+      const lightbox = document.getElementById('lightbox');
+      const closeBtn = document.getElementById('closeLightbox');
+
+      // Close on ❌
+      closeBtn.onclick = () => {
+        lightbox.style.display = 'none';
+      };
+
+      // Close when clicking the dark background
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = 'none';
+        }
+      });
+    });
+	  
+  </script>
+	
+<!-- Lightbox popup -->
+<div id="lightbox" class="lightbox">
+  
+<span id="closeLightbox"
+      class="lightbox-close">
+	  &times;
+      </span>
+  
+<img id="lightboxImage"
+     class="lightbox-image"
+     src=""
+     alt="">
+	
+<div id="lightboxCaption"
+     class="lightbox-caption">
+    Species name here
+  </div>
+</div>
+
+
+<!-- About/Links hamburger panel (overlays the thumbnail column) -->
+<div id="hamburgerPanel" class="hamburger-panel" role="dialog" aria-modal="true" aria-labelledby="hamburgerPanelTitle" hidden>
+
+<div class="hamburger-top">
+  <div class="panel-box hamburger-photo">
+    <img
+  class="profile-image"
+  src="https://i.imgur.com/rinr6Zc.jpeg"
+  alt="Profile photo">
+</div>
+<div class="panel-box hamburger-social">
+
+  <!-- Instagram -->
+  <a
+    href="https://www.instagram.com/birdblog.majsujan/"
+    target="_blank"
+    rel="noopener"
+    aria-label="Instagram"
+    title="Instagram"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="40"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path
+        fill="#ffffff"
+        d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7z"
+      />
+      <path
+        fill="#ffffff"
+        d="M12 7a5 5 0 110 10 5 5 0 010-10z"
+      />
+      <circle
+        cx="17.4"
+        cy="6.6"
+        r="1.1"
+        fill="#ffffff"
+      />
+    </svg>
+  </a>
+
+  <!-- Flickr -->
+  <a
+    href="https://www.flickr.com/photos/birdblog-suzonabuzafor/"
+    target="_blank"
+    rel="noopener"
+    aria-label="Flickr"
+    title="Flickr"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="40"
+      viewBox="0 0 22 14"
+      aria-hidden="true"
+    >
+      <circle
+        cx="6"
+        cy="7"
+        r="5"
+        fill="#0063dc"
+      />
+      <circle
+        cx="16"
+        cy="7"
+        r="5"
+        fill="#ff0084"
+      />
+    </svg>
+  </a>
+
+</div>
+ </div>
+  <div class="about-title">BirdBlog by Sujan Abu Jafar</div>
+  <div class="about-text">Bird enthusiast and photographer, medical doctor, and life science researcher from Bangladesh — currently based in Trondheim, Norway. This website is a personal showcase of my birdwatching journey, which began in 2020. It will be regularly updated with new sightings and photographs.</div>
+</div>
+<script>
+
+// === Hamburger panel logic ===
+(function () {
+  const btn   = document.getElementById('hamburgerToggle');
+  const panel = document.getElementById('hamburgerPanel');
+
+  // Find the thumbnail panel (the parent element that wraps #thumbnailGallery)
+function getThumbContainer() {
+  const controls = document.getElementById('thumbnailControls');
+  return controls ? controls.parentElement : null;
+}
+
+  // Position the panel so it overlays the thumbnail column
+  function positionPanelToThumb() {
+    const container = getThumbContainer();
+    const headerEl  = document.querySelector('header');
+
+    // Fallbacks if container is missing
+    if (!container) {
+      // Default to right side, below header, with a sane size
+      const top  = (headerEl?.getBoundingClientRect().bottom || 0) + window.scrollY + 8;
+      const w    = Math.min(420, Math.max(300, window.innerWidth * 0.28));
+      const h    = 560;
+      const left = window.scrollX + window.innerWidth - w - 12;
+
+      panel.style.left   = `${left}px`;
+      panel.style.top    = `${top}px`;
+      panel.style.width  = `${w}px`;
+      panel.style.height = `${h}px`;
+      return;
+    }
+
+    const r = container.getBoundingClientRect();
+    panel.style.left   = `${r.left + window.scrollX}px`;
+    panel.style.top    = `${r.top + window.scrollY}px`;
+    panel.style.width  = `${r.width}px`;
+    panel.style.height = `${r.height}px`;
+  }
+
+  function openPanel() {
+    positionPanelToThumb();
+    panel.hidden = false;
+    btn.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+
+    // Keep it aligned on scroll/resize while open
+    window.addEventListener('resize', positionPanelToThumb);
+
+    // Close on Escape
+    document.addEventListener('keydown', onEsc);
+    // Close when clicking outside
+    setTimeout(() => document.addEventListener('click', outsideClick, { capture: true }), 0);
+  }
+
+  function closePanel() {
+    panel.hidden = true;
+    btn.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    window.removeEventListener('resize', positionPanelToThumb);
+    document.removeEventListener('keydown', onEsc);
+    document.removeEventListener('click', outsideClick, { capture: true });
+  }
+
+  function togglePanel() {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    if (expanded) closePanel();
+    else openPanel();
+  }
+
+  function onEsc(e) {
+    if (e.key === 'Escape') closePanel();
+  }
+
+  function outsideClick(e) {
+    if (panel.contains(e.target) || btn.contains(e.target)) return;
+    closePanel();
+  }
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePanel();
+  });
+})();
+</script>
+<script>
+
+function syncThumbnailHeight() {
+
+  const thumbSide =
+    document.querySelector(".thumbnail-column");
+
+  if (!thumbSide) return;
+
+  if (window.innerWidth <= 1024) {
+
+    thumbSide.style.height = "";
+    return;
+  }
+
+  const photoSide =
+    document.querySelector(".bird-day-main");
+
+  if (!photoSide) return;
+
+thumbSide.style.height =
+  `${photoSide.getBoundingClientRect().height}px`;
+}
+
+window.addEventListener("load", syncThumbnailHeight);
+window.addEventListener("resize", syncThumbnailHeight);
+
+const featuredImage =
+  document.getElementById("dailyBirdImage");
+
+if (featuredImage) {
+  featuredImage.addEventListener(
+    "load",
+    syncThumbnailHeight
+  );
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn =
+    document.getElementById("toggleGalleryBtn");
+
+  const panel =
+    document.getElementById("thumbnailPanel");
+
+  if (!btn || !panel) return;
+
+  btn.addEventListener("click", () => {
+
+    panel.classList.toggle("collapsed");
+
+    btn.textContent =
+      panel.classList.contains("collapsed")
+        ? "+"
+        : "−";
+
+  });
+
+});
+
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const searchBtn =
+    document.getElementById("searchToggle");
+
+  const searchInput =
+    document.getElementById("birdSearch");
+
+  if (!searchBtn || !searchInput) return;
+
+searchBtn.addEventListener("click", () => {
+
+  searchInput.classList.toggle("collapsed-search");
+
+  if (!searchInput.classList.contains("collapsed-search")) {
+
+    searchInput.focus();
+
+  } else {
+
+    searchInput.value = "";
+
+    searchInput.dispatchEvent(
+      new Event("input")
+    );
+
+  }
+
+});
+
+});
+
+</script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const btn =
+    document.getElementById("birdInfoToggle");
+
+  const drawer =
+    document.getElementById("birdInfoDrawer");
+
+  if (!btn || !drawer) return;
+
+  btn.addEventListener("click", () => {
+
+    drawer.classList.toggle("open");
+
+    btn.classList.toggle("open");
+
+btn.textContent =
+  drawer.classList.contains("open")
+    ? "▽"
+    : "△";
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
