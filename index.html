@@ -264,159 +264,31 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
 .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
-/* ===== BIRD INFO BAR ===== */
+.bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+.bird-title-group { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 0 1 auto; }
 
-.bird-caption-bar {
+.bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
 
-  position: relative;
+.bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
+.bird-info-toggle { transform-origin: center; }
 
- height: 125px;  background: rgba(45,45,45,.72);
+.bird-info-toggle:hover:not(.open) { transform: translateY(-2px) scale(1.15); }
 
-  backdrop-filter: blur(4px);
+.bird-info-toggle.open { transform: none; }
+.bird-info-toggle:active { transform: scale(0.95); }
 
-  overflow: visible;
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
 
-  overflow: hidden;
-}
+.bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-/* expanded state */
-.bird-caption-bar.expanded {
+.drawer-scientific { font-style: italic; font-size: 18px; color: #ffffff; line-height: 1.5; margin-bottom: 6px; }
 
-  min-height: 125px;
-}
+.drawer-observed { font-size: 16px; color: #ececec; line-height: 1.5; margin-bottom: 4px; }
 
-/* ===== LEFT CONTENT ===== */
-
-.bird-content-column {
-
-  position: absolute;
-
-  left: 12px;
-
-  right: 150px;
-
-  bottom: 8px;
-
-  background: rgba(45,45,45,.72);
-
-  backdrop-filter: blur(4px);
-
-  padding: 0 8px;
-}
-
-
-.bird-info-content {
-
-  overflow: hidden;
-
-  height: 24px; /* only bird name visible */
-
-  transition: height .35s ease;
-}
-
-
-.bird-info-content.open {
-
-  height: 105px;
-}
-
-
-/* ===== INDIVIDUAL LINES ===== */
-
-.bird-line {
-
-  display: block;
-
-  min-height: 24px;
-
-  line-height: 24px;
-}
-
-
-.bird-name-line {
-
-  font-size: 18px;
-
-  font-weight: 700;
-
-  color: #fff;
-}
-
-
-.drawer-scientific {
-
-  font-size: 17px;
-
-  font-style: italic;
-
-  color: #fff;
-}
-
-
-.drawer-observed {
-
-  font-size: 16px;
-
-  color: #ececec;
-}
-
-
-.drawer-trivia {
-
-  font-size: 16px;
-
-  color: #ececec;
-}
-
-
-/* ===== FIXED RIGHT SIDE ===== */
-
-.bird-control-column {
-
-  position: absolute;
-
-  right: 12px;
-
-  bottom: 8px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  white-space: nowrap;
-}
-
-
-/* ===== ARROW ===== */
-
-.bird-info-toggle {
-
-  background: none;
-
-  border: none;
-
-  color: rgba(255,255,255,.95);
-
-  font-size: 17px;
-
-  cursor: pointer;
-
-  padding: 0;
-}
-
-
-/* ===== COPYRIGHT ===== */
-
-.bird-copyright {
-
-  color: #bdbdbd;
-
-  font-size: 15px;
-
-  line-height: 1;
-}#dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.drawer-trivia { font-size: 16px; color: #ececec; line-height: 1.5; }
+	  
+.bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; flex-shrink: 0; margin-left: auto; }
+#dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
@@ -619,50 +491,43 @@ footer { margin-bottom: 0; margin-top: 0; }
 <!-- Caption now OUTSIDE the 16:9 frame -->
 <div id="birdNameBar" class="bird-caption-bar">
 
-  <!-- LEFT COLUMN -->
-  <div class="bird-content-column">
+  <!-- Hidden drawer -->
+  <div id="birdInfoDrawer" class="bird-info-drawer">
 
-    <div id="birdInfoContent" class="bird-info-content">
-
-      <div class="bird-line bird-name-line">
-        <span id="dailyBirdCaption">
-          Hudsonian Whimbrel
-        </span>
-      </div>
-
-      <div class="bird-line drawer-scientific">
-        Numenius hudsonicus
-      </div>
-
-      <div class="bird-line drawer-observed">
-        🌍 Aruba
-      </div>
-
-      <div class="bird-line drawer-trivia">
-        ℹ️ Bird facts coming soon
-      </div>
-
+    <div class="drawer-scientific">
+      Scientific name
     </div>
+
+    <div class="drawer-observed">
+    </div>
+
+<div class="drawer-trivia">
+  ℹ️ Bird facts coming soon
+</div>
 
   </div>
 
-  <!-- RIGHT COLUMN -->
-  <div class="bird-control-column">
+<div class="bird-title-group">
 
-    <button
-      id="birdInfoToggle"
-      class="bird-info-toggle"
-      aria-label="Show bird info">
-      △
-    </button>
+  <span id="dailyBirdCaption">
+    Loading...
+  </span>
 
-    <div class="bird-copyright">
-      © Sujan Abu Jafar
-    </div>
-
-  </div>
+  <button
+    id="birdInfoToggle"
+    class="bird-info-toggle"
+    aria-label="Show bird info">
+    △
+  </button>
 
 </div>
+
+<div class="bird-copyright">
+  © Sujan Abu Jafar
+</div>
+
+</div>
+
 </div> <!-- bird-day-main -->
 
 <!-- RIGHT: Thumbnails -->
@@ -1974,30 +1839,32 @@ searchBtn.addEventListener("click", () => {
 });
 
 </script>
+
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const btn =
     document.getElementById("birdInfoToggle");
 
-  const content =
-    document.getElementById("birdInfoContent");
+  const drawer =
+    document.getElementById("birdInfoDrawer");
 
-const bar =
-  document.getElementById("birdNameBar");
+  if (!btn || !drawer) return;
 
-btn.addEventListener("click", () => {
+  btn.addEventListener("click", () => {
 
-  content.classList.toggle("open");
+    drawer.classList.toggle("open");
 
-  bar.classList.toggle("expanded");
+    btn.classList.toggle("open");
 
-  btn.textContent =
-    content.classList.contains("open")
-      ? "▽"
-      : "△";
+btn.textContent =
+  drawer.classList.contains("open")
+    ? "▽"
+    : "△";
 
-});
+  });
+
 });
 
 </script>
