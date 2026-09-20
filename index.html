@@ -270,20 +270,22 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   position: relative;
 
-  height: 42px; /* collapsed height */
-
   background: rgba(45,45,45,.72);
 
   backdrop-filter: blur(4px);
 
   overflow: visible;
 
-  transition: height .35s ease;
+  min-height: 42px;
+
+  transition: min-height .35s ease;
 }
 
 /* expanded state */
+.bird-caption-bar.expanded {
 
-
+  min-height: 125px;
+}
 
 /* ===== LEFT CONTENT ===== */
 
@@ -1977,24 +1979,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const content =
     document.getElementById("birdInfoContent");
 
-  const bar =
-    document.getElementById("birdNameBar");
+const bar =
+  document.getElementById("birdNameBar");
 
-  if (!btn || !content || !bar) return;
+btn.addEventListener("click", () => {
 
-  btn.addEventListener("click", () => {
+  content.classList.toggle("open");
 
-    content.classList.toggle("open");
+  bar.classList.toggle("expanded");
 
-    bar.classList.toggle("expanded");
+  btn.textContent =
+    content.classList.contains("open")
+      ? "▽"
+      : "△";
 
-    btn.textContent =
-      content.classList.contains("open")
-        ? "▽"
-        : "△";
-
-  });
-
+});
 });
 
 </script>
