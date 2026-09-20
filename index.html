@@ -289,9 +289,7 @@ footer { margin-bottom: 0; margin-top: 0; }
   transition:
     transform .32s cubic-bezier(.22,.8,.28,1);
 }
-.bird-title-group.lifted {
-  transform: translateY(-40px);
-}
+
 .bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
 
 .bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
@@ -302,7 +300,7 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-info-toggle.open { transform: none; }
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; padding-top: 40px; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
+.bird-info-drawer { position: absolute; overflow: hidden; left: 0; right: 0; padding-top: 40px; bottom: 100%; min-height: 38px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
@@ -517,33 +515,27 @@ footer { margin-bottom: 0; margin-top: 0; }
 <div id="birdNameBar" class="bird-caption-bar">
 
   <!-- Hidden drawer -->
-  <div id="birdInfoDrawer" class="bird-info-drawer">
+<div id="birdInfoDrawer" class="bird-info-drawer">
 
-    <div class="drawer-scientific">
-      Scientific name
-    </div>
+  <div class="bird-title-group">
 
-    <div class="drawer-observed">
-    </div>
+    <span id="dailyBirdCaption">
+      Loading...
+    </span>
 
-<div class="drawer-trivia">
-  ℹ️ Bird facts coming soon
-</div>
+    <button
+      id="birdInfoToggle"
+      class="bird-info-toggle">
+      △
+    </button>
 
   </div>
 
-<div class="bird-title-group">
+  <div class="drawer-scientific"></div>
 
-  <span id="dailyBirdCaption">
-    Loading...
-  </span>
+  <div class="drawer-observed"></div>
 
-  <button
-    id="birdInfoToggle"
-    class="bird-info-toggle"
-    aria-label="Show bird info">
-    △
-  </button>
+  <div class="drawer-trivia"></div>
 
 </div>
 
@@ -1886,7 +1878,6 @@ drawer.classList.toggle("open");
 
 btn.classList.toggle("open");
 
-titleGroup.classList.toggle("lifted");
 
 btn.textContent =
   drawer.classList.contains("open")
