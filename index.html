@@ -130,8 +130,15 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 	  
 /* --- About Panel/ Hamburger Menu --- */ 
-.hamburger-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 28px; color: white; background: transparent; border: none; cursor: pointer; }
-
+.hamburger-btn {
+  position: static;
+  transform: none;
+  font-size: 28px;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
 .hamburger-btn:focus-visible { outline: 2px solid #ffd166; outline-offset: 2px;}
 
 .hamburger-btn.open .bar:nth-child(1) { transform: translateY(5px) rotate(45deg); }
@@ -321,6 +328,62 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 .lightbox-caption { margin-top: 10px; padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; font-size: 18px; border-radius: 6px; text-align: center; max-width: 90%; }
 
+/* ===== Header Tooltips ===== */
+
+.header-icon,
+.hamburger-btn {
+  position: relative;
+}
+
+.header-icon::after,
+.hamburger-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 135%;
+  right: 50%;
+  transform: translateX(50%);
+  background: rgba(0,0,0,0.9);
+  color: white;
+  font-size: 13px;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  z-index: 10000;
+}
+
+.header-icon:hover::after,
+.hamburger-btn:hover::after {
+  opacity: 1;
+}	  
+
+.header-actions {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-icon {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity .2s ease,
+              transform .2s ease;
+}
+
+.header-icon:hover {
+  opacity: 0.85;
+  transform: scale(1.08);
+}
 	  
 /* ========== Responsive Layout ========== */
 
@@ -365,8 +428,6 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 @media (max-width: 768px) {
 	header h1 { font-size: 28px; }
-    
-	header h2 { font-size: 16px; }
    
 	header { padding: 8px 12px; }
 
@@ -416,8 +477,6 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   header h1 { font-size: 22px; }
 
-  header h2 { font-size: 14px; }
-
   header { padding: 6px 10px; }
 
   #thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; }
@@ -447,9 +506,32 @@ footer { margin-bottom: 0; margin-top: 0; }
   <!-- Page header with title and author -->
   <header>
     <h1>BirdBlog</h1>
-	<button id="hamburgerToggle" class="hamburger-btn" aria-label="Open menu" aria-controls="hamburgerPanel" aria-expanded="false">
-	  ☰
-	</button>
+<div class="header-actions">
+
+  <button id="headerMapBtn"
+          class="header-icon"
+          data-tooltip="Explore Species Map"
+          aria-label="Explore Species Map">
+    🌍
+  </button>
+
+  <button id="contactBtn"
+          class="header-icon"
+          data-tooltip="Contact & Reviews (Coming Soon)"
+          aria-label="Contact and Reviews">
+    💬
+  </button>
+
+  <button id="hamburgerToggle"
+          class="hamburger-btn"
+          data-tooltip="About BirdBlog"
+          aria-label="Open menu"
+          aria-controls="hamburgerPanel"
+          aria-expanded="false">
+    ☰
+  </button>
+
+</div>
 
   </header>
 
@@ -1872,6 +1954,23 @@ btn.textContent =
     : "△";
 
   });
+
+});
+
+	document.addEventListener("DOMContentLoaded", () => {
+
+  const mapBtn = document.getElementById("headerMapBtn");
+
+  if (mapBtn) {
+    mapBtn.addEventListener("click", () => {
+
+      document.getElementById("mainPanel")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    });
+  }
 
 });
 
