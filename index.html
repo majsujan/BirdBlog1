@@ -264,84 +264,156 @@ footer { margin-bottom: 0; margin-top: 0; }
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
 .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
+/* ===== BIRD INFO BAR ===== */
+
 .bird-caption-bar {
+
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+
+  height: 42px; /* collapsed height */
+
   background: rgba(45,45,45,.72);
+
   backdrop-filter: blur(4px);
-  color: white;
-  padding: 8px 12px;
-}
-.bird-left-panel {
 
-  flex: 1;
+  overflow: visible;
 
-  min-width: 0;
+  transition: height .35s ease;
 }
-.bird-header {
+
+/* expanded state */
+.bird-caption-bar.expanded {
+
+  height: 125px;
+}
+
+
+/* ===== LEFT CONTENT ===== */
+
+.bird-content-column {
+
+  position: absolute;
+
+  left: 12px;
+
+  right: 150px; /* leave room for arrow + copyright */
+
+  bottom: 8px;
+}
+
+
+.bird-info-content {
+
+  overflow: hidden;
+
+  height: 24px; /* only bird name visible */
+
+  transition: height .35s ease;
+}
+
+
+.bird-info-content.open {
+
+  height: 105px;
+}
+
+
+/* ===== INDIVIDUAL LINES ===== */
+
+.bird-line {
+
+  display: block;
+
+  min-height: 24px;
+
+  line-height: 24px;
+}
+
+
+.bird-name-line {
 
   font-size: 18px;
 
   font-weight: 700;
 
-  line-height: 1.4;
+  color: #fff;
 }
 
-	  .bird-right-panel {
+
+.drawer-scientific {
+
+  font-size: 17px;
+
+  font-style: italic;
+
+  color: #fff;
+}
+
+
+.drawer-observed {
+
+  font-size: 16px;
+
+  color: #ececec;
+}
+
+
+.drawer-trivia {
+
+  font-size: 16px;
+
+  color: #ececec;
+}
+
+
+/* ===== FIXED RIGHT SIDE ===== */
+
+.bird-control-column {
+
+  position: absolute;
+
+  right: 12px;
+
+  bottom: 8px;
 
   display: flex;
 
-  align-items: flex-end;
+  align-items: center;
 
   gap: 8px;
 
-  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-	  .bird-info-extra {
 
-  overflow: hidden;
+/* ===== ARROW ===== */
 
-  max-height: 0;
+.bird-info-toggle {
 
-  opacity: 0;
+  background: none;
 
-  transition:
-    max-height .35s ease,
-    opacity .25s ease,
-    margin-top .35s ease;
+  border: none;
+
+  color: rgba(255,255,255,.95);
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  padding: 0;
 }
-.bird-info-extra.open {
-
-  max-height: 140px;
-
-  opacity: 1;
-
-  margin-top: 8px;
-}
-	  
-.bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
-
-.bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
-.bird-info-toggle { transform-origin: center; }
-
-.bird-info-toggle:hover:not(.open) { transform: translateY(-2px) scale(1.15); }
-
-.bird-info-toggle.open { transform: none; }
-.bird-info-toggle:active { transform: scale(0.95); }
 
 
+/* ===== COPYRIGHT ===== */
 
-.drawer-scientific { font-style: italic; margin-top: 35px; font-size: 18px; color: #ffffff; line-height: 1.5; margin-bottom: 6px; }
+.bird-copyright {
 
-.drawer-observed { font-size: 16px; color: #ececec; line-height: 1.5; margin-bottom: 4px; }
+  color: #bdbdbd;
 
-.drawer-trivia { font-size: 16px; color: #ececec; line-height: 1.5; }
-	  
-.bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; flex-shrink: 0; margin-left: auto; }
-#dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  font-size: 15px;
+
+  line-height: 1;
+}#dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
@@ -544,25 +616,26 @@ footer { margin-bottom: 0; margin-top: 0; }
 <!-- Caption now OUTSIDE the 16:9 frame -->
 <div id="birdNameBar" class="bird-caption-bar">
 
-  <!-- LEFT SIDE -->
+  <!-- LEFT COLUMN -->
+  <div class="bird-content-column">
 
-  <div class="bird-left-panel">
+    <div id="birdInfoContent" class="bird-info-content">
 
-    <div class="bird-header">
+      <div class="bird-line bird-name-line">
+        <span id="dailyBirdCaption">
+          Hudsonian Whimbrel
+        </span>
+      </div>
 
-      <span id="dailyBirdCaption">
-        Loading...
-      </span>
+      <div class="bird-line drawer-scientific">
+        Numenius hudsonicus
+      </div>
 
-    </div>
+      <div class="bird-line drawer-observed">
+        🌍 Aruba
+      </div>
 
-    <div id="birdInfoExtra" class="bird-info-extra">
-
-      <div class="drawer-scientific"></div>
-
-      <div class="drawer-observed"></div>
-
-      <div class="drawer-trivia">
+      <div class="bird-line drawer-trivia">
         ℹ️ Bird facts coming soon
       </div>
 
@@ -570,9 +643,8 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   </div>
 
-  <!-- RIGHT SIDE -->
-
-  <div class="bird-right-panel">
+  <!-- RIGHT COLUMN -->
+  <div class="bird-control-column">
 
     <button
       id="birdInfoToggle"
@@ -1898,8 +1970,6 @@ searchBtn.addEventListener("click", () => {
 
 });
 
-</script>
-
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1907,25 +1977,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn =
     document.getElementById("birdInfoToggle");
 
-const drawer =
-  document.getElementById("birdInfoExtra");
+  const content =
+    document.getElementById("birdInfoContent");
 
-  const titleGroup =
-   document.querySelector(".bird-title-group");
+  const bar =
+    document.getElementById("birdNameBar");
 
-  if (!btn || !drawer) return;
+  if (!btn || !content || !bar) return;
 
   btn.addEventListener("click", () => {
 
-drawer.classList.toggle("open");
+    content.classList.toggle("open");
 
-btn.classList.toggle("open");
+    bar.classList.toggle("expanded");
 
-
-btn.textContent =
-  drawer.classList.contains("open")
-    ? "▽"
-    : "△";
+    btn.textContent =
+      content.classList.contains("open")
+        ? "▽"
+        : "△";
 
   });
 
