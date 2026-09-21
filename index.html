@@ -32,16 +32,42 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 /* ========== Header ========== */
 header { background: #5F8F5E; color: white; padding: 10px 20px; text-align: center; position: relative; }
 
-header h1 { font-size: 36px; margin: 8px 0; }
-
-header h2 { font-size: 20px; margin: 8px 0; }
-
 nav { background: #2c6e49; display: flex; justify-content: center; padding: 10px 0; }
 
 nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; }
 
 nav li { color: white; font-weight: 600; }
 
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 36px;
+  text-align: left;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav-tab:hover { opacity: 0.8; }
 
 /* ========== Footer ========== */
 footer { width: 100%; margin: 0; padding: 16px; background: var(--ebird-blue); color: #ffffff; text-align: center; display: block; }
@@ -120,16 +146,8 @@ rgb(145,0,0) 100%
 .legend-label { font-size: 12px; color: #333; }
 
 
-/* --- About Panel/ Hamburger Menu --- */ 
-.hamburger-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 28px; color: white; background: transparent; border: none; cursor: pointer; }
+/* --- About Panel --- */ 
 
-.hamburger-btn:focus-visible { outline: 2px solid #ffd166; outline-offset: 2px;}
-
-.hamburger-btn.open .bar:nth-child(1) { transform: translateY(5px) rotate(45deg); }
-
-.hamburger-btn.open .bar:nth-child(2) { opacity: 0; }
-
-.hamburger-btn.open .bar:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
 
 .hamburger-panel[hidden] { display: none !important; }
 
@@ -363,6 +381,19 @@ header h2 { font-size: 16px; }
 
 header { padding: 8px 12px; }
 
+.header-inner {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-nav {
+  gap: 16px;
+}
+
+.nav-tab {
+  font-size: 15px;
+}	
+
 #thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; margin: 0; overflow: visible; }
 
 #thumbnailPanel { max-height: 260px; }
@@ -439,12 +470,28 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 <div class="site-page">
 <!-- Page header with title and author -->
 <header>
-<h1>BirdBlog</h1>
-<h2>Sujan Abu Jafar</h2>
-<button id="hamburgerToggle" class="hamburger-btn" aria-label="Open menu" aria-controls="hamburgerPanel" aria-expanded="false">
-☰
-</button>
+  <div class="header-inner">
 
+    <h1>BirdBlog</h1>
+
+    <nav class="header-nav">
+      <button id="exploreTab" class="nav-tab">
+        Explore
+      </button>
+
+      <button id="contactTab" class="nav-tab">
+        Contact
+      </button>
+
+      <button id="aboutTab"
+              class="nav-tab"
+              aria-controls="hamburgerPanel"
+              aria-expanded="false">
+        About
+      </button>
+    </nav>
+
+  </div>
 </header>
 
 <!-- === Bird Photo of the Day Layout === -->
@@ -1664,7 +1711,7 @@ fill="#ff0084"
 
 // === Hamburger panel logic ===
 (function () {
-const btn   = document.getElementById('hamburgerToggle');
+const btn = document.getElementById('aboutTab');
 const panel = document.getElementById('hamburgerPanel');
 
 // Find the thumbnail panel (the parent element that wraps #thumbnailGallery)
@@ -1871,5 +1918,36 @@ drawer.classList.contains("open")
 
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const exploreBtn = document.getElementById("exploreTab");
+
+  if (exploreBtn) {
+    exploreBtn.addEventListener("click", () => {
+
+      document.getElementById("mainPanel")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+    });
+  }
+
+});
+const contactBtn =
+document.getElementById("contactTab");
+
+if (contactBtn) {
+
+  contactBtn.addEventListener("click", () => {
+    alert("Contact page coming soon.");
+  });
+
+}
+	
+</script>
+	
 </body>
 </html>
