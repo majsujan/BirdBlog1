@@ -30,9 +30,17 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 .site-page { width: 100%; max-width: var(--page-max-width); min-height: 100vh; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.23); }
 
 /* ========== Header ========== */
-header { background: #5F8F5E; color: white; padding: 18px 20px; text-align: center; position: relative; }
+header {
+  background: #5F8F5E;
+  color: white;
+  padding: 0 20px;
+  min-height: 90px;   /* controls overall header height */
+  display: flex;
+  align-items: center;
+}
 
 .header-inner {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,8 +49,9 @@ header { background: #5F8F5E; color: white; padding: 18px 20px; text-align: cent
 header h1 {
   margin: 0;
   font-size: 36px;
-  text-align: left;
+  line-height: 1;
 }
+
 
 .header-nav {
   display: flex;
@@ -369,19 +378,23 @@ rgb(145,0,0) 100%
 }
 
 @media (max-width: 768px) {
-header h1 { font-size: 28px; }
 
-header h2 { font-size: 16px; }
+  header {
+    min-height: 100px;
+    padding: 0 12px;
+  }
 
-header { padding: 8px 12px; }
+  header h1 {
+    font-size: 28px;
+  }
 
+  .header-nav {
+    gap: 14px;
+  }
+	
 .header-inner {
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.header-nav {
-  gap: 16px;
 }
 
 .nav-tab {
@@ -432,11 +445,18 @@ header { padding: 8px 12px; }
 
 @media (max-width: 480px) {
 
-header h1 { font-size: 22px; }
+  header {
+    min-height: 90px;
+    padding: 0 10px;
+  }
 
-header h2 { font-size: 14px; }
+  header h1 {
+    font-size: 24px;
+  }
 
-header { padding: 6px 10px; }
+  .nav-tab {
+    font-size: 14px;
+  }
 
 #thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; }
 
