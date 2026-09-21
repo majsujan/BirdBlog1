@@ -30,20 +30,11 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 .site-page { width: 100%; max-width: var(--page-max-width); min-height: 100vh; margin: 0 auto; background-color: #ffffff; box-shadow: 0 0 13px 3px rgba(0, 0, 0, 0.23); }
 	  
     /* ========== Header ========== */
-header {
-  background: #5F8F5E;
-  color: white;
-  padding: 10px 20px 10px 28px;
-  position: relative;
-}
-
-header h1 {
-  font-size: 36px;
-  margin: 8px 0;
-  text-align: left;
-}
+    header { background: #5F8F5E; color: white; padding: 10px 20px; text-align: center; position: relative; }
+	
+	header h1 { font-size: 36px; margin: 8px 0; }
 	  
-   
+    header h2 { font-size: 20px; margin: 8px 0; }
 	  
     nav { background: #2c6e49; display: flex; justify-content: center; padding: 10px 0; }
 	  
@@ -130,15 +121,8 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 	  
 /* --- About Panel/ Hamburger Menu --- */ 
-.hamburger-btn {
-  position: static;
-  transform: none;
-  font-size: 28px;
-  color: white;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+.hamburger-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 28px; color: white; background: transparent; border: none; cursor: pointer; }
+
 .hamburger-btn:focus-visible { outline: 2px solid #ffd166; outline-offset: 2px;}
 
 .hamburger-btn.open .bar:nth-child(1) { transform: translateY(5px) rotate(45deg); }
@@ -275,37 +259,12 @@ footer { margin-bottom: 0; margin-top: 0; }
 	  
 .nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
 
-.bird-day-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 25fr) minmax(360px, 9fr);
-  width: 100%;
-  margin: 0;
-  align-items: start;
-  background: white;
-  font-family: 'Lato', sans-serif;
-}
-.bird-day-main {
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  background: #444;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 70px);
-}
+.bird-day-layout { display: grid; grid-template-columns: minmax(0, 22fr) minmax(420px, 12fr); width: 100%; margin: 0; align-items: start; background: white; font-family: 'Lato', sans-serif; }
+.bird-day-main { width: 100%; min-width: 0; margin: 0; padding: 0; position: relative; background: #444; }
+.bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
+.bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
-.bird-day-frame {
-  flex: 1;
-  min-height: 0;
-  position: relative;
-  overflow: hidden;
-  touch-action: pan-y;
-}
-	  .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
-
-.bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+.bird-caption-bar { position: relative; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
 .bird-title-group { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 0 1 auto; }
 
 .bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
@@ -315,10 +274,10 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 .bird-info-toggle:hover:not(.open) { transform: translateY(-2px) scale(1.15); }
 
-.bird-info-toggle.open { transform: none; }
+.bird-info-toggle.open { transform: rotate(180deg); }
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(35px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 100; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
@@ -353,34 +312,6 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 .lightbox-caption { margin-top: 10px; padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; font-size: 18px; border-radius: 6px; text-align: center; max-width: 90%; }
 
-/* ===== Header Tooltips ===== */
- 
-
-.header-actions {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-link {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 17px;
-  font-weight: 700;
-  font-family: 'Lato', sans-serif;
-  cursor: pointer;
-  padding: 0;
-  transition: opacity .2s ease;
-}
-
-.header-link:hover {
-  opacity: 0.8;
-}
 	  
 /* ========== Responsive Layout ========== */
 
@@ -425,15 +356,10 @@ footer { margin-bottom: 0; margin-top: 0; }
 
 @media (max-width: 768px) {
 	header h1 { font-size: 28px; }
+    
+	header h2 { font-size: 16px; }
    
 	header { padding: 8px 12px; }
-.header-actions {
-  gap: 12px;
-}
-
-.header-link {
-  font-size: 15px;
-}
 
 	#thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 8px; margin: 0; overflow: visible; }
 	
@@ -481,6 +407,8 @@ footer { margin-bottom: 0; margin-top: 0; }
 
   header h1 { font-size: 22px; }
 
+  header h2 { font-size: 14px; }
+
   header { padding: 6px 10px; }
 
   #thumbnailGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; }
@@ -510,24 +438,10 @@ footer { margin-bottom: 0; margin-top: 0; }
   <!-- Page header with title and author -->
   <header>
     <h1>BirdBlog</h1>
-<div class="header-actions">
-
-  <button id="headerMapBtn" class="header-link">
-    Explore
-  </button>
-
-  <button id="contactBtn" class="header-link">
-    Review
-  </button>
-
-  <button id="hamburgerToggle"
-          class="header-link"
-          aria-controls="hamburgerPanel"
-          aria-expanded="false">
-    About
-  </button>
-
-</div>
+    <h2>Sujan Abu Jafar</h2>
+	<button id="hamburgerToggle" class="hamburger-btn" aria-label="Open menu" aria-controls="hamburgerPanel" aria-expanded="false">
+	  ☰
+	</button>
 
   </header>
 
@@ -585,11 +499,12 @@ footer { margin-bottom: 0; margin-top: 0; }
     </div>
 
     <div class="drawer-observed">
+      Observed in ... to be updated
     </div>
 
-<div class="drawer-trivia">
-  ℹ️ Bird facts coming soon
-</div>
+    <div class="drawer-trivia">
+      Trivia ... to be updated
+    </div>
 
   </div>
 
@@ -786,7 +701,44 @@ let shuffledBirds = [];
 let slideshowTimer = null;
 let slideshowRunning = false;
 
- 
+
+fetch('scientific_names.csv')
+  .then(response => response.text())
+  .then(text => {
+
+    const lines = text.trim().split('\n');
+
+    lines.slice(1).forEach(line => {
+
+      const [commonName, scientificName] =
+        line.split(';');
+
+      if (commonName && scientificName) {
+
+        scientificNames[
+          commonName.trim()
+        ] = scientificName.trim();
+
+      }
+
+    });
+
+    return fetch('birds.json');
+
+  })
+  .then(response => response.json())
+  .then(data => {
+
+    birds = data;
+    birdKeys = Object.keys(birds);
+
+    shuffledBirds =
+      shuffleArray(Object.entries(birds));
+
+    initApp();
+
+  });
+  });	  
 // ✅ LOAD bird data from JSON
 fetch('scientific_names.csv')
   .then(response => response.text())
@@ -817,20 +769,13 @@ fetch('scientific_names.csv')
 
     birds = data;
     birdKeys = Object.keys(birds);
-birdKeys.forEach(name => {
 
-  const preload = new Image();
-
-  preload.src =
-    birds[name].photo;
-
-});
     shuffledBirds =
       shuffleArray(Object.entries(birds));
 
     initApp();
 
-  })
+  });
   .catch(error => {
     console.error("Error loading birds.json:", error);
   });
@@ -937,7 +882,7 @@ document.querySelector(
 document.querySelector(
   ".drawer-observed"
 ).textContent =
- `🌍 ${birds[randomBird].countries.join(", ")}`;
+  `Observed in: ${birds[randomBird].countries.join(", ")}`;
 
 }
 
@@ -968,11 +913,11 @@ function showBird(name, url) {
 document.querySelector(
   ".drawer-observed"
 ).textContent =
-  `🌍 ${birds[name].countries.join(", ")}`;
+  `Observed in: ${birds[name].countries.join(", ")}`;
 
     img.style.opacity = "1";
 
-  }, 50);
+  }, 150);
 
 }
 	  
@@ -1155,7 +1100,7 @@ list.forEach(([name, data]) => {
 wrapper.style = ` position: relative; width: 100%; aspect-ratio: 16 / 9; cursor: pointer; overflow: hidden; border-radius: 4px; background: #e8e8e8; `;
 
   const thumb = document.createElement("img");
-  thumb.loading = "eager";
+  thumb.loading = "lazy";
   thumb.decoding = "async";
   thumb.src = data.photo;
   thumb.alt = name;
@@ -1950,23 +1895,6 @@ btn.textContent =
     : "△";
 
   });
-
-});
-
-	document.addEventListener("DOMContentLoaded", () => {
-
-  const mapBtn = document.getElementById("headerMapBtn");
-
-  if (mapBtn) {
-    mapBtn.addEventListener("click", () => {
-
-      document.getElementById("mainPanel")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    });
-  }
 
 });
 
