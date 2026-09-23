@@ -31,44 +31,16 @@ body { min-height: 100vh; font-family: 'Lato', sans-serif; color: #333; }
 
 /* ========== Header ========== */
 header {
-  background: #5F8F5E;
-  color: white;
-  padding: 0 20px;
-  min-height: 90px;   /* controls overall header height */
-  display: flex;
-  align-items: center;
-}
+  background: #5F8F5E; color: white; padding: 0 20px; min-height: 90px; display: flex; align-items: center; }
 
-.header-inner {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+.header-inner { width: 100%; display: flex; align-items: center; justify-content: space-between; }
 
-header h1 {
-  margin: 0;
-  font-size: 36px;
-  line-height: 1;
-}
+header h1 { margin: 0; font-size: 36px; line-height: 1; }
 
 
-.header-nav {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
+.header-nav { display: flex; align-items: center; gap: 32px; }
 
-.nav-tab {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0;
-  transition: opacity 0.2s ease;
-}
+.nav-tab { background: transparent; border: none; color: white; font-size: 17px; font-weight: 600; cursor: pointer; padding: 0; transition: opacity 0.2s ease; }
 
 .nav-tab:hover { opacity: 0.8; }
 
@@ -128,18 +100,8 @@ to { transform: translateX(-100%); }
 /* ========== Map Legend ========== */
 .legend { background: rgba(255,255,255,0.96); padding: 10px 12px; line-height: 1.2; color: #222; border-radius: 8px; box-shadow: 0 3px 8px rgba(0,0,0,0.20); border: 1px solid rgba(0,0,0,0.15); backdrop-filter: blur(2px); }
 
-.legend .scale {
-background: linear-gradient(
-90deg,
-rgb(255,245,0) 0%,
-rgb(255,205,0) 15%,
-rgb(245,165,0) 30%,
-rgb(235,125,0) 50%,
-rgb(220,85,0) 70%,
-rgb(200,45,0) 85%,
-rgb(145,0,0) 100%
-);
-}
+.legend .scale { background: linear-gradient (90deg, rgb(255,245,0) 0%, rgb(255,205,0) 15%, rgb(245,165,0) 30%, rgb(235,125,0) 50%, rgb(220,85,0) 70%, rgb(200,45,0) 85%,rgb(145,0,0) 100% ); }
+
 .legend .labels { display: flex;  justify-content: space-between; font-size: 12px; font-weight: 700; color: #222; }
 
 .legend-container { display: flex; align-items: center; gap: 8px; }
@@ -148,9 +110,7 @@ rgb(145,0,0) 100%
 
 .legend-label { font-size: 12px; color: #333; }
 
-
 /* --- About Panel --- */ 
-
 
 .hamburger-panel[hidden] { display: none !important; }
 
@@ -164,57 +124,19 @@ rgb(145,0,0) 100%
 
 .about-text { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
 
-#contactPanel {
-  padding: 0px;
-  gap: 0px;
-  overflow: hidden;
-}	
-.contact-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+#contactPanel { padding: 0px; gap: 0px; overflow: hidden; }	
 
-  min-height: 32px;
-  height: 32px;
-  margin: 0;
-  padding: 2px 0;
-}
+.contact-icons { display: flex; align-items: center; justify-content: center; gap: 20px; min-height: 32px; height: 32px; margin: 0; padding: 2px 0; background: #ffffff; }
 
-.contact-icons a {
-  width: 30px;
-  height: 30px;
+.contact-icons a { width: 30px;  height: 30px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; background: none; border-radius: 0; }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white; text-decoration: none;
-  background: none;
-  border-radius: 0;
-}
+.contact-icons a:hover { transform: scale(1.08); }
 
+.contact-icons img { width: 24px; height: 24px; display: block; }
 
-.contact-icons a:hover {
-  transform: scale(1.08);
-}
-.contact-icons img {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-.contact-form {
-  flex: 1;
-  margin-top: 0;
-  overflow-y: auto;
-}
+.contact-form { flex: 1; margin-top: 0; overflow-y: auto; }
 
-.contact-form iframe {
-  width: 100%;
-  height: 1451px;
-  border: none;
-  border-radius: 0;
-  background: white;
-}
+.contact-form iframe { width: 100%; height: 1451px; border: none; border-radius: 0; background: white; }
 
 /* ========== World Panel========== */
 .panel-box.fixed-height, 
@@ -224,9 +146,10 @@ rgb(145,0,0) 100%
 
 
 /* ========== Country Panel and Species List========== */
-.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px; position: relative; background: white; border-radius: 10px; box-sizing: border-box; margin-left: 0; }
+.panel-box.merged-panel { display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; min-height: 0; height: 100%; overflow: hidden; padding: 12px 20px; position: relative; background: white; border-radius: 10px; box-sizing: border-box; margin-left: 0; }
 
 .panel-close { position: absolute; top: 10px; right: 10px; border: none; background: none; font-size: 26px; font-weight: bold; cursor: pointer; color: #555; }
+
 .panel-close:hover { color: black; }
 
 .panel-box.fixed-height h2, 
@@ -234,7 +157,7 @@ rgb(145,0,0) 100%
 
 #countryCount { margin-top: 0; margin-bottom: 2px; font-size: 1rem; color: #333; }
 
-#speciesList { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 6px 8px; margin-top: 2px; box-sizing: border-box; }
+#speciesList { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 6px 0; margin-top: 2px; box-sizing: border-box; }
 
 #speciesList::-webkit-scrollbar { width: 8px; }
 
@@ -260,6 +183,7 @@ rgb(145,0,0) 100%
 .thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; margin: 0; padding: 0 6px; background: var(--ebird-blue); overflow: hidden; }
 
 .thumbnail-controls { display: flex; align-items: center; width: 100%; padding: 4px 6px; gap: 6px; }
+
 .toolbar-right { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
 
 .gallery-toggle { margin-left: 0; flex: 0 0 42px; }
@@ -273,14 +197,21 @@ rgb(145,0,0) 100%
 #thumbnailGallery img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; }
 
 .thumbnail-search-button { width: 36px; height: 36px; flex: 0 0 36px; background: transparent; border: none; box-shadow: none; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 0 6px rgba(220,220,220,0.45); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+
 .thumbnail-search-button:hover { opacity: .8; } 
+
 .thumbnail-search-button svg { filter: drop-shadow(0 0 3px rgba(220,220,220,0.7)); pointer-events: none; display: block; transform: translateX(-1px); }
 
 .thumbnail-search { flex: 1 1 auto; min-width: 0; height: 36px; border: none; border-radius: 8px; padding: 0 12px; background: rgba(255,255,255,.92); color: #333; transition: max-width .25s ease, opacity .25s ease, padding .25s ease; } 
+
 .collapsed-search { width: 0; max-width: 0; padding: 0; border: none; opacity: 0; overflow: hidden; flex: 0 0 0; }
+
 .thumbnail-select { flex: 0 0 90px; height: 36px; border: none; border-radius: 8px; background: rgba(255,255,255,.92); color: #333; }
+
 .country-select { display: none; flex: 0 0 0; height: 36px; width: 0; min-width: 0; opacity: 0; overflow: hidden; border: none; border-radius: 8px; color: #333;background: rgba(255,255,255,.92); transition: flex-basis .25s ease, width .25s ease, opacity .25s ease; }
+
 .country-select.visible { display: block; flex: 0 0 auto; width: auto; opacity: 1; }
+
 .thumbnail-search:focus, .thumbnail-select:focus, .country-select:focus { outline: 2px solid rgba(95, 143, 94, 0.35); outline-offset: 1px; border-color: #5f8f5e; }
 
 #thumbnailPanel { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.55) var(--ebird-blue); scrollbar-width: thin; }
@@ -295,10 +226,9 @@ rgb(145,0,0) 100%
 
 #imageContainer,
 #message { display: none; }	  
+
 /* ========== Leaflet Overrides ========== */
 .leaflet-control { background: none !important; border: none !important; box-shadow: none !important; }
-
-
 
 /* ========== Bird Of The Day ========== */
 
@@ -311,6 +241,7 @@ rgb(145,0,0) 100%
 .nav-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 34px; color: rgba(255,255,255,0.95); text-shadow: 0 0 4px rgba(40,40,40,.7), 0 0 10px rgba(40,40,40,.5), 1px 1px 4px rgba(0,0,0,.35); cursor: pointer; user-select: none; z-index: 4; transition: transform 0.15s ease, opacity 0.15s ease; outline: none ;}
 
 .left-arrow { left: 12px; }
+
 .right-arrow { right: 12px; }
 
 .nav-arrow:focus,
@@ -319,24 +250,30 @@ rgb(145,0,0) 100%
 .nav-arrow:hover { transform: translateY(-50%) scale(1.08); }
 
 .bird-day-layout { display: grid; grid-template-columns: minmax(0, 22fr) minmax(420px, 12fr); width: 100%; margin: 0; align-items: start; background: white; font-family: 'Lato', sans-serif; }
+
 .bird-day-main { width: 100%; min-width: 0; margin: 0; padding: 0; position: relative; background: #444; }
+
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
+
 .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
-.bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+.bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 20px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
+
 .bird-title-group { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 0 1 auto; }
 
 .bird-info-toggle { background: none; border: none; color: rgba(255,255,255,.92); font-size: 17px; line-height: 1; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; top: 2px; transition: transform .25s ease, opacity .25s ease, color .25s ease; }
 
 .bird-info-toggle:hover { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,.35), 0 0 8px rgba(255,255,255,.15); }
+
 .bird-info-toggle { transform-origin: center; }
 
 .bird-info-toggle:hover:not(.open) { transform: translateY(-2px) scale(1.15); }
 
 .bird-info-toggle.open { transform: none; }
+
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
+.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 20px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
@@ -347,15 +284,21 @@ rgb(145,0,0) 100%
 .drawer-trivia { font-size: 16px; color: #ececec; line-height: 1.5; }
 
 .bird-copyright { position: static; justify-self: end; bottom: 5px; left: 12px; font-size: 15px; color: #888; flex-shrink: 0; margin-left: auto; }
+
 #dailyBirdCaption { flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 .swipe-indicator { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 6px; z-index: 6; padding: 4px 8px; border-radius: 20px; background: rgba(0,0,0,.20); backdrop-filter: blur(4px); }
 
 .dot { border-radius: 50%; background: rgba(255,255,255,.35); border: 1px solid rgba(0,0,0,.35); box-shadow: 0 1px 4px rgba(0,0,0,.4); transition: transform .25s ease, opacity .25s ease, background .25s ease; }
+
 .center-dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(0,0,0,.45); background: rgba(255,255,255,.92); color: #222; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; cursor: pointer; padding: 0; line-height: 1; transition: transform .2s ease, background .2s ease; }
+
 .slideshow-dot { appearance: none; -webkit-appearance: none; outline: none; }
+
 .center-dot:hover { transform: scale(1.08); }
 
 .center-dot.playing { background: #ffffff; }
+
 .left-dot,
 .right-dot { width: 6px; height: 6px; }
 
