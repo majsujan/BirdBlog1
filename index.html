@@ -164,32 +164,49 @@ rgb(145,0,0) 100%
 
 .about-text { font-size: 1rem; line-height: 1.6; text-align: justify; margin-top: 8px; }
 
+#contactPanel {
+  padding: 8px;
+  gap: 8px;
+  overflow: hidden;
+}	
 .contact-icons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 10px 0 20px;
-}
-
-.contact-icons a {
-  width: 52px;
-  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.12);
-  text-decoration: none;
+  gap: 18px;
+
+  min-height: 36px;
+  height: 36px;
+
+  padding: 0;
+
+  border-bottom: 1px solid rgba(255,255,255,.15);
 }
+
+.contact-icons a {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; text-decoration: none;
+  background: none;
+  border-radius: 0;
+}
+
 
 .contact-icons a:hover {
   transform: scale(1.08);
-  background: rgba(255,255,255,.20);
 }
-
+.contact-icons img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
 .contact-form {
   flex: 1;
+  margin-top: 0;
   overflow-y: auto;
 }
 
@@ -197,7 +214,7 @@ rgb(145,0,0) 100%
   width: 100%;
   height: 1451px;
   border: none;
-  border-radius: 8px;
+  border-radius: 0;
   background: white;
 }
 
@@ -240,11 +257,11 @@ rgb(145,0,0) 100%
 #birdSearch,
 #birdSort,
 #countryFilter,
-.gallery-toggle { height: 42px; box-sizing: border-box; color: #333333; background-color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
+.gallery-toggle { height: 36px; box-sizing: border-box; color: #333333; background-color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.75); }
 
 .thumbnail-column { display: flex; flex-direction: column; width: 100%; min-width: 0; margin: 0; padding: 0 6px; background: var(--ebird-blue); overflow: hidden; }
 
-.thumbnail-controls { display: flex; align-items: center; width: 100%; padding: 8px; gap: 8px; }
+.thumbnail-controls { display: flex; align-items: center; width: 100%; padding: 5px 6px; gap: 6px; }
 .toolbar-right { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-shrink: 0; }
 
 .gallery-toggle { margin-left: 0; flex: 0 0 42px; }
@@ -257,14 +274,14 @@ rgb(145,0,0) 100%
 
 #thumbnailGallery img { display: block; width: 100%; height: auto; object-fit: cover; border-radius: 4px; }
 
-.thumbnail-search-button { width: 42px; height: 42px; flex: 0 0 42px; background: transparent; border: none; box-shadow: none; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 0 6px rgba(220,220,220,0.45); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.thumbnail-search-button { width: 36px; height: 36px; flex: 0 0 36px; background: transparent; border: none; box-shadow: none; color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,0.35), 0 0 6px rgba(220,220,220,0.45); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
 .thumbnail-search-button:hover { opacity: .8; } 
 .thumbnail-search-button svg { filter: drop-shadow(0 0 3px rgba(220,220,220,0.7)); pointer-events: none; display: block; transform: translateX(-1px); }
 
-.thumbnail-search { flex: 1 1 auto; min-width: 0; height: 42px; border: none; border-radius: 8px; padding: 0 12px; background: rgba(255,255,255,.92); color: #333; transition: max-width .25s ease, opacity .25s ease, padding .25s ease; } 
+.thumbnail-search { flex: 1 1 auto; min-width: 0; height: 36px; border: none; border-radius: 8px; padding: 0 12px; background: rgba(255,255,255,.92); color: #333; transition: max-width .25s ease, opacity .25s ease, padding .25s ease; } 
 .collapsed-search { width: 0; max-width: 0; padding: 0; border: none; opacity: 0; overflow: hidden; flex: 0 0 0; }
-.thumbnail-select { flex: 0 0 90px; height: 42px; border: none; border-radius: 8px; background: rgba(255,255,255,.92); color: #333; }
-.country-select { display: none; flex: 0 0 0; height: 42px; width: 0; min-width: 0; opacity: 0; overflow: hidden; border: none; border-radius: 8px; color: #333;background: rgba(255,255,255,.92); transition: flex-basis .25s ease, width .25s ease, opacity .25s ease; }
+.thumbnail-select { flex: 0 0 90px; height: 36px; border: none; border-radius: 8px; background: rgba(255,255,255,.92); color: #333; }
+.country-select { display: none; flex: 0 0 0; height: 36px; width: 0; min-width: 0; opacity: 0; overflow: hidden; border: none; border-radius: 8px; color: #333;background: rgba(255,255,255,.92); transition: flex-basis .25s ease, width .25s ease, opacity .25s ease; }
 .country-select.visible { display: block; flex: 0 0 auto; width: auto; opacity: 1; }
 .thumbnail-search:focus, .thumbnail-select:focus, .country-select:focus { outline: 2px solid rgba(95, 143, 94, 0.35); outline-offset: 1px; border-color: #5f8f5e; }
 
@@ -308,7 +325,6 @@ rgb(145,0,0) 100%
 .bird-day-frame { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0; padding: 0; overflow: hidden; touch-action: pan-y; }
 .bird-day-image { display: block; width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; background: white; box-shadow: none; transition: opacity 0.25s ease, transform 0.25s ease; }
 
-.bird-caption-bar { position: relative; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
 .bird-caption-bar { position: relative; z-index: 10; width: 100%; background: #333333; color: white; font-size: 18px; padding: 6px 12px; min-height: 36px; box-sizing: border-box; display: flex; align-items: center; }
 .bird-title-group { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 0 1 auto; }
 
@@ -322,7 +338,6 @@ rgb(145,0,0) 100%
 .bird-info-toggle.open { transform: none; }
 .bird-info-toggle:active { transform: scale(0.95); }
 
-.bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(35px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 100; }
 .bird-info-drawer { position: absolute; left: 0; right: 0; bottom: 100%; min-height: 105px; height: auto; background: rgba(45,45,45,.72); backdrop-filter: blur(4px); box-shadow: 0 -4px 16px rgba(0,0,0,.15); padding: 10px 14px; border-top: 1px solid rgba(255,255,255,.08); box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .32s ease, transform .32s cubic-bezier(.22,.8,.28,1); z-index: 1; }
 
 .bird-info-drawer.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
@@ -449,7 +464,7 @@ rgb(145,0,0) 100%
 #birdSearch,
 #birdSort,
 #countryFilter,
-.gallery-toggle { height: 42px; box-sizing: border-box; }
+.gallery-toggle { height: 36px; box-sizing: border-box; }
 .about-text { line-height: 1.45; margin-top: 6px; } 
 
 .bird-copyright { font-size: 11px; }
@@ -1690,34 +1705,47 @@ Species name here
      aria-modal="true"
      hidden>
 
-  <div class="about-title">
-    Contact
-  </div>
+<div class="contact-icons">
 
-  <div class="contact-icons">
+  <a href="https://www.instagram.com/birdblog.majsujan/"
+     target="_blank"
+     rel="noopener"
+     title="Instagram">
 
-    <a href="https://www.instagram.com/birdblog.majsujan/"
-       target="_blank"
-       rel="noopener"
-       title="Instagram">
-      📸
-    </a>
+    <img
+      src="https://cdn.simpleicons.org/instagram/ffffff"
+      alt="Instagram">
 
-    <a href="https://www.flickr.com/photos/birdblog-suzonabuzafor/"
-       target="_blank"
-       rel="noopener"
-       title="Flickr">
-      🖼️
-    </a>
+  </a>
 
-    <a href="https://ebird.org/profile/MTk3MTk3MQ"
-       target="_blank"
-       rel="noopener"
-       title="eBird">
-      🐦
-    </a>
+  <a href="https://www.flickr.com/photos/birdblog-suzonabuzafor/"
+     target="_blank"
+     rel="noopener"
+     title="Flickr">
 
-  </div>
+    <img
+      src="https://cdn.simpleicons.org/flickr/ffffff"
+      alt="Flickr">
+
+  </a>
+
+<a href="https://ebird.org/profile/MTk3MTk3MQ"
+   target="_blank"
+   rel="noopener"
+   title="eBird">
+
+  <span style="
+    color:white;
+    font-weight:700;
+    font-size:15px;
+    line-height:1;
+  ">
+    eBird
+  </span>
+
+</a>
+
+</div>
 
   <div class="contact-form">
 
@@ -1768,7 +1796,8 @@ panel.style.height = `${h}px`;
 contactPanel.style.left   = panel.style.left;
 contactPanel.style.top    = panel.style.top;
 contactPanel.style.width  = panel.style.width;
-contactPanel.style.height = panel.style.height;	
+contactPanel.style.height = `${h}px`;
+contactPanel.style.overflow = "hidden";
 return;
 }
 
@@ -1781,7 +1810,8 @@ panel.style.height = `${r.height}px`;
 contactPanel.style.left   = panel.style.left;
 contactPanel.style.top    = panel.style.top;
 contactPanel.style.width  = panel.style.width;
-contactPanel.style.height = panel.style.height;
+contactPanel.style.height = `${r.height}px`;
+contactPanel.style.overflow = "hidden";
 }
 
 function openPanel() {
@@ -1854,6 +1884,21 @@ contactBtn.addEventListener('click', (e) => {
 
   e.stopPropagation();
 
+  const isOpen = !contactPanel.hidden;
+
+if (isOpen) {
+
+  contactPanel.hidden = true;
+
+  document.removeEventListener(
+    'click',
+    outsideClick,
+    { capture: true }
+  );
+
+  return;
+}
+
   positionPanelToThumb();
 
   panel.hidden = true;
@@ -1862,8 +1907,13 @@ contactBtn.addEventListener('click', (e) => {
   btn.setAttribute('aria-expanded', 'false');
 
   setTimeout(() =>
-    document.addEventListener('click', outsideClick, { capture: true }),
+    document.addEventListener(
+      'click',
+      outsideClick,
+      { capture: true }
+    ),
   0);
+
 });
 	
 })();
